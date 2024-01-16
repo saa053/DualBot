@@ -14,11 +14,14 @@ public class RoomInfo
 
 public class RoomController : MonoBehaviour
 {
+    [Header ("Map Settings")]
     [SerializeField] List<RoomInfo> roomsToLoad;
 
     public static RoomController instance;
 
     RoomInfo currentLoadRoomData;
+
+    public Room currentRoom;
 
     Queue<RoomInfo> loadRoomQueue = new Queue<RoomInfo>();
 
@@ -62,10 +65,12 @@ public class RoomController : MonoBehaviour
         if (DoesRoomExist(x, y))
             return;
 
-        RoomInfo newRoomData = new RoomInfo();
-        newRoomData.name = name;
-        newRoomData.x = x;
-        newRoomData.y = y;
+        RoomInfo newRoomData = new RoomInfo
+        {
+            name = name,
+            x = x,
+            y = y
+        };
 
         loadRoomQueue.Enqueue(newRoomData);
     }
@@ -82,7 +87,8 @@ public class RoomController : MonoBehaviour
 
     public void RegisterRoom(Room room)
     {
-        room.transform.position = new Vector3(
+        room.transform.position = new Vector3
+        (
             currentLoadRoomData.x * room.width,
             currentLoadRoomData.y * room.height,
             0
@@ -93,6 +99,11 @@ public class RoomController : MonoBehaviour
         room.name = currentLoadRoomData.name + " " + room.x + ", " + room.y;
         room.transform.parent = transform;
 
+        if (loadedRooms.Count == 0)
+        {
+            currentRoom = room;
+        }
+
         loadedRooms.Add(room);
 
         isLoadingRoom = false;
@@ -101,5 +112,19 @@ public class RoomController : MonoBehaviour
     public bool DoesRoomExist(int x, int y)
     {
         return loadedRooms.Find(item => item.x == x && item.y == y) != null;
+    }
+
+    public void OnPlayerEnterDoor(Vector2 direction)
+    {
+        (int x, int y) = currentRoom.GetGridPos();
+
+        Vector2 currentGridPos = new Vector2(x, y);
+        Vector2 targetGridPos = currentGridPos + direction;
+
+        Room targetRoom = loadedRooms.Find(item => item.x == targetGridPos.x && item.y == targetGridPos.y);
+        if (targetRoom == null)
+            return;
+
+        currentRoom = targetRoom;
     }
 }

@@ -26,8 +26,13 @@ public class Room : MonoBehaviour
         Gizmos.DrawWireCube(transform.position, new Vector3(width, height, 0));
     }
 
-    public Vector3 GetRoomCenter()
+    public Vector2 GetRoomCenter()
     {
-        return new Vector3(x * width, y * height);
+        return new Vector2(x * width, y * height);
+    }
+
+    public (int, int) GetGridPos()
+    {
+        return (x, y);
     }
 }

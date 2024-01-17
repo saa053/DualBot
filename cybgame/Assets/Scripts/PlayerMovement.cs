@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
     }
+
     public void OnInput(InputAction.CallbackContext context)
     {
         input = context.ReadValue<Vector2>();

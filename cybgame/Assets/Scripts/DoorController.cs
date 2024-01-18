@@ -27,7 +27,7 @@ public class DoorController : MonoBehaviour
         if (!DoesDoorLeadToRoom())
         {
             noRoom = true;
-            SetSpriteTransparency(GetComponent<SpriteRenderer>(), 0);
+            //SetSpriteTransparency(GetComponent<SpriteRenderer>(), 0);
         }
 
         hasCheckedForNoRoom = true;
@@ -44,7 +44,7 @@ public class DoorController : MonoBehaviour
         return RoomController.instance.DoesRoomExist(x, y);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         if (locked || hidden || noRoom)
             return;
@@ -55,14 +55,5 @@ public class DoorController : MonoBehaviour
             player1.EnterDoor(-direction);
             player2.EnterDoor(-direction);
         }
-    }
-
-    void SetSpriteTransparency(SpriteRenderer spriteRenderer, float alphaValue)
-    {
-        alphaValue = Mathf.Clamp01(alphaValue);
-
-        Color newColor = spriteRenderer.color;
-        newColor.a = alphaValue;
-        spriteRenderer.color = newColor;
     }
 }

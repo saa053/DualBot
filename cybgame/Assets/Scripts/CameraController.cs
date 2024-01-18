@@ -7,13 +7,15 @@ public class CameraController : MonoBehaviour
     public static CameraController instance;
     public Room currentRoom;
     public float moveSpeed;
+
+    Vector3 initalPosition;
     void Awake()
     {
         instance = this;
     }
     void Start()
     {
-        
+        initalPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -35,10 +37,10 @@ public class CameraController : MonoBehaviour
     Vector3 GetCameraTargetPosition()
     {
         if (currentRoom == null)
-            return Vector3.zero;
+            return transform.position;
 
         Vector3 targetPos = currentRoom.GetRoomCenter();
-        targetPos.z = transform.position.z;
+        targetPos += initalPosition;
 
         return targetPos;
     }

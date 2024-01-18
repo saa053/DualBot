@@ -16,18 +16,15 @@ public class RoomController : MonoBehaviour
 {
     [Header ("Map Settings")]
     [SerializeField] List<RoomInfo> roomsToLoad;
-
-    public static RoomController instance;
-
+    [SerializeField] public float paddingX;
+    [SerializeField] public float paddingY;
+    
     RoomInfo currentLoadRoomData;
-
-    public Room currentRoom;
-
     Queue<RoomInfo> loadRoomQueue = new Queue<RoomInfo>();
-
-    public List<Room> loadedRooms = new List<Room>();
-
-    public bool isLoadingRoom = false;
+    [HideInInspector] public Room currentRoom;
+    [HideInInspector] public List<Room> loadedRooms = new List<Room>();
+    [HideInInspector] public bool isLoadingRoom = false;
+    public static RoomController instance;
 
     void Awake()
     {
@@ -89,8 +86,8 @@ public class RoomController : MonoBehaviour
     {
         room.transform.position = new Vector3
         (
-            currentLoadRoomData.x * room.width,
-            currentLoadRoomData.y * room.height,
+            currentLoadRoomData.x * room.width * paddingX,
+            currentLoadRoomData.y * room.height * paddingY,
             0
         );
 

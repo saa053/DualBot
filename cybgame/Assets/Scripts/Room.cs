@@ -28,7 +28,9 @@ public class Room : MonoBehaviour
 
     public Vector2 GetRoomCenter()
     {
-        return new Vector2(x * width, y * height);
+        float paddingX = RoomController.instance.paddingX;
+        float paddingY = RoomController.instance.paddingY;
+        return new Vector2(x * width * paddingX, y * height * paddingY);
     }
 
     public (int, int) GetGridPos()

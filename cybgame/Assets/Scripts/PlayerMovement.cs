@@ -7,11 +7,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float roomEntryPlayerSpacing;
     [SerializeField] Vector2 enterRoomPos;
     Vector2 input;
-    Rigidbody2D body;
+    Rigidbody body;
 
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
+        body = GetComponent<Rigidbody>();
     }
 
     public void OnInput(InputAction.CallbackContext context)
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void EnterDoor(Vector2 direction)
     {
-        Vector2 targetPos = RoomController.instance.currentRoom.GetRoomCenter() + enterRoomPos * direction;
+        Vector3 targetPos = RoomController.instance.currentRoom.GetRoomCenter() + enterRoomPos * direction;
         if (direction.x == 0)
         {
             targetPos.x += (this.tag == "Player1") ? roomEntryPlayerSpacing : -roomEntryPlayerSpacing;
@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+        targetPos.z = transform.position.z;
         transform.position = targetPos;
     }
 }

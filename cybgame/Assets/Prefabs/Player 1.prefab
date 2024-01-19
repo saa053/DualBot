@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  rotationSpeed: 5
   roomEntryPlayerSpacing: 0.7
   enterRoomX: 6.984
   enterRoomZ: 3.442

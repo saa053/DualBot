@@ -23,14 +23,14 @@ public class Room : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, new Vector3(width, height, 0));
+        Gizmos.DrawWireCube(transform.position, new Vector3(width, 0, height));
     }
 
-    public Vector2 GetRoomCenter()
+    public Vector3 GetRoomCenter()
     {
         float paddingX = RoomController.instance.paddingX;
         float paddingY = RoomController.instance.paddingY;
-        return new Vector2(x * width * paddingX, y * height * paddingY);
+        return new Vector3(x * width * paddingX, 0, y * height * paddingY);
     }
 
     public (int, int) GetGridPos()

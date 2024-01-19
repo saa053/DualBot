@@ -21,7 +21,7 @@ public class RoomController : MonoBehaviour
     
     RoomInfo currentLoadRoomData;
     Queue<RoomInfo> loadRoomQueue = new Queue<RoomInfo>();
-    [HideInInspector] public Room currentRoom;
+    public Room currentRoom;
     [HideInInspector] public List<Room> loadedRooms = new List<Room>();
     [HideInInspector] public bool isLoadingRoom = false;
     public static RoomController instance;
@@ -87,8 +87,8 @@ public class RoomController : MonoBehaviour
         room.transform.position = new Vector3
         (
             currentLoadRoomData.x * room.width * paddingX,
-            currentLoadRoomData.y * room.height * paddingY,
-            0
+            0,
+            currentLoadRoomData.y * room.height * paddingY
         );
 
         room.x = currentLoadRoomData.x;

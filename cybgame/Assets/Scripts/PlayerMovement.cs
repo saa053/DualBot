@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float roomEntryPlayerSpacing;
     [SerializeField] float enterRoomX;
     [SerializeField] float enterRoomZ;
-    [SerializeField] bool isCarrying;
     Vector3 input;
     Rigidbody body;
 
@@ -28,14 +27,12 @@ public class PlayerMovement : MonoBehaviour
     {
         body.velocity = input * speed;
 
-        if (body.velocity.magnitude > 0.1f) // Check if the character is moving
+        /* if (body.velocity.magnitude > 0.1f) // Check if the character is moving
         {
             Vector3 desiredDirection = body.velocity.normalized;
-            if (isCarrying)
-                desiredDirection = -desiredDirection;
             Quaternion targetRotation = Quaternion.LookRotation(desiredDirection, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
+        } */
     }
 
     public void EnterDoor(Vector2 direction)

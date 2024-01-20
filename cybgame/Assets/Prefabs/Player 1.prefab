@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3321349971652935684}
   - component: {fileID: 1504386261043976962}
   - component: {fileID: 7419440382538197453}
+  - component: {fileID: -3222873949159066351}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player1
@@ -179,6 +180,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0de6d454-41c1-4e10-9e69-5827df1d6f61
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -3222873949159066351}
+        m_TargetAssemblyTypeName: PlayerLift, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e1664b85-9d65-401c-b36b-264f3f4dbcd0
+    m_ActionName: Player/Lifting[/Keyboard/t,/XInputControllerWindows/buttonSouth,/Keyboard/rightShift]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Player1
   m_DefaultActionMap: Player
@@ -214,3 +231,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: 0
+--- !u!114 &-3222873949159066351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4492391602381667553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56b1234853dea44db89015659426510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupDistance: 3

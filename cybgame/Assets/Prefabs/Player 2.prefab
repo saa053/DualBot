@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7567001400475732688}
   - component: {fileID: 5487876426748748080}
   - component: {fileID: 5329302068034192346}
+  - component: {fileID: 1762600204481183528}
+  - component: {fileID: 5286258697760215451}
   - component: {fileID: 3681889463999976775}
   - component: {fileID: 2427559278975884210}
-  - component: {fileID: 1762600204481183528}
   - component: {fileID: -4389279755444704851}
   m_Layer: 0
   m_Name: Player 2
@@ -139,6 +140,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &1762600204481183528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028285431111458657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9cbb07fb5d14b043b11a6badc5cb3bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIndex: 1
+--- !u!114 &5286258697760215451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028285431111458657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 810a6d46c17f14b4a8bbeb22b58709ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3681889463999976775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,9 +192,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2427559278975884210}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: OnInput
+      - m_Target: {fileID: 5286258697760215451}
+        m_TargetAssemblyTypeName: PlayerInputManager, Assembly-CSharp
+        m_MethodName: MovePressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -182,9 +208,9 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -4389279755444704851}
-        m_TargetAssemblyTypeName: PlayerLift, Assembly-CSharp
-        m_MethodName: OnInteract
+      - m_Target: {fileID: 5286258697760215451}
+        m_TargetAssemblyTypeName: PlayerInputManager, Assembly-CSharp
+        m_MethodName: InteractPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -218,19 +244,6 @@ MonoBehaviour:
   roomEntryPlayerSpacing: 0.7
   enterRoomX: 6.984
   enterRoomZ: 3.442
---- !u!114 &1762600204481183528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7028285431111458657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9cbb07fb5d14b043b11a6badc5cb3bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerIndex: 1
 --- !u!114 &-4389279755444704851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,4 +256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56b1234853dea44db89015659426510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupDistance: 3
+  inputDisplayText: {fileID: 0}
+  pickupDistance: 1
+  gizmo: 0

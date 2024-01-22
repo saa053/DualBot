@@ -9,22 +9,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float roomEntryPlayerSpacing;
     [SerializeField] float enterRoomX;
     [SerializeField] float enterRoomZ;
-    Vector3 input;
+
     Rigidbody body;
+    PlayerInputManager inputManager;
 
     void Start()
     {
         body = GetComponent<Rigidbody>();
-    }
-
-    public void OnInput(InputAction.CallbackContext context)
-    {
-        Vector2 newInput = context.ReadValue<Vector2>();
-        input = new Vector3(newInput.x, 0, newInput.y);
+        inputManager = GetComponent<PlayerInputManager>();
     }
 
     void FixedUpdate()
     {
+        if (DialogueManager.instance.dialogueIsPlaying)
+            return;
+
+        Vector3 input = inputManager.GetMoveInput();
         body.velocity = input * speed;
 
         /* if (body.velocity.magnitude > 0.1f) // Check if the character is moving

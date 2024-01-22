@@ -15,9 +15,11 @@ public class PlayerLift : MonoBehaviour
     LiftableObject jointScript;
     Vector3 jointPos;
 
+    PlayerInputManager inputManager;
     void Start()
     {
         body = GetComponent<Rigidbody>();
+        inputManager = GetComponent<PlayerInputManager>();
     }
 
     void Update()
@@ -31,21 +33,12 @@ public class PlayerLift : MonoBehaviour
         jointScript = targetJoint.GetComponent<LiftableObject>();
         jointPos = targetJoint.transform.TransformPoint(targetJoint.anchor);
 
-
-        // UI TEXT
-        /* if (Vector3.Distance(transform.position, jointPos) < pickupDistance)
-        {
-            string binding = GetComponent<PlayerInput>().actions.FindActionMap("Player").FindAction("Lifting").GetBindingDisplayString(0, "Player1");   
-            Debug.Log(binding);
-            inputDisplayText.text = binding;
-        } */
+        if (inputManager.GetInteract())
+            Lift();
     }
 
-    public void OnInteract (InputAction.CallbackContext context)
+    void Lift()
     {
-        if (!context.performed)
-            return;
-
         if (targetJoint == null)
         {
             Debug.Log("Nothing to lift!");
@@ -75,6 +68,7 @@ public class PlayerLift : MonoBehaviour
     {
         if (!gizmo)
             return;
+
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, pickupDistance);
 

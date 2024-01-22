@@ -15,7 +15,7 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (context.performed)
             interact = true;
-        else
+        else if (context.canceled)
             interact = false;
     }
 
@@ -27,7 +27,7 @@ public class PlayerInputManager : MonoBehaviour
             newInput = context.ReadValue<Vector2>();
             input = new Vector3(newInput.x, 0, newInput.y);
         }
-        else
+        else if (context.canceled)
         {
             move = false;
             input = Vector3.zero;
@@ -36,12 +36,16 @@ public class PlayerInputManager : MonoBehaviour
 
     public bool GetInteract()
     {
-        return interact;
+        bool result = interact;
+        interact = false;
+        return result;
     }
 
     public bool GetMove()
     {
-        return move;
+        bool result = move;
+        move = false;
+        return result;
     }
 
     public Vector3 GetMoveInput()

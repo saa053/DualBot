@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 542509237609038813}
   - component: {fileID: 3321349971652935684}
   - component: {fileID: 1504386261043976962}
-  - component: {fileID: -3222873949159066351}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player1
@@ -244,18 +243,3 @@ MonoBehaviour:
   roomEntryPlayerSpacing: 0.7
   enterRoomX: 6.984
   enterRoomZ: 3.442
---- !u!114 &-3222873949159066351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4492391602381667553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b56b1234853dea44db89015659426510, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputDisplayText: {fileID: 0}
-  pickupDistance: 1
-  gizmo: 0

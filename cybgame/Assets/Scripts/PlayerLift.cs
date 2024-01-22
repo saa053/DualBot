@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerLift : MonoBehaviour
 {
-    [SerializeField] Text inputDisplayText;
     [SerializeField] float pickupDistance;
     [SerializeField] bool gizmo;
     Rigidbody body;
@@ -12,8 +11,6 @@ public class PlayerLift : MonoBehaviour
     ConfigurableJoint currentJoint;
 
     ConfigurableJoint targetJoint;
-    LiftableObject jointScript;
-    Vector3 jointPos;
 
     PlayerInputManager inputManager;
     void Start()
@@ -26,12 +23,7 @@ public class PlayerLift : MonoBehaviour
     {
         targetJoint = LiftManager.instance.GetClosestJoint(transform);
         if (targetJoint == null)
-        {
-            Debug.Log("No joint!");
             return;
-        }
-        jointScript = targetJoint.GetComponent<LiftableObject>();
-        jointPos = targetJoint.transform.TransformPoint(targetJoint.anchor);
 
         if (inputManager.GetInteract())
             Lift();
@@ -39,12 +31,8 @@ public class PlayerLift : MonoBehaviour
 
     void Lift()
     {
-        if (targetJoint == null)
-        {
-            Debug.Log("Nothing to lift!");
-            return;
-        }
-
+        LiftableObject jointScript = targetJoint.GetComponent<LiftableObject>();
+        
         if (currentJoint != null)
         {
             jointScript.DropObject(body, currentJoint);
@@ -52,7 +40,7 @@ public class PlayerLift : MonoBehaviour
             return;
         }
 
-
+        Vector3 jointPos = targetJoint.transform.TransformPoint(targetJoint.anchor);
         if (Vector3.Distance(transform.position, jointPos) < pickupDistance)
         {
             jointScript.LiftObject(body, targetJoint);
@@ -64,7 +52,7 @@ public class PlayerLift : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    /* private void OnDrawGizmos()
     {
         if (!gizmo)
             return;
@@ -77,5 +65,5 @@ public class PlayerLift : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(jointPos, 0.4f);
         }
-    }
+    } */
 }

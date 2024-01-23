@@ -21,10 +21,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (DialogueManager.instance.dialogueIsPlaying)
-            return;
-
         Vector3 input = inputManager.GetMoveInput();
+        if (DialogueManager.instance.dialogueIsPlaying)
+            input = Vector3.zero;
+
         body.velocity = input * speed;
 
         /* if (body.velocity.magnitude > 0.1f) // Check if the character is moving

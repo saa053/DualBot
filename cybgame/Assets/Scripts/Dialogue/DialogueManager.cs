@@ -44,6 +44,9 @@ public class DialogueManager : MonoBehaviour
 
     int numChoices;
 
+    bool p1AcceptInput = true;
+    bool p2AcceptInput = true;
+
     bool displayingChoices;
     Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
@@ -99,8 +102,8 @@ public class DialogueManager : MonoBehaviour
 
         if (displayingChoices)
         {
-            ChooseChoiceControls(player1Input, ref p1CurrentChoice);
-            ChooseChoiceControls(player2Input, ref p2CurrentChoice);
+            MoveChoice(player1Input, ref p1CurrentChoice, ref p1AcceptInput);
+            MoveChoice(player2Input, ref p2CurrentChoice, ref p1AcceptInput);
 
             SelectChoice(player1Input, p1CurrentChoice, ref p1SelectedChoice, p1Color);
             SelectChoice(player2Input, p2CurrentChoice, ref p2SelectedChoice, p2Color);
@@ -191,20 +194,32 @@ public class DialogueManager : MonoBehaviour
         choices[p2CurrentChoice].transform.GetChild(1).gameObject.SetActive(true);
     }
 
-    void ChooseChoiceControls(PlayerInputManager inputManager, ref int currentChoice)
+    void MoveChoice(PlayerInputManager inputManager, ref int currentChoice, ref bool acceptInput)
     {
         if (!inputManager.GetMove())
             return;
     
         float input = inputManager.GetMoveInput().z;
 
-        if (input < 0)
+        float deadZone = 0.75f;
+        if (Mathf.Abs(input) < deadZone)
+        {
+            acceptInput = true;
+            return;
+        }
+        else if(input == 1 || input == -1)
+            acceptInput = true;
+        
+
+        if (input < 0 && acceptInput)
         {
             currentChoice = (currentChoice + 1) % (numChoices + 1);
+            acceptInput = false;
         }
-        else if (input > 0)
+        else if (input > 0 && acceptInput)
         {
             currentChoice = (currentChoice - 1 + numChoices + 1) % (numChoices + 1);
+            acceptInput = false;
         }
 
         movePlayerIcon();

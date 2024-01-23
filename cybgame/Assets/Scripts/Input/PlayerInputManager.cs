@@ -8,6 +8,8 @@ public class PlayerInputManager : MonoBehaviour
     bool interact = false;
     bool move = false;
 
+    bool isLifting = false;
+
     Vector2 newInput;
     Vector3 input;
 
@@ -51,5 +53,15 @@ public class PlayerInputManager : MonoBehaviour
     public Vector3 GetMoveInput()
     {
         return input;
+    }
+
+    public bool IsLifting()
+    {
+        return isLifting;
+    }
+
+    public void SetIsLifting(bool res)
+    {
+        isLifting = res;
     }
 }

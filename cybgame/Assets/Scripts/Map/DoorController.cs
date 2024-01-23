@@ -13,10 +13,16 @@ public class DoorController : MonoBehaviour
     PlayerMovement player1;
     PlayerMovement player2;
 
+    PlayerInputManager player1Input;
+    PlayerInputManager player2Input;
+
     void Start()
     {
         player1 = GameObject.FindWithTag("Player1").GetComponent<PlayerMovement>();
         player2 = GameObject.FindWithTag("Player2").GetComponent<PlayerMovement>();
+
+        player1Input = GameObject.FindWithTag("Player1").GetComponent<PlayerInputManager>();
+        player2Input = GameObject.FindWithTag("Player2").GetComponent<PlayerInputManager>();
     }
 
     void Update()
@@ -47,6 +53,9 @@ public class DoorController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (locked || hidden || noRoom)
+            return;
+
+        if (player1Input.IsLifting() || player2Input.IsLifting())
             return;
 
         if (other.tag == "Player1" || other.tag == "Player2")

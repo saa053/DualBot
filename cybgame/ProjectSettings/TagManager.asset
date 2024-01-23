@@ -6,8 +6,6 @@ TagManager:
   tags:
   - Player1
   - Player2
-  - Arms
-  - Arms2
   layers:
   - Default
   - TransparentFX

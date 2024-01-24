@@ -103,7 +103,7 @@ public class DialogueManager : MonoBehaviour
         if (displayingChoices)
         {
             MoveChoice(player1Input, ref p1CurrentChoice, ref p1AcceptInput);
-            MoveChoice(player2Input, ref p2CurrentChoice, ref p1AcceptInput);
+            MoveChoice(player2Input, ref p2CurrentChoice, ref p2AcceptInput);
 
             SelectChoice(player1Input, p1CurrentChoice, ref p1SelectedChoice, p1Color);
             SelectChoice(player2Input, p2CurrentChoice, ref p2SelectedChoice, p2Color);

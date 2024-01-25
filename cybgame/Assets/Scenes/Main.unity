@@ -343,7 +343,7 @@ MonoBehaviour:
   p2Color: {r: 0.31804684, g: 0.2775454, b: 0.9339623, a: 1}
   p1Color: {r: 0.9528302, g: 0.38203096, b: 0.38203096, a: 1}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
-  agreeColor: {r: 0.56107724, g: 1, b: 0.48584908, a: 1}
+  agreeColor: {r: 0.23889412, g: 0.426, b: 0.20715293, a: 1}
 --- !u!1 &189729089
 GameObject:
   m_ObjectHideFlags: 0

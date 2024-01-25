@@ -293,6 +293,7 @@ public class DialogueManager : MonoBehaviour
         if (currentChoices.Count > choices.Length)
             Debug.LogError("More choices were given than the UI can support. Number of choices given: " + currentChoices.Count);
         
+        
         int index = 0;
         foreach(Choice choice in currentChoices)
         {
@@ -306,6 +307,7 @@ public class DialogueManager : MonoBehaviour
             choices[i].gameObject.SetActive(false);
         }
 
-        displayingChoices = true;
+        if (currentChoices.Count != 0)
+            displayingChoices = true;
     }
 }

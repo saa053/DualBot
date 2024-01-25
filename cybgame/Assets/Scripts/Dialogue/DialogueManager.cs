@@ -230,6 +230,9 @@ public class DialogueManager : MonoBehaviour
         if (!inputManager.GetInteract())
             return;
 
+        if (selectedChoice == currentChoice)
+            return;
+
         if (selectedChoice != -1)
         {
             ChangeColorOfButton(choices[selectedChoice].GetComponent<Button>(), defaultColor);

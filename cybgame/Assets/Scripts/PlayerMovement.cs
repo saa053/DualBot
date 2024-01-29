@@ -13,10 +13,24 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody body;
     PlayerInputManager inputManager;
 
+    Animator animator;
+
     void Start()
     {
         body = GetComponent<Rigidbody>();
         inputManager = GetComponent<PlayerInputManager>();
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    void Update()
+    {
+        if (!animator)
+            return; 
+            
+        if (inputManager.isMoving())
+            animator.SetBool("isMoving", true);
+        else
+            animator.SetBool("isMoving", false);
     }
 
     void FixedUpdate()
@@ -27,12 +41,12 @@ public class PlayerMovement : MonoBehaviour
 
         body.velocity = input * speed;
 
-        /* if (body.velocity.magnitude > 0.1f) // Check if the character is moving
+        if (inputManager.isMoving())
         {
             Vector3 desiredDirection = body.velocity.normalized;
             Quaternion targetRotation = Quaternion.LookRotation(desiredDirection, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        } */
+            animator.transform.rotation = Quaternion.Slerp(animator.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 
     public void EnterDoor(Vector2 direction)

@@ -42,6 +42,11 @@ public class PlayerInputManager : MonoBehaviour
         return result;
     }
 
+    public bool isMoving()
+    {
+        return move;
+    }
+
     public bool GetMove()
     {
         bool result = move;

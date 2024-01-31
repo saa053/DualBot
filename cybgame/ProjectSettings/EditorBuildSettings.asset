@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rooms/USB.unity
     guid: c4de4dffa9bd1154e8b918ebb73fe9ae
+  - enabled: 1
+    path: Assets/Scenes/Rooms/PasswordStrength.unity
+    guid: 194d065682646fc40ae2fc369e78d5fc
   m_configObjects: {}

@@ -4,8 +4,10 @@ public class DoorController : MonoBehaviour
 {
     [SerializeField] Vector2 direction;
 
+    Animator animator;
+
     bool hidden = false;
-    bool locked = false;
+    [SerializeField] bool locked = false;
     bool noRoom = false;
     
     bool hasCheckedForNoRoom = false;
@@ -18,6 +20,8 @@ public class DoorController : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         player1 = GameObject.FindWithTag("Player1").GetComponent<PlayerMovement>();
         player2 = GameObject.FindWithTag("Player2").GetComponent<PlayerMovement>();
 
@@ -37,6 +41,16 @@ public class DoorController : MonoBehaviour
         }
 
         hasCheckedForNoRoom = true;
+
+        UpdateAnimation();
+    }
+
+    void UpdateAnimation()
+    {
+        if (locked)
+            animator.SetBool("isOpen", false);
+        else
+            animator.SetBool("isOpen", true);
     }
 
     bool DoesDoorLeadToRoom()

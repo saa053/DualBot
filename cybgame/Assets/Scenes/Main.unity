@@ -1243,7 +1243,7 @@ MonoBehaviour:
   - name: Empty
     x: 0
     y: 2
-  - name: Empty
+  - name: PasswordStrength
     x: -1
     y: 0
   - name: Empty

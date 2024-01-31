@@ -374,5 +374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43eb696ef43a22344aafb1580650374a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liftHeight: 0.6
   liftingMass: 30
   mass: 35

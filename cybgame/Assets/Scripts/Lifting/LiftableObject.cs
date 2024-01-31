@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class LiftableObject : MonoBehaviour
 {
+    [SerializeField] float liftHeight;
     [SerializeField] float liftingMass;
     [SerializeField] float mass;
 
@@ -92,7 +93,7 @@ public class LiftableObject : MonoBehaviour
     {
         if (joint.connectedBody == null)
         {
-            joint.connectedAnchor = new Vector3(0, playerBody.transform.position.y, 0);
+            joint.connectedAnchor = new Vector3(0, liftHeight, 0);
             joint.connectedBody = playerBody;
             Vector3 newAnchorPos = transform.InverseTransformPoint(playerBody.transform.position);
             joint.anchor = newAnchorPos;

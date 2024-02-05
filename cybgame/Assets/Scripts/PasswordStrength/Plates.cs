@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+public enum PlateType
+{
+    Svakt,
+    Middels,
+    Sterkt
+}
 
 public class Plates : MonoBehaviour
 {
+
     [Header ("Objects")]
+    [SerializeField] PlateType plateType;
     [SerializeField] Renderer plate;
     [SerializeField] GameObject progressBar;
     [SerializeField] TextMeshProUGUI text;
@@ -54,7 +62,7 @@ public class Plates : MonoBehaviour
             text.color = defaultTextColor;
         }
         
-        if (player1OnPlate && player2OnPlate)
+        if (player1OnPlate && player2OnPlate && !PasswordScreen.instance.isTyping)
         {
             if (!audioSource.isPlaying)
             {
@@ -72,10 +80,14 @@ public class Plates : MonoBehaviour
 
         if (progress == 1)
         {
+            PasswordScreen.instance.SubmitAnswer(plateType);
+
             if (player1OnPlate)
                 player1.position = restartPos + new Vector3(1, 0, 0);
             if (player2OnPlate)
                 player2.position = restartPos + new Vector3(-1, 0, 0);
+            
+            progress = 0;
         }
     }
 

@@ -93,7 +93,7 @@ public class Plates : MonoBehaviour
             player2 = other.transform;
         }
 
-        other.transform.position = new Vector3(other.transform.position.x, 0.4f, other.transform.position.z);
+        other.transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
     }
 
     void OnTriggerExit(Collider other)

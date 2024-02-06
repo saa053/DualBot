@@ -14,8 +14,8 @@ public class DialogueTrigger : MonoBehaviour
     PlayerInputManager player1Input;
     PlayerInputManager player2Input;
 
-    [SerializeField] private bool player1InRange;
-    [SerializeField] private bool player2InRange;
+    bool player1InRange;
+    bool player2InRange;
 
     void Awake()
     {

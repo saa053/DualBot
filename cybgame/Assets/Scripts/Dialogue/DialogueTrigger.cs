@@ -14,22 +14,25 @@ public class DialogueTrigger : MonoBehaviour
     PlayerInputManager player1Input;
     PlayerInputManager player2Input;
 
-    bool playerInRange;
+    [SerializeField] private bool player1InRange;
+    [SerializeField] private bool player2InRange;
+
     void Awake()
     {
-        playerInRange = false;
         visualCue.SetActive(false);
     }
 
     void Start()
     {
+        player1InRange = false;
+        player2InRange = false;
         player1Input = GameObject.FindWithTag("Player1").GetComponent<PlayerInputManager>();
         player2Input = GameObject.FindWithTag("Player2").GetComponent<PlayerInputManager>();
     }
 
     void Update()
     {
-        if (playerInRange && !DialogueManager.instance.dialogueIsPlaying)
+        if ((player1InRange || player2InRange) && !DialogueManager.instance.dialogueIsPlaying)
         {
             visualCue.SetActive(true);
 
@@ -46,17 +49,17 @@ public class DialogueTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player1" || other.gameObject.tag == "Player2")
-        {
-            playerInRange = true;
-        }
+        if (other.gameObject.tag == "Player1")
+            player1InRange = true;
+        if (other.gameObject.tag == "Player2")
+            player2InRange = true;
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player1" || other.gameObject.tag == "Player2")
-        {
-            playerInRange = false;
-        }
+        if (other.gameObject.tag == "Player1")
+            player1InRange = false;
+        if (other.gameObject.tag == "Player2")
+            player2InRange = false;
     }
 }

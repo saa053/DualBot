@@ -15,7 +15,9 @@ public class PlayerInputManager : MonoBehaviour
     public void InteractPressed(InputAction.CallbackContext context)
     {
         if (context.performed)
+        {
             interact = true;
+        }
         else if (context.canceled)
             interact = false;
     }

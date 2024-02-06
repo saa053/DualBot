@@ -1,3 +1,12 @@
+VAR hasTalked = false
+
+{hasTalked:
+    -> sub
+    - else:
+    -> main
+}
+
+=== main ===
 Hi, I'm Dr. Data. Do you want to help me with my research on internet security?
 To help my crucial research, can you give me your facebook password?
 
@@ -6,5 +15,13 @@ To help my crucial research, can you give me your facebook password?
 * [I should ask my parents for permission first]
 
 - I see...
+~ hasTalked = true
+
+-> END
+
+=== sub ===
+Can I help you?
+-> END
+
 
 

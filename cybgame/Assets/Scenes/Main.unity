@@ -1015,12 +1015,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 625926979}
+  - component: {fileID: 625926985}
   - component: {fileID: 625926983}
   - component: {fileID: 625926982}
+  - component: {fileID: 625926984}
   - component: {fileID: 625926981}
   - component: {fileID: 625926980}
-  - component: {fileID: 625926984}
-  - component: {fileID: 625926985}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Player2
@@ -1231,19 +1231,19 @@ MonoBehaviour:
   - name: Empty
     x: 0
     y: 0
-  - name: Talking
+  - name: PasswordStrength
     x: 1
     y: 0
   - name: Empty
     x: 2
     y: 0
-  - name: USB
+  - name: Empty
     x: 0
     y: 1
   - name: Empty
     x: 0
     y: 2
-  - name: PasswordStrength
+  - name: Talking
     x: -1
     y: 0
   - name: Empty

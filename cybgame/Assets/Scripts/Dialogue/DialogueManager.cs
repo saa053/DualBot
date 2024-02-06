@@ -14,6 +14,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using Unity.Mathematics;
+using System.Linq;
 
 
 public class DialogueManager : MonoBehaviour
@@ -299,6 +300,8 @@ public class DialogueManager : MonoBehaviour
         {
             choices[index].gameObject.SetActive(true);
             choicesText[index].text = choice.text;
+
+            ChangeColorOfButton(choices[index].GetComponent<Button>(), defaultColor);
             index++;
         }
 
@@ -309,5 +312,14 @@ public class DialogueManager : MonoBehaviour
 
         if (currentChoices.Count != 0)
             displayingChoices = true;
+    }
+
+    public bool GetBool(string variableName)
+    {    
+        if (currentStory == null || currentStory.variablesState == null || !currentStory.variablesState.Contains(variableName))
+            return false;
+
+        bool result = (bool)currentStory.variablesState[variableName];
+        return result;
     }
 }

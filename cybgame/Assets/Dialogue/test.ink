@@ -1,3 +1,6 @@
+VAR shouldSave = true
+VAR saveString = "drData"
+
 VAR hasTalked = false
 
 {hasTalked:

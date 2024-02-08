@@ -1,10 +1,22 @@
+{init:
+    -> init
+    -else:
+    -> main
+}
 
+=== init ===
+VAR shouldSave = true
+VAR saveString = "passwordStrength"
+
+VAR shouldInit = false
 VAR GO = false
+
 
 -> main
 
 
 === main ===
+~ shouldInit = false
 Hei, jeg har en liste med passord og må finne ut hvilke som er gode. Kan du hjelpe meg?
     
     + [Sure bro]
@@ -16,9 +28,9 @@ Hei, jeg har en liste med passord og må finne ut hvilke som er gode. Kan du hje
 
 === start ===
 Tusen takk! Du skal få en AI disk som premie etterpå!
-Jeg skal vise deg et passord på skjermen og så går du til den knappen du synes er riktig
+Dere har tre knapper i dette rommet markert "Svakt", "Middels", "Sterkt"
+Jeg skal nå vise et passord på skjermen. Så bruker dere knappene til å svare hvor godt passordet er
 LETSGO!
-HUSK AT DU KAN SAVE STORY STATE OG LOADE SENERE STIAN
     ~ GO = true
 ->END
 

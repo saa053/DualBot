@@ -254,6 +254,26 @@ public class DialogueManager : MonoBehaviour
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         currentStory = new Story(inkJSON.text);
+
+        if (currentStory.variablesState == null || !currentStory.variablesState.Contains("saveString"))
+        {
+            Debug.Log("Ink story doesn't have a save string!");
+            return;
+        }
+
+        bool shouldSave = (bool)currentStory.variablesState["shouldSave"];
+        string saveString = (string)currentStory.variablesState["saveString"];
+
+        if (shouldSave)
+        {
+            Story storyState = DialogueSaveManager.instance.LoadStoryState(currentStory, saveString);
+            if (storyState != null)
+            {
+                Debug.Log("Loading story...");
+                currentStory = storyState;
+            }
+        }
+
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
@@ -262,6 +282,19 @@ public class DialogueManager : MonoBehaviour
 
     void ExitDialogueMode()
     {
+        bool shouldSave = (bool)currentStory.variablesState["shouldSave"];
+        string saveString = (string)currentStory.variablesState["saveString"];
+
+        if (shouldSave)
+        {
+            bool result = DialogueSaveManager.instance.SaveStoryState(currentStory, saveString);
+            if (!result)
+            {
+                Debug.Log("Failed saving story state!");
+                return;
+            }
+        }
+
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";

@@ -271,6 +271,7 @@ public class DialogueManager : MonoBehaviour
             {
                 Debug.Log("Loading story...");
                 currentStory = storyState;
+                currentStory.ChoosePathString("resetLabel");
             }
         }
 
@@ -345,14 +346,5 @@ public class DialogueManager : MonoBehaviour
 
         if (currentChoices.Count != 0)
             displayingChoices = true;
-    }
-
-    public bool GetBool(string variableName)
-    {    
-        if (currentStory == null || currentStory.variablesState == null || !currentStory.variablesState.Contains(variableName))
-            return false;
-
-        bool result = (bool)currentStory.variablesState[variableName];
-        return result;
     }
 }

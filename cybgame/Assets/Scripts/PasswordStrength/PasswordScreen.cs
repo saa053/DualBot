@@ -11,16 +11,13 @@ public class PasswordScreen : MonoBehaviour
     [SerializeField] string[] passwordList;
     List<string> remainingPasswords;
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] Material materialON;
+    [SerializeField] Material materialOFF;
+    [SerializeField] MeshRenderer meshRenderer;
 
     const string HTML_ALPHA = "<color=#00000000>";
     public bool isTyping = false;
     const float MAX_TYPE_TIME = 0.1f;
-
-    Coroutine typeDialogueCoroutine;
-
-
-
-    int numAnswered = 0;
 
     public static PasswordScreen instance;
 
@@ -31,6 +28,7 @@ public class PasswordScreen : MonoBehaviour
 
     void Start()
     {
+        TurnOff();
         remainingPasswords = passwordList.ToList();
         text.text = "";
     }
@@ -54,30 +52,12 @@ public class PasswordScreen : MonoBehaviour
         return password;
     }
 
-    public void SubmitAnswer(PlateType plateType)
-    {
-        switch (plateType)
-        {
-            case PlateType.Svakt:
-                break;
-            case PlateType.Middels:
-                break;
-            case PlateType.Sterkt:
-                break;
-            default:
-                break;
-        }
-
-        numAnswered++;
-        NextPassword();
-    }
-
-    void NextPassword()
+    public void NextPassword()
     {
         if (!isTyping)
         {
             string p = RandomPassword();
-            typeDialogueCoroutine = StartCoroutine(TypeDialogueText(p));
+            StartCoroutine(TypeDialogueText(p));
         }
     }
 
@@ -103,5 +83,16 @@ public class PasswordScreen : MonoBehaviour
         }
 
         isTyping = false;
+    }
+
+    public void TurnOn()
+    {
+        meshRenderer.materials[2] = materialON;
+        NextPassword();
+    }
+
+    public void TurnOff()
+    {
+        meshRenderer.materials[2] = materialOFF;
     }
 }

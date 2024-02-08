@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
+using System;
 
 public class DialogueSaveManager : MonoBehaviour
 {
@@ -40,8 +41,17 @@ public class DialogueSaveManager : MonoBehaviour
   
     }
 
-    /* private void OnApplicationQuit()
+    public bool GetBool(Story story, string saveString, string boolName)
+    {
+        story = LoadStoryState(story, saveString);
+        if (story == null)
+            return false;
+        
+        return (bool)story.variablesState[boolName];
+    }
+
+    private void OnApplicationQuit()
     {
         PlayerPrefs.DeleteAll();
-    } */
+    }
 }

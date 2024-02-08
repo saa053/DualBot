@@ -80,7 +80,7 @@ public class Plates : MonoBehaviour
 
         if (progress == 1)
         {
-            PasswordScreen.instance.SubmitAnswer(plateType);
+            PasswordStrengthManager.instance.SubmitAnswer(plateType);
 
             if (player1OnPlate)
                 player1.position = restartPos + new Vector3(1, 0, 0);

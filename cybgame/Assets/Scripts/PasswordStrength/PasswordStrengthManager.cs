@@ -6,22 +6,16 @@ public class PasswordStrengthManager : MonoBehaviour
     [Header("Mini-game settings")]
     [SerializeField] int numPasswords;
 
-    [Header("NPC")]
-    [SerializeField] Vector3 NPCLocalTargetPos;
-    [SerializeField] Quaternion NPCTargetRot;
-    [SerializeField] float NPCMoveSpeed;
-    [SerializeField] float NPCRotSpeed;
-    [SerializeField] Animator NPCAnimator;
-    [SerializeField] Rigidbody NPC;
-    [SerializeField] TextAsset inkJSON;
-    Vector3 WorldTargetPos;
+    [Header("Doors")]
 
-    bool NPCReady = false;
+    [SerializeField] DoorController[] doors;
+
+    [SerializeField] NPCMove NPC;
+    [SerializeField] TextAsset NPCText;
+    [SerializeField] TextAsset winText;
+
     bool screenOn = false;
     bool gameComplete = false;
-
-    bool setTargetPos = false;
-
 
     int numAnswered = 0;
 
@@ -34,39 +28,48 @@ public class PasswordStrengthManager : MonoBehaviour
     void Update()
     {
         if (gameComplete)
-            return;
-
-        if (screenOn)
         {
-            if (numAnswered == numPasswords)
-                GameComplete();
+            if (NPC.ready)
+            {
+                DialogueManager.instance.EnterDialogueMode(winText);
+                NPC.ready = false;
+            }
+
+            SpawnReward();
             return;
         }
 
+        if (screenOn)
+            return;
+
         if (!ShouldStart())
             return;
+
+        CloseDoors();
         
-        if (NPCReady)
+        if (NPC.ready)
         {
             PasswordScreen.instance.TurnOn();
             screenOn = true;
         }
+        else
+        {
+            NPC.trigger = true;
+        }
     }
 
-    void FixedUpdate()
+    void SpawnReward()
     {
-        if (!ShouldStart() || gameComplete || screenOn || NPCReady)
-            return;
-        
-        MoveNPC();
+        if (DialogueSaveManager.instance.GetBool(winText, "reward"))
+        {
+            Debug.Log("Reward spawned?");
+            OpenDoors();
+        }
     }
 
     bool ShouldStart()
     {
-        Story story = new Story(inkJSON.text);
-        string saveString = (string)story.variablesState["saveString"];
-
-        bool result = DialogueSaveManager.instance.GetBool(story, saveString, "GO");
+        bool result = DialogueSaveManager.instance.GetBool(NPCText, "GO");
         return result;
     }
 
@@ -76,44 +79,25 @@ public class PasswordStrengthManager : MonoBehaviour
 
         PasswordScreen.instance.TurnOff();
         screenOn = false;
+
+        NPC.SetNewTarget(transform.position, 4f);
+        NPC.trigger = true;
     }
 
-    void MoveNPC()
+    void CloseDoors()
     {
-        if (!setTargetPos)
+        foreach (DoorController door in doors)
         {
-            WorldTargetPos = NPC.transform.position + NPCLocalTargetPos;
-            setTargetPos = true;
-        }
-
-        Vector3 direction = WorldTargetPos - NPC.transform.position;
-
-        if (direction.magnitude > 0.1f)
-        {
-            NPC.velocity = direction.normalized * NPCMoveSpeed;
-            NPCAnimator.SetBool("isMoving", true);
-
-            Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(NPC.transform.rotation, toRotation, Time.deltaTime * NPCRotSpeed);
-        }
-        else
-        {
-            NPC.velocity = Vector3.zero;
-            NPCAnimator.SetBool("isMoving", false);
-
-            if (NPC.transform.rotation != NPCTargetRot)
-            {
-                RotateNPCToTarget();
-            }
-            else
-                NPCReady = true;    
+            door.locked = true;
         }
     }
 
-    void RotateNPCToTarget()
+    void OpenDoors()
     {
-        Quaternion toRotation = NPCTargetRot;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, Time.deltaTime * NPCRotSpeed);
+        foreach (DoorController door in doors)
+        {
+            door.locked = false;
+        }
     }
 
     public void SubmitAnswer(PlateType plateType)
@@ -131,6 +115,10 @@ public class PasswordStrengthManager : MonoBehaviour
         }
 
         numAnswered++;
-        PasswordScreen.instance.NextPassword();
+        if (numAnswered == numPasswords)
+            GameComplete();
+        else
+            PasswordScreen.instance.NextPassword();
+
     }
 }

@@ -7,10 +7,8 @@ public class DoorController : MonoBehaviour
     Animator animator;
 
     bool hidden = false;
-    [SerializeField] bool locked = false;
+    public bool locked = false;
     bool noRoom = false;
-    
-    bool hasCheckedForNoRoom = false;
 
     PlayerMovement player1;
     PlayerMovement player2;
@@ -31,7 +29,7 @@ public class DoorController : MonoBehaviour
 
     void Update()
     {
-        if (RoomController.instance.isLoadingRoom || hasCheckedForNoRoom)
+        if (RoomController.instance.isLoadingRoom)
             return;
 
         if (!DoesDoorLeadToRoom())
@@ -40,13 +38,11 @@ public class DoorController : MonoBehaviour
             //SetSpriteTransparency(GetComponent<SpriteRenderer>(), 0);
         }
 
-        hasCheckedForNoRoom = true;
-
         UpdateAnimation();
     }
 
     void UpdateAnimation()
-    {
+    { 
         if (locked)
             animator.SetBool("isOpen", false);
         else

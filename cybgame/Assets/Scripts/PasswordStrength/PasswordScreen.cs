@@ -2,14 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using System.Linq;
 
+[System.Serializable]
+public class PasswordList
+{
+    public string password;
+    public PlateType strength;
+
+    public PasswordList(string password, PlateType strength)
+    {
+        this.password = password;
+        this.strength = strength;
+    }
+}
 public class PasswordScreen : MonoBehaviour
 {
-
     [SerializeField] float typeSpeed;
-    [SerializeField] string[] passwordList;
-    List<string> remainingPasswords;
+    [SerializeField] List<PasswordList> passwordLists;
+    List<PasswordList> remainingPasswords;
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] Material materialON;
     [SerializeField] Material materialOFF;
@@ -18,6 +28,8 @@ public class PasswordScreen : MonoBehaviour
     const string HTML_ALPHA = "<color=#00000000>";
     public bool isTyping = false;
     const float MAX_TYPE_TIME = 0.1f;
+
+    bool on = false;
 
     public static PasswordScreen instance;
 
@@ -29,13 +41,8 @@ public class PasswordScreen : MonoBehaviour
     void Start()
     {
         TurnOff();
-        remainingPasswords = passwordList.ToList();
+        remainingPasswords = passwordLists;
         text.text = "";
-    }
-
-    void Update()
-    {
-        
     }
 
     string RandomPassword()
@@ -47,7 +54,7 @@ public class PasswordScreen : MonoBehaviour
         }
 
         int randomIndex = Random.Range(0, remainingPasswords.Count);
-        string password = remainingPasswords[randomIndex];
+        string password = remainingPasswords[randomIndex].password;
         remainingPasswords.RemoveAt(randomIndex);
         return password;
     }
@@ -87,12 +94,19 @@ public class PasswordScreen : MonoBehaviour
 
     public void TurnOn()
     {
-        meshRenderer.materials[2] = materialON;
+        Material[] newMaterials = meshRenderer.materials;
+        newMaterials[2] = materialON;
+        meshRenderer.materials = newMaterials;
+        on = true;
         NextPassword();
     }
 
     public void TurnOff()
     {
-        meshRenderer.materials[2] = materialOFF;
+        Material[] newMaterials = meshRenderer.materials;
+        newMaterials[2] = materialOFF;
+        meshRenderer.materials = newMaterials;
+        on = false;
+        text.text = "";
     }
 }

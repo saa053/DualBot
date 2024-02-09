@@ -41,13 +41,26 @@ public class DialogueSaveManager : MonoBehaviour
   
     }
 
-    public bool GetBool(Story story, string saveString, string boolName)
+    public bool GetBool(TextAsset text, string boolName)
     {
-        story = LoadStoryState(story, saveString);
+        Story story = new Story(text.text);
+        story = LoadStoryState(story, GetSaveString(text));
         if (story == null)
             return false;
         
         return (bool)story.variablesState[boolName];
+    }
+
+    public string GetSaveString(TextAsset text)
+    {
+        Story story = new Story(text.text);
+        return (string)story.variablesState["saveString"];
+    }
+
+    public bool GetShouldSave(TextAsset text)
+    {
+        Story story = new Story(text.text);
+        return (bool)story.variablesState["shouldSave"];
     }
 
     private void OnApplicationQuit()

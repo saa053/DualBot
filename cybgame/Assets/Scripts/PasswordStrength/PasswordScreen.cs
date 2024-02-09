@@ -20,18 +20,22 @@ public class PasswordScreen : MonoBehaviour
     [SerializeField] float typeSpeed;
     [SerializeField] List<PasswordList> passwordLists;
     List<PasswordList> remainingPasswords;
+    List<PasswordList> wrongPasswords;
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] Material materialON;
     [SerializeField] Material materialOFF;
+    [SerializeField] Material materialCorrect;
+    [SerializeField] Material materialWrong;
     [SerializeField] MeshRenderer meshRenderer;
 
     const string HTML_ALPHA = "<color=#00000000>";
     public bool isTyping = false;
     const float MAX_TYPE_TIME = 0.1f;
-
-    bool on = false;
-
     public static PasswordScreen instance;
+
+
+    public string currentPassword;
+    public PlateType currentStrength;
 
     void Awake()
     {
@@ -42,6 +46,7 @@ public class PasswordScreen : MonoBehaviour
     {
         TurnOff();
         remainingPasswords = passwordLists;
+        wrongPasswords = new List<PasswordList>();
         text.text = "";
     }
 
@@ -49,14 +54,26 @@ public class PasswordScreen : MonoBehaviour
     {
         if (remainingPasswords.Count == 0)
         {
-            Debug.Log("No passwords in list");
-            return "";
+            if (wrongPasswords.Count == 0)
+            {
+                Debug.Log("No passwords in list");
+                return "";
+            }
+            
+            foreach(PasswordList password in wrongPasswords)
+            {
+                remainingPasswords.Add(password);
+            }
+            wrongPasswords.RemoveAll(item => item.password == currentPassword);
         }
 
         int randomIndex = Random.Range(0, remainingPasswords.Count);
-        string password = remainingPasswords[randomIndex].password;
+
+        currentPassword = remainingPasswords[randomIndex].password;
+        currentStrength = remainingPasswords[randomIndex].strength;
+
         remainingPasswords.RemoveAt(randomIndex);
-        return password;
+        return currentPassword;
     }
 
     public void NextPassword()
@@ -97,7 +114,6 @@ public class PasswordScreen : MonoBehaviour
         Material[] newMaterials = meshRenderer.materials;
         newMaterials[2] = materialON;
         meshRenderer.materials = newMaterials;
-        on = true;
         NextPassword();
     }
 
@@ -106,7 +122,33 @@ public class PasswordScreen : MonoBehaviour
         Material[] newMaterials = meshRenderer.materials;
         newMaterials[2] = materialOFF;
         meshRenderer.materials = newMaterials;
-        on = false;
         text.text = "";
+    }
+
+    public void Correct()
+    {
+        Material[] newMaterials = meshRenderer.materials;
+        newMaterials[2] = materialCorrect;
+        meshRenderer.materials = newMaterials;
+    }
+
+    public void Wrong()
+    {
+        Material[] newMaterials = meshRenderer.materials;
+        newMaterials[2] = materialWrong;
+        meshRenderer.materials = newMaterials;
+    }
+
+    public void Default()
+    {
+        Material[] newMaterials = meshRenderer.materials;
+        newMaterials[2] = materialON;
+        meshRenderer.materials = newMaterials;
+    }
+
+    public void AddCurrentPasswordToWrongList()
+    {
+        PasswordList item = new PasswordList(currentPassword, currentStrength);
+        wrongPasswords.Add(item);
     }
 }

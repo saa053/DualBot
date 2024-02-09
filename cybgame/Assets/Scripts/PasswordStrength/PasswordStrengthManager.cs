@@ -1,32 +1,68 @@
 using UnityEngine;
 using Ink.Runtime;
+using System.Collections;
+using Unity.VisualScripting;
 
 public class PasswordStrengthManager : MonoBehaviour
 {
     [Header("Mini-game settings")]
     [SerializeField] int numPasswords;
+    [SerializeField] float displayResultTime;
+
+    [SerializeField] Vector3 restartPos;
 
     [Header("Doors")]
-
     [SerializeField] DoorController[] doors;
 
+    [Header("NPC")]
     [SerializeField] NPCMove NPC;
     [SerializeField] TextAsset NPCText;
     [SerializeField] TextAsset winText;
 
-    bool screenOn = false;
-    bool gameComplete = false;
+    [Header("Plates")]
+    [SerializeField] Plates[] plates;
+    public bool gameActive = false;
+    bool rewardSpawned = false;
+    public bool movePlayers = false;
+    public bool gameComplete = false;
+    public int numAnswered = 0;
+    public int numCorrect = 0;
+    public int numWrong = 0;
+    public bool displayingResult = false;
 
-    int numAnswered = 0;
+    Transform player1;
+    Transform player2;
 
     public static PasswordStrengthManager instance;
     void Awake()
     {
         instance = this;
     }
+    void Start()
+    {
+        Room room = FindObjectOfType<Room>();
+        restartPos += room.GetRoomCenter();
+
+        player1 = GameObject.FindWithTag("Player1").transform;
+        player2 = GameObject.FindWithTag("Player2").transform;
+    }
 
     void Update()
     {
+        
+        if (movePlayers)
+        {
+            foreach (Plates plate in plates)
+            {
+                if (plate.player1OnPlate)
+                    player1.position = restartPos + new Vector3(1, 0, 0);
+                if (plate.player2OnPlate)
+                    player2.position = restartPos + new Vector3(-1, 0, 0);
+            }
+
+            movePlayers = false;
+        }
+
         if (gameComplete)
         {
             if (NPC.ready)
@@ -35,22 +71,24 @@ public class PasswordStrengthManager : MonoBehaviour
                 NPC.ready = false;
             }
 
-            SpawnReward();
+            if (!rewardSpawned)
+                SpawnReward();
+
             return;
         }
 
-        if (screenOn)
-            return;
+        if (ShouldStart() && !gameActive)
+            StartGame();
+    }
 
-        if (!ShouldStart())
-            return;
-
+    void StartGame()
+    {
         CloseDoors();
-        
+
         if (NPC.ready)
         {
             PasswordScreen.instance.TurnOn();
-            screenOn = true;
+            gameActive = true;
         }
         else
         {
@@ -62,7 +100,8 @@ public class PasswordStrengthManager : MonoBehaviour
     {
         if (DialogueSaveManager.instance.GetBool(winText, "reward"))
         {
-            Debug.Log("Reward spawned?");
+            // SPAWN REWARD HERE
+            rewardSpawned = true;
             OpenDoors();
         }
     }
@@ -76,9 +115,9 @@ public class PasswordStrengthManager : MonoBehaviour
     void GameComplete()
     {
         gameComplete = true;
+        gameActive = false;
 
         PasswordScreen.instance.TurnOff();
-        screenOn = false;
 
         NPC.SetNewTarget(transform.position, 4f);
         NPC.trigger = true;
@@ -102,23 +141,63 @@ public class PasswordStrengthManager : MonoBehaviour
 
     public void SubmitAnswer(PlateType plateType)
     {
+        bool result = false;
         switch (plateType)
         {
             case PlateType.Svakt:
+                if (PasswordScreen.instance.currentStrength == PlateType.Svakt)
+                    result = true;
                 break;
             case PlateType.Middels:
+                if (PasswordScreen.instance.currentStrength == PlateType.Middels)
+                    result = true;
                 break;
             case PlateType.Sterkt:
+                if (PasswordScreen.instance.currentStrength == PlateType.Sterkt)
+                    result = true;            
                 break;
             default:
+                result = false;
                 break;
         }
 
+        StartCoroutine(DisplayResult(result));
+    }
+
+    IEnumerator DisplayResult(bool result)
+    {
+        displayingResult = true;
+        if (result)
+        {
+            PasswordScreen.instance.Correct();
+        }
+        else
+        {
+            PasswordScreen.instance.Wrong();
+        }
+        
+        yield return new WaitForSeconds(displayResultTime);
+
+        PasswordScreen.instance.Default();
+        
+        movePlayers = true;
+        displayingResult = false;
+
+        if (result)
+        {
+            numCorrect++;
+        }
+        else
+        {
+            numWrong++;
+            PasswordScreen.instance.AddCurrentPasswordToWrongList();
+        }
+
         numAnswered++;
-        if (numAnswered == numPasswords)
+        if (numCorrect == numPasswords)
             GameComplete();
         else
             PasswordScreen.instance.NextPassword();
-
+        
     }
 }

@@ -35,20 +35,18 @@ public class Plates : MonoBehaviour
     [SerializeField] AudioSource audioSource;
 
     [Header ("Player settings")]
-    [SerializeField] Vector3 restartPos;
-
     Transform player1;
     Transform player2;
 
     float progress = 0;
-    bool player1OnPlate = false;
-    bool player2OnPlate = false;
+    public bool player1OnPlate = false;
+    public bool player2OnPlate = false;
 
     void Start()
     {
-        Room room = FindObjectOfType<Room>();
-        restartPos += room.GetRoomCenter();
+        progressBar.SetActive(false);
     }
+
     void Update()
     {
         if (player1OnPlate || player2OnPlate)
@@ -61,33 +59,39 @@ public class Plates : MonoBehaviour
             plate.material = defaultMaterial;
             text.color = defaultTextColor;
         }
-        
-        if (player1OnPlate && player2OnPlate && !PasswordScreen.instance.isTyping)
+
+        // UPDATE PROGRESS BAR
+        if (PasswordStrengthManager.instance.gameActive && !PasswordStrengthManager.instance.displayingResult)
         {
-            if (!audioSource.isPlaying)
+            if (player1OnPlate && player2OnPlate && !PasswordScreen.instance.isTyping)
             {
-                audioSource.Play();
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                }
+
+                StartCoroutine(UpdateProgress());
             }
-
-            StartCoroutine(UpdateProgress());
-        }
-        else
-        {
-            progress = 0;
-        }
-        
-        UpdateProgressBar();
-
-        if (progress == 1)
-        {
-            PasswordStrengthManager.instance.SubmitAnswer(plateType);
-
-            if (player1OnPlate)
-                player1.position = restartPos + new Vector3(1, 0, 0);
-            if (player2OnPlate)
-                player2.position = restartPos + new Vector3(-1, 0, 0);
+            else
+            {
+                progress = 0;
+            }
             
-            progress = 0;
+            UpdateProgressBar();
+
+            if (progress == 1)
+            {
+                PasswordStrengthManager.instance.SubmitAnswer(plateType);
+                progress = 0;
+            }
+        }
+
+        if (PasswordStrengthManager.instance.gameComplete)
+        {
+            if (progress == 0)
+                progressBar.SetActive(false);
+            else
+                progressBar.SetActive(true);
         }
     }
 
@@ -145,7 +149,7 @@ public class Plates : MonoBehaviour
 
         float targetScaleY = Mathf.Lerp(0f, finishLength, progress);
         progressBar.transform.localScale = new Vector3(targetScaleY, scale.y, scale.z);
-        
+
         if (progress == 0)
             progressBar.SetActive(false);
         else

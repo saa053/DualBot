@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 desiredDirection = body.velocity.normalized;
             Quaternion targetRotation = Quaternion.LookRotation(desiredDirection, Vector3.up);
-            animator.transform.rotation = Quaternion.Slerp(animator.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -43,10 +44,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (inputManager.isMoving())
         {
-            Vector3 desiredDirection = body.velocity.normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(desiredDirection, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            RotatePlayer();
         }
+    }
+
+    void RotatePlayer()
+    {
+        Vector3 desiredDirection = body.velocity.normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(desiredDirection, Vector3.up);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     public void EnterDoor(Vector2 direction)

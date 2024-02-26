@@ -468,7 +468,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 0.5
@@ -730,7 +730,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 0.5
@@ -1072,8 +1072,8 @@ MonoBehaviour:
   speed: 5
   rotationSpeed: 5
   roomEntryPlayerSpacing: 0.7
-  enterRoomX: 6.984
-  enterRoomZ: 3.442
+  enterRoomX: 8.984
+  enterRoomZ: 5.442
 --- !u!114 &625926981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1353,7 +1353,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 0.5
@@ -1627,7 +1627,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 0.5
@@ -2333,8 +2333,8 @@ MonoBehaviour:
   speed: 5
   rotationSpeed: 5
   roomEntryPlayerSpacing: 0.7
-  enterRoomX: 6.984
-  enterRoomZ: 3.442
+  enterRoomX: 8.984
+  enterRoomZ: 5.442
 --- !u!4 &3243351314521554615
 Transform:
   m_ObjectHideFlags: 0

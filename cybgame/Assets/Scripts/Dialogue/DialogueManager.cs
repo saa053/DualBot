@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour
     bool isTyping;
     bool activeContinueIcon;
     bool isBlinking;
+
+    bool noInput;
     [SerializeField] float blinkingSpeed;
     const string HTML_ALPHA = "<color=#00000000>";
     const float MAX_TYPE_TIME = 0.1f;
@@ -75,6 +77,8 @@ public class DialogueManager : MonoBehaviour
         displayingChoices = false;
         waitingToSubmit = false;
         activeContinueIcon = false;
+        noInput = false;
+        isBlinking = false;
 
         dialoguePanel.SetActive(false);
         choicePanel.SetActive(false);
@@ -137,7 +141,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (player1Input.GetInteract() || player2Input.GetInteract())
             {
-                if (!isTyping)
+                if (!isTyping && !noInput)
                     ContinueStory();
             }
         }
@@ -245,7 +249,7 @@ public class DialogueManager : MonoBehaviour
 
     void SelectChoice(PlayerInputManager inputManager, int currentChoice, ref int selectedChoice, Color selectColor)
     {
-        if (!inputManager.GetInteract() || isTyping)
+        if (!inputManager.GetInteract() || isTyping || noInput)
             return;
 
         if (selectedChoice == currentChoice)
@@ -358,6 +362,7 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.canContinue)
         {
             //dialogueText.text = currentStory.Continue();
+            noInput = true;
             if (!isTyping)
                 StartCoroutine(TypeDialogueText(currentStory.Continue()));
             
@@ -413,6 +418,8 @@ public class DialogueManager : MonoBehaviour
             activeContinueIcon = true;
             choicePanel.SetActive(false);
         }
+
+        noInput = false;
     }
 
     IEnumerator BlinkingContinueIcon()

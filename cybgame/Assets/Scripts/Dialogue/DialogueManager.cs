@@ -137,7 +137,8 @@ public class DialogueManager : MonoBehaviour
         {
             if (player1Input.GetInteract() || player2Input.GetInteract())
             {
-                ContinueStory();
+                if (!isTyping)
+                    ContinueStory();
             }
         }
     }
@@ -244,7 +245,7 @@ public class DialogueManager : MonoBehaviour
 
     void SelectChoice(PlayerInputManager inputManager, int currentChoice, ref int selectedChoice, Color selectColor)
     {
-        if (!inputManager.GetInteract())
+        if (!inputManager.GetInteract() || isTyping)
             return;
 
         if (selectedChoice == currentChoice)

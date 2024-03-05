@@ -1,10 +1,3 @@
-// Choice button hierarchy: "choice.transform.GetChild(n).gameObject.SetActive(false);"
-// 0 = P1Icon
-// 1 = P2Icon
-// 2 = Countdown text
-// 3 = Button text
-
-
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,7 +9,6 @@ using Unity.VisualScripting;
 using Unity.Mathematics;
 using System.Linq;
 
-
 public class DialogueManager : MonoBehaviour
 {
     [Header("Choice settings")]
@@ -25,8 +17,15 @@ public class DialogueManager : MonoBehaviour
     [Header("Dialogue UI")]
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] TextMeshProUGUI dialogueText;
+    [SerializeField] GameObject NPCName;
+    [SerializeField] GameObject NPCImage;
+    [SerializeField] GameObject transparentBackground;
+    [SerializeField] GameObject countdown;
+    [SerializeField] GameObject checkmarks;
+    TextMeshProUGUI countdownsText;
 
     [Header("Choices UI")]
+    [SerializeField] GameObject choicePanel;
     [SerializeField] GameObject[] choices;
     [SerializeField] Color p2Color;
     [SerializeField] Color p1Color;
@@ -34,9 +33,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Color defaultColor;
     [SerializeField] Color agreeColor;
     TextMeshProUGUI[] choicesText;
-    TextMeshProUGUI[] countdownsText;
-
-    GameObject currentCountdown;
 
     int p1SelectedChoice;
     int p2SelectedChoice;
@@ -70,21 +66,30 @@ public class DialogueManager : MonoBehaviour
         waitingToSubmit = false;
 
         dialoguePanel.SetActive(false);
+        choicePanel.SetActive(false);
+
+        transparentBackground.SetActive(false);
+        NPCName.SetActive(false);
+        NPCImage.SetActive(false);
+        countdown.SetActive(false);
+
+        checkmarks.SetActive(false);
+        checkmarks.transform.GetChild(0).gameObject.SetActive(false);
+        checkmarks.transform.GetChild(1).gameObject.SetActive(false);
+
         player1Input = GameObject.FindWithTag("Player1").GetComponent<PlayerInputManager>();
         player2Input = GameObject.FindWithTag("Player2").GetComponent<PlayerInputManager>();
 
         choicesText = new TextMeshProUGUI[choices.Length];
-        countdownsText = new TextMeshProUGUI[choices.Length];
+        countdownsText = countdown.GetComponentInChildren<TextMeshProUGUI>();
         int index = 0;
         foreach (GameObject choice in choices)
         {
             // Set visibility of player choice icons
-            choice.transform.GetChild(0).gameObject.SetActive(false);
-            choice.transform.GetChild(1).gameObject.SetActive(false);
-            choice.transform.GetChild(2).gameObject.SetActive(false);
+            choice.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+            choice.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
 
-            countdownsText[index] = choice.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-            choicesText[index] = choice.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+            choicesText[index] = choice.transform.GetComponentInChildren<TextMeshProUGUI>();
             index++;
         }
 
@@ -127,8 +132,7 @@ public class DialogueManager : MonoBehaviour
     {
         StopCoroutine("WaitToSubmit");
         waitingToSubmit = false;
-        currentCountdown.SetActive(false);
-        currentCountdown = null;
+        countdown.SetActive(false);
 
         if (p1PreCancelChoice != p1SelectedChoice)
         {
@@ -143,7 +147,6 @@ public class DialogueManager : MonoBehaviour
     IEnumerator WaitToSubmit(float waitTime)
     {
         waitingToSubmit = true;
-        currentCountdown = countdownsText[p1SelectedChoice].gameObject;
         ChangeColorOfButton(choices[p1SelectedChoice].GetComponent<Button>(), agreeColor);
 
         float remainingTime = waitTime;
@@ -153,8 +156,8 @@ public class DialogueManager : MonoBehaviour
 
         while (remainingTime > 0)
         {
-            currentCountdown.SetActive(true);
-            countdownsText[p1SelectedChoice].text = " " + Mathf.CeilToInt(remainingTime).ToString();
+            countdown.SetActive(true);
+            countdownsText.text = "" + Mathf.CeilToInt(remainingTime).ToString();
             yield return new WaitForSeconds(0.1f);
 
             if (p1SelectedChoice != p2SelectedChoice)
@@ -173,8 +176,7 @@ public class DialogueManager : MonoBehaviour
             ContinueStory();
             displayingChoices = false;
             waitingToSubmit = false;
-            currentCountdown.SetActive(false);
-            currentCountdown = null;
+            countdown.SetActive(false);
         }
         else
         {
@@ -187,12 +189,12 @@ public class DialogueManager : MonoBehaviour
     {
         foreach (GameObject choice in choices)
         {
-            choice.transform.GetChild(0).gameObject.SetActive(false);
-            choice.transform.GetChild(1).gameObject.SetActive(false);
+            choice.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+            choice.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
         }
 
-        choices[p1CurrentChoice].transform.GetChild(0).gameObject.SetActive(true);
-        choices[p2CurrentChoice].transform.GetChild(1).gameObject.SetActive(true);
+        choices[p1CurrentChoice].transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        choices[p2CurrentChoice].transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
     }
 
     void MoveChoice(PlayerInputManager inputManager, ref int currentChoice, ref bool acceptInput)
@@ -278,6 +280,10 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
+        NPCName.SetActive(true);
+        NPCImage.SetActive(true);
+        transparentBackground.SetActive(true);
+
         ContinueStory();
     }
 
@@ -299,6 +305,10 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+
+        NPCName.SetActive(false);
+        NPCImage.SetActive(false);
+        transparentBackground.SetActive(false);
     }
 
     void ContinueStory()
@@ -328,7 +338,6 @@ public class DialogueManager : MonoBehaviour
         if (currentChoices.Count > choices.Length)
             Debug.LogError("More choices were given than the UI can support. Number of choices given: " + currentChoices.Count);
         
-        
         int index = 0;
         foreach(Choice choice in currentChoices)
         {
@@ -345,6 +354,11 @@ public class DialogueManager : MonoBehaviour
         }
 
         if (currentChoices.Count != 0)
+        {
+            choicePanel.SetActive(true);
             displayingChoices = true;
+        }
+        else
+            choicePanel.SetActive(false);
     }
 }

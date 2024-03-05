@@ -19,11 +19,23 @@ public class DialogueManager : MonoBehaviour
     bool isTyping;
     bool activeContinueIcon;
     bool isBlinking;
-
     bool noInput;
     [SerializeField] float blinkingSpeed;
     const string HTML_ALPHA = "<color=#00000000>";
     const float MAX_TYPE_TIME = 0.1f;
+
+    [Header("Checkmarks Settings")]
+    bool player1Ready;
+    bool player2Ready;
+
+    [SerializeField] GameObject checkmarks;
+
+    [SerializeField] GameObject player1Checkmark;
+    [SerializeField] GameObject player2Checkmark;
+
+    [SerializeField] Color readyColor;
+    [SerializeField] Color notReadyColor;
+    [SerializeField] float turnOffSpeed;
 
     [Header("Dialogue UI")]
     [SerializeField] GameObject dialoguePanel;
@@ -32,7 +44,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject NPCImage;
     [SerializeField] GameObject transparentBackground;
     [SerializeField] GameObject countdown;
-    [SerializeField] GameObject checkmarks;
     [SerializeField] GameObject continueIcon;
     TextMeshProUGUI countdownsText;
 
@@ -79,6 +90,8 @@ public class DialogueManager : MonoBehaviour
         activeContinueIcon = false;
         noInput = false;
         isBlinking = false;
+        player1Ready = false;
+        player2Ready = false;
 
         dialoguePanel.SetActive(false);
         choicePanel.SetActive(false);
@@ -89,8 +102,8 @@ public class DialogueManager : MonoBehaviour
         countdown.SetActive(false);
 
         checkmarks.SetActive(false);
-        checkmarks.transform.GetChild(0).gameObject.SetActive(false);
-        checkmarks.transform.GetChild(1).gameObject.SetActive(false);
+        ChangeCheckmarkColor(notReadyColor, player1Checkmark.GetComponent<Image>());
+        ChangeCheckmarkColor(notReadyColor, player2Checkmark.GetComponent<Image>());
 
         player1Input = GameObject.FindWithTag("Player1").GetComponent<PlayerInputManager>();
         player2Input = GameObject.FindWithTag("Player2").GetComponent<PlayerInputManager>();
@@ -116,6 +129,14 @@ public class DialogueManager : MonoBehaviour
         movePlayerIcon();
     }
 
+    IEnumerator TurnOffCheckmarks()
+    {
+        yield return new WaitForSeconds(turnOffSpeed);
+        checkmarks.SetActive(false);
+        ChangeCheckmarkColor(notReadyColor, player1Checkmark.GetComponent<Image>());
+        ChangeCheckmarkColor(notReadyColor, player2Checkmark.GetComponent<Image>());
+    }
+
     void Update()
     {
         if (!dialogueIsPlaying)
@@ -139,12 +160,51 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            if (player1Input.GetInteract() || player2Input.GetInteract())
+            if (isTyping || noInput)
+                return;
+
+            if (player1Input.GetInteract())
+            {
+                checkmarks.SetActive(true);
+                player1Ready = true;
+                ChangeCheckmarkColor(readyColor, player1Checkmark.GetComponent<Image>());
+            }
+            else if (player2Input.GetInteract())
+            {
+                checkmarks.SetActive(true);
+                player2Ready = true;
+                ChangeCheckmarkColor(readyColor, player2Checkmark.GetComponent<Image>());
+            }
+
+            if (player1Ready && player2Ready)
+            {
+                player1Ready = false;
+                player2Ready = false;
+
+                if (currentStory.canContinue)
+                    StartCoroutine(TurnOffCheckmarks());
+                else
+                {
+                    checkmarks.SetActive(false);
+                    ChangeCheckmarkColor(notReadyColor, player1Checkmark.GetComponent<Image>());
+                    ChangeCheckmarkColor(notReadyColor, player2Checkmark.GetComponent<Image>());
+                }
+
+                ContinueStory();
+            }
+
+
+            /* if (player1Input.GetInteract() || player2Input.GetInteract())
             {
                 if (!isTyping && !noInput)
                     ContinueStory();
-            }
+            } */
         }
+    }
+
+    void ChangeCheckmarkColor(Color color, Image image)
+    {
+        image.color = color;
     }
 
     void CancelWaitToSubmit(int p1PreCancelChoice, int p2PreCancelChoice)

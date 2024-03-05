@@ -501,13 +501,18 @@ MonoBehaviour:
   waitTimeWhenChoosingSameAnswer: 3
   typeSpeed: 5
   blinkingSpeed: 0.5
+  checkmarks: {fileID: 834862221}
+  player1Checkmark: {fileID: 188768433}
+  player2Checkmark: {fileID: 2126596327}
+  readyColor: {r: 1, g: 1, b: 1, a: 1}
+  notReadyColor: {r: 1, g: 1, b: 1, a: 0.05882353}
+  turnOffSpeed: 0.5
   dialoguePanel: {fileID: 548485209}
   dialogueText: {fileID: 551040289}
   NPCName: {fileID: 978285649}
   NPCImage: {fileID: 769676158}
   transparentBackground: {fileID: 50839692}
   countdown: {fileID: 1881315935}
-  checkmarks: {fileID: 834862221}
   continueIcon: {fileID: 129005930}
   choicePanel: {fileID: 1199739355}
   choices:

@@ -14,6 +14,15 @@ public class DialogueManager : MonoBehaviour
     [Header("Choice settings")]
     [SerializeField] float waitTimeWhenChoosingSameAnswer;
 
+    [Header("Dialogue Settings")]
+    [SerializeField] float typeSpeed;
+    bool isTyping;
+    bool activeContinueIcon;
+    bool isBlinking;
+    [SerializeField] float blinkingSpeed;
+    const string HTML_ALPHA = "<color=#00000000>";
+    const float MAX_TYPE_TIME = 0.1f;
+
     [Header("Dialogue UI")]
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] TextMeshProUGUI dialogueText;
@@ -22,6 +31,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject transparentBackground;
     [SerializeField] GameObject countdown;
     [SerializeField] GameObject checkmarks;
+    [SerializeField] GameObject continueIcon;
     TextMeshProUGUI countdownsText;
 
     [Header("Choices UI")]
@@ -64,6 +74,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         displayingChoices = false;
         waitingToSubmit = false;
+        activeContinueIcon = false;
 
         dialoguePanel.SetActive(false);
         choicePanel.SetActive(false);
@@ -105,6 +116,9 @@ public class DialogueManager : MonoBehaviour
     {
         if (!dialogueIsPlaying)
             return;
+
+        if (!isBlinking)
+            StartCoroutine(BlinkingContinueIcon());
 
         if (displayingChoices)
         {
@@ -253,6 +267,30 @@ public class DialogueManager : MonoBehaviour
         button.colors = colorBlock;
     }
 
+    IEnumerator TypeDialogueText(string p)
+    {
+        isTyping = true;
+
+        dialogueText.text = "";
+
+        string originalText = p;
+        string displayedText = "";
+        int alphaIndex = 0;
+
+        foreach (char c in p.ToCharArray())
+        {
+            alphaIndex++;
+            dialogueText.text = originalText;
+
+            displayedText = dialogueText.text.Insert(alphaIndex, HTML_ALPHA);
+            dialogueText.text = displayedText;
+
+            yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
+        }
+
+        isTyping = false;
+    }
+
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         currentStory = new Story(inkJSON.text);
@@ -313,10 +351,17 @@ public class DialogueManager : MonoBehaviour
 
     void ContinueStory()
     {
+        activeContinueIcon = false;
+        continueIcon.SetActive(false);
+
         if (currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
-            DisplayChoices();
+            //dialogueText.text = currentStory.Continue();
+            if (!isTyping)
+                StartCoroutine(TypeDialogueText(currentStory.Continue()));
+            
+
+            StartCoroutine(DisplayChoices());
         }
         else
         {
@@ -324,8 +369,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void DisplayChoices()
+    IEnumerator DisplayChoices()
     {
+        while (isTyping)
+            yield return new WaitForSeconds(0.1f);
+
         List<Choice> currentChoices = currentStory.currentChoices;
 
         p1CurrentChoice = 0;
@@ -359,6 +407,23 @@ public class DialogueManager : MonoBehaviour
             displayingChoices = true;
         }
         else
+        {
+            continueIcon.SetActive(true);
+            activeContinueIcon = true;
             choicePanel.SetActive(false);
+        }
+    }
+
+    IEnumerator BlinkingContinueIcon()
+    {
+        isBlinking = true;
+        while (activeContinueIcon)
+        {
+            continueIcon.SetActive(true);
+            yield return new WaitForSeconds(blinkingSpeed);
+            continueIcon.SetActive(false);
+            yield return new WaitForSeconds(blinkingSpeed);
+        }
+        isBlinking = false;
     }
 }

@@ -21,7 +21,7 @@ public class NPCMove : MonoBehaviour
 
     void Start()
     {
-        targetPos = LocalTargetPos + transform.position;
+        targetPos = LocalTargetPos + transform.localPosition;
     }
 
     void FixedUpdate()
@@ -44,7 +44,7 @@ public class NPCMove : MonoBehaviour
     }
     void MoveNPC()
     {
-        Vector3 direction = targetPos - transform.position;
+        Vector3 direction = targetPos - transform.localPosition;
 
         if (direction.magnitude > stoppingDistance && !inPos)
         {

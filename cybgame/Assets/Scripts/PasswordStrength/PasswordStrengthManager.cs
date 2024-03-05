@@ -9,8 +9,6 @@ public class PasswordStrengthManager : MonoBehaviour
     [SerializeField] int numPasswords;
     [SerializeField] float displayResultTime;
 
-    [SerializeField] Vector3 restartPos;
-
     [Header("Doors")]
     [SerializeField] DoorController[] doors;
 
@@ -33,6 +31,8 @@ public class PasswordStrengthManager : MonoBehaviour
     Transform player1;
     Transform player2;
 
+    [SerializeField] Room room;
+
     public static PasswordStrengthManager instance;
     void Awake()
     {
@@ -40,8 +40,6 @@ public class PasswordStrengthManager : MonoBehaviour
     }
     void Start()
     {
-        Room room = FindObjectOfType<Room>();
-        restartPos += room.GetRoomCenter();
 
         player1 = GameObject.FindWithTag("Player1").transform;
         player2 = GameObject.FindWithTag("Player2").transform;
@@ -55,9 +53,9 @@ public class PasswordStrengthManager : MonoBehaviour
             foreach (Plates plate in plates)
             {
                 if (plate.player1OnPlate)
-                    player1.position = restartPos + new Vector3(1, 0, 0);
+                    player1.position = room.GetRoomCenter() + new Vector3(1, 0, 0);
                 if (plate.player2OnPlate)
-                    player2.position = restartPos + new Vector3(-1, 0, 0);
+                    player2.position = room.GetRoomCenter() + new Vector3(-1, 0, 0);
             }
 
             movePlayers = false;
@@ -119,7 +117,7 @@ public class PasswordStrengthManager : MonoBehaviour
 
         PasswordScreen.instance.TurnOff();
 
-        NPC.SetNewTarget(transform.position, 4f);
+        NPC.SetNewTarget(transform.localPosition, 4f);
         NPC.trigger = true;
     }
 

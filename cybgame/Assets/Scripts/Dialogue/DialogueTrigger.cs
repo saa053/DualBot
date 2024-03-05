@@ -36,10 +36,10 @@ public class DialogueTrigger : MonoBehaviour
         {
             visualCue.SetActive(true);
 
-            if (player1Input.GetInteract() || player2Input.GetInteract())
-            {
+            if (player1Input.GetInteract() && player1InRange)
                 DialogueManager.instance.EnterDialogueMode(inkJSON);
-            }
+            else if (player2Input.GetInteract() && player2InRange)
+                DialogueManager.instance.EnterDialogueMode(inkJSON);
         }
         else
         {

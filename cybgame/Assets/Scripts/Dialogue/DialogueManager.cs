@@ -46,6 +46,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject countdown;
     [SerializeField] GameObject continueIcon;
     TextMeshProUGUI countdownsText;
+    string lastName;
 
     [Header("Choices UI")]
     [SerializeField] GameObject choicePanel;
@@ -92,6 +93,7 @@ public class DialogueManager : MonoBehaviour
         isBlinking = false;
         player1Ready = false;
         player2Ready = false;
+        lastName = "";
 
         dialoguePanel.SetActive(false);
         choicePanel.SetActive(false);
@@ -383,7 +385,12 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
-        NPCName.GetComponentInChildren<TextMeshProUGUI>().text = name;
+        if (name == "")
+            NPCName.GetComponentInChildren<TextMeshProUGUI>().text = lastName;
+        else 
+            NPCName.GetComponentInChildren<TextMeshProUGUI>().text = name;
+
+        lastName = NPCName.GetComponentInChildren<TextMeshProUGUI>().text;
 
         NPCName.SetActive(true);
         NPCImage.SetActive(true);

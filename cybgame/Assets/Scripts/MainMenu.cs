@@ -133,12 +133,12 @@ public class MainMenu : MonoBehaviour
 
     void GlitchLow()
     {
-        analogGlitch.scanLineJitter = 0.25f;
+        analogGlitch.scanLineJitter = 0.18f;
     }
 
     void GlitchVeryLow()
     {
-        analogGlitch.scanLineJitter = 0.12f;
+        analogGlitch.scanLineJitter = 0.11f;
     }
 
     void GlitchOff()

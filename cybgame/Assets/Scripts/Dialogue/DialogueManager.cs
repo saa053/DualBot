@@ -356,7 +356,7 @@ public class DialogueManager : MonoBehaviour
         isTyping = false;
     }
 
-    public void EnterDialogueMode(TextAsset inkJSON)
+    public void EnterDialogueMode(TextAsset inkJSON, string name)
     {
         currentStory = new Story(inkJSON.text);
 
@@ -382,6 +382,8 @@ public class DialogueManager : MonoBehaviour
 
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
+
+        NPCName.GetComponentInChildren<TextMeshProUGUI>().text = name;
 
         NPCName.SetActive(true);
         NPCImage.SetActive(true);

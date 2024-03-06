@@ -5,6 +5,8 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
 
+    [SerializeField] public string NPCName;
+
     [Header("Visual Cure")]
     [SerializeField] GameObject visualCue;
 
@@ -37,9 +39,9 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
 
             if (player1Input.GetInteract() && player1InRange)
-                DialogueManager.instance.EnterDialogueMode(inkJSON);
+                DialogueManager.instance.EnterDialogueMode(inkJSON, NPCName);
             else if (player2Input.GetInteract() && player2InRange)
-                DialogueManager.instance.EnterDialogueMode(inkJSON);
+                DialogueManager.instance.EnterDialogueMode(inkJSON, NPCName);
         }
         else
         {

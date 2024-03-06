@@ -65,7 +65,7 @@ public class PasswordStrengthManager : MonoBehaviour
         {
             if (NPC.ready)
             {
-                DialogueManager.instance.EnterDialogueMode(winText);
+                DialogueManager.instance.EnterDialogueMode(winText, NPC.GetComponent<DialogueTrigger>().NPCName);
                 NPC.ready = false;
             }
 

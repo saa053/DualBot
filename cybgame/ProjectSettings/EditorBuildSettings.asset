@@ -12,15 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Rooms/Intro.unity
+    guid: 28030971ff8128d4ca374f178ec58658
+  - enabled: 1
     path: Assets/Scenes/Rooms/Empty.unity
     guid: fa163fa80f4c6394d90947e334951d22
   - enabled: 1
-    path: Assets/Scenes/Rooms/Talking.unity
-    guid: 2be5e66ffec12b74d85409a3bf9b2895
-  - enabled: 1
-    path: Assets/Scenes/Rooms/USB.unity
-    guid: c4de4dffa9bd1154e8b918ebb73fe9ae
-  - enabled: 1
     path: Assets/Scenes/Rooms/PasswordStrength.unity
     guid: 194d065682646fc40ae2fc369e78d5fc
+  - enabled: 1
+    path: Assets/Scenes/Rooms/AI.unity
+    guid: 7e1eb187b8d85c84aa36d557609939c7
   m_configObjects: {}

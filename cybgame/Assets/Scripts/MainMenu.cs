@@ -11,6 +11,12 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] string sceneToPlay;
+
+    [Header("Audio Sources")]
+    [SerializeField] AudioSource glitchSound;
+    [SerializeField] AudioSource glitch2Sound;
+    [SerializeField] AudioSource blackscreenSound;
+    [SerializeField] AudioSource dialogueSound;
     private bool isLoading = false;
 
     AnalogGlitch analogGlitch;
@@ -109,11 +115,11 @@ public class MainMenu : MonoBehaviour
     IEnumerator PlayIntro()
     {
         glitching = true;
-        GlitchHigh();
+        GlitchHigh(false);
 
         yield return new WaitForSeconds(1f);
 
-        GlitchOff();
+        GlitchOff(true);
         startText.SetActive(false);
         introScreen.SetActive(true);
 
@@ -124,29 +130,39 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(TypeDialogueText(p));
     }
 
-    void GlitchHigh()
+    void GlitchHigh(bool alternativeSound)
     {
         digitalGlitch.intensity = 0.15f;
         analogGlitch.colorDrift = 0.2f;
         analogGlitch.scanLineJitter = 0.4f;
+
+        if (alternativeSound)
+            glitch2Sound.Play();
+        else
+            glitchSound.Play();
     }
 
     void GlitchLow()
     {
         analogGlitch.scanLineJitter = 0.18f;
+        glitchSound.Stop();
     }
 
     void GlitchVeryLow()
     {
         analogGlitch.scanLineJitter = 0.11f;
+        glitchSound.Stop();
     }
 
-    void GlitchOff()
+    void GlitchOff(bool playSound)
     {
         digitalGlitch.intensity = 0f;
 
         analogGlitch.scanLineJitter = 0f;
         analogGlitch.colorDrift = 0f;
+        
+        if (playSound)
+            blackscreenSound.Play();
     }
 
     IEnumerator TypeDialogueText(string p)
@@ -162,31 +178,34 @@ public class MainMenu : MonoBehaviour
 
         foreach (char c in p.ToCharArray())
         {
+            if (!dialogueSound.isPlaying && char.IsLetter(c))
+                dialogueSound.Play();
+
             alphaIndex++;
             introText.text = originalText;
 
             displayedText = introText.text.Insert(alphaIndex, HTML_ALPHA);
             introText.text = displayedText;
 
-            // Insert a regular break after each character
             yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
 
             if (c == '\n')
             {
-                // Insert a longer break for the period
+                dialogueSound.Stop();
                 yield return new WaitForSeconds(paragraphsWait);
             }
         }
 
         isTyping = false;
+        dialogueSound.Stop();
         continueText.SetActive(true);
     }
 
     IEnumerator ShowControls()
     {
-        GlitchHigh();
+        GlitchHigh(true);
         yield return new WaitForSeconds(1f);
-        GlitchOff();
+        GlitchOff(false);
         Destroy(digitalGlitch);
         Destroy(analogGlitch);
         StartCoroutine(FadeIn());
@@ -254,8 +273,6 @@ public class MainMenu : MonoBehaviour
             fade.GetComponent<Image>().color = newColor;
 
             newAlpha -= decrementAlpha;
-
-            Debug.Log(fade.GetComponent<Image>().color.a);
 
             yield return new WaitForSeconds(fadeInSpeed);
         }

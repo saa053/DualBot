@@ -32,8 +32,6 @@ public class Plates : MonoBehaviour
 
     [SerializeField] float updateFrequency;
 
-    [SerializeField] AudioSource audioSource;
-
     [Header ("Player settings")]
     Transform player1;
     Transform player2;
@@ -65,10 +63,6 @@ public class Plates : MonoBehaviour
         {
             if (player1OnPlate && player2OnPlate && !PasswordScreen.instance.isTyping)
             {
-                if (!audioSource.isPlaying)
-                {
-                    audioSource.Play();
-                }
 
                 StartCoroutine(UpdateProgress());
             }
@@ -118,7 +112,6 @@ public class Plates : MonoBehaviour
         {
             progress = 0;
             player1OnPlate = false;
-            audioSource.Stop();
             player1 = null;
         }
 
@@ -126,7 +119,6 @@ public class Plates : MonoBehaviour
         {
             player2OnPlate = false;
             progress = 0;
-            audioSource.Stop();
             player2 = null;
         }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    [SerializeField] GameObject lights;
     public int width;
     public int height;
     public int x;
@@ -18,6 +19,11 @@ public class Room : MonoBehaviour
         }
 
         RoomController.instance.RegisterRoom(this);
+
+        foreach (Transform light in lights.transform)
+        {
+            light.gameObject.SetActive(false);
+        }
     }
 
     void OnDrawGizmos()
@@ -36,5 +42,21 @@ public class Room : MonoBehaviour
     public (int, int) GetGridPos()
     {
         return (x, y);
+    }
+
+    public void TurnOnLights()
+    {
+        foreach (Transform light in lights.transform)
+        {
+            light.gameObject.SetActive(true);
+        }
+    }
+
+    public void TurnOffLights()
+    {
+        foreach (Transform light in lights.transform)
+        {
+            light.gameObject.SetActive(false);
+        }
     }
 }

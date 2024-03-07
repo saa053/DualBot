@@ -140,6 +140,37 @@ Transform:
   - {fileID: 4173104424497749866}
   m_Father: {fileID: 3595096023018852075}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &4011138767322992587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7544489071564344881}
+  m_Layer: 0
+  m_Name: Lights
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7544489071564344881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4011138767322992587}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.10000515, y: 1.4499861, z: -0.10000563}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5129095747174618295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4628135099109818090
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +348,7 @@ Transform:
   - {fileID: 2209448422980939266}
   - {fileID: 3595096023018852075}
   - {fileID: 5457689033789901510}
+  - {fileID: 7544489071564344881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7262006502282051988
@@ -331,6 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975c674f081424748b653f31723cbb8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lights: {fileID: 4011138767322992587}
   width: 21
   height: 16
   x: 0

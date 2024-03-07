@@ -41,6 +41,11 @@ public class DoorController : MonoBehaviour
         UpdateAnimation();
     }
 
+    public void OpenDoor()
+    {
+        locked = false;
+    }
+
     void UpdateAnimation()
     { 
         if (locked)

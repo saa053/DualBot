@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] AudioSource glitch2Sound;
     [SerializeField] AudioSource blackscreenSound;
     [SerializeField] AudioSource dialogueSound;
+    [SerializeField] AudioSource musicSound;
     private bool isLoading = false;
 
     AnalogGlitch analogGlitch;
@@ -80,7 +81,10 @@ public class MainMenu : MonoBehaviour
             return;
             
         if (!introShown)
+        {
+            musicSound.Stop();
             StartCoroutine(PlayIntro());
+        }
         else if (!controlsShown)
         {
             fade.SetActive(true);

@@ -8,6 +8,7 @@ public class PasswordStrengthManager : MonoBehaviour
     [Header("Mini-game settings")]
     [SerializeField] int numPasswords;
     [SerializeField] float displayResultTime;
+    [SerializeField] Vector3 rewardPos;
 
     [Header("Doors")]
     [SerializeField] DoorController[] doors;
@@ -98,7 +99,7 @@ public class PasswordStrengthManager : MonoBehaviour
     {
         if (DialogueSaveManager.instance.GetBool(winText, "reward"))
         {
-            // SPAWN REWARD HERE
+            RewardManager.instance.CreateReward(transform.TransformPoint(rewardPos));
             rewardSpawned = true;
             OpenDoors();
         }

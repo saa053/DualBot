@@ -6,6 +6,10 @@ public class LightManager : MonoBehaviour
 {
     [SerializeField] RoomController roomController;
     [SerializeField] GameObject directionalLights;
+
+    [SerializeField] float turnOffDirectionalSpeed;
+    [SerializeField] float turnOnDirectionalSpeed;
+    [SerializeField] float turnOffRoomSpeed;
     Room currentLightRoom;
 
     void Start()
@@ -20,15 +24,27 @@ public class LightManager : MonoBehaviour
 
         if (currentLightRoom != roomController.currentRoom)
         {
-            currentLightRoom.TurnOffLights();
+            StartCoroutine(currentLightRoom.TurnOffLights(turnOffRoomSpeed));
             currentLightRoom = roomController.currentRoom;
             currentLightRoom.TurnOnLights();
 
             if (currentLightRoom.turnOffDirectional)
-                directionalLights.SetActive(false);
+                StartCoroutine(TurnOffDirectionals());
             else
-                directionalLights.SetActive(true);
+                StartCoroutine(TurnOnDirectionals());
 
         }
+    }
+
+    IEnumerator TurnOffDirectionals()
+    {
+        yield return new WaitForSeconds(turnOffDirectionalSpeed);
+        directionalLights.SetActive(false);
+    }
+
+    IEnumerator TurnOnDirectionals()
+    {
+        yield return new WaitForSeconds(turnOnDirectionalSpeed);
+        directionalLights.SetActive(true);
     }
 }

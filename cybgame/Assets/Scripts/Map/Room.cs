@@ -55,8 +55,10 @@ public class Room : MonoBehaviour
         }
     }
 
-    public void TurnOffLights()
+    public IEnumerator TurnOffLights(float speed)
     {
+        yield return new WaitForSeconds(speed);
+
         foreach (Transform light in lights.transform)
         {
             light.gameObject.SetActive(false);

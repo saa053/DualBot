@@ -40,7 +40,7 @@ public class RewardManager : MonoBehaviour
 
     void PlayFx(GameObject fx, Vector3 pos)
     {
-        GameObject particleObject = Instantiate(fx, pos, Quaternion.identity);
+        GameObject particleObject = Instantiate(fx, pos, fx.transform.rotation);
         ParticleSystem particleSystem = particleObject.GetComponent<ParticleSystem>();
         particleSystem.Play();
     }

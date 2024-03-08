@@ -58,6 +58,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Color agreeColor;
     TextMeshProUGUI[] choicesText;
 
+    [Header("Audio")]
+
+    [SerializeField] AudioSource ready1Sound;
+    [SerializeField] AudioSource ready2Sound;
+
     int p1SelectedChoice;
     int p2SelectedChoice;
     int p1CurrentChoice;
@@ -170,16 +175,23 @@ public class DialogueManager : MonoBehaviour
                 checkmarks.SetActive(true);
                 player1Ready = true;
                 ChangeCheckmarkColor(readyColor, player1Checkmark.GetComponent<Image>());
+
+                if (!player2Ready)
+                    ready1Sound.Play();
             }
             else if (player2Input.GetInteract())
             {
                 checkmarks.SetActive(true);
                 player2Ready = true;
                 ChangeCheckmarkColor(readyColor, player2Checkmark.GetComponent<Image>());
+
+                if (!player1Ready)
+                    ready1Sound.Play();
             }
 
             if (player1Ready && player2Ready)
             {
+                ready2Sound.Play();
                 player1Ready = false;
                 player2Ready = false;
 

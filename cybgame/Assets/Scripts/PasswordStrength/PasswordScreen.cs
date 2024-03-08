@@ -19,7 +19,6 @@ public class PasswordScreen : MonoBehaviour
 {
     [SerializeField] AudioSource textSound;
     [SerializeField] Light screenLight;
-    [SerializeField] GameObject screenLightObject;
     [SerializeField] float typeSpeed;
     [SerializeField] List<PasswordList> passwordLists;
     List<PasswordList> remainingPasswords;
@@ -120,7 +119,7 @@ public class PasswordScreen : MonoBehaviour
     {
         Color color = materialON.color;
         screenLight.color = color;
-        screenLightObject.SetActive(true);
+        screenLight.gameObject.SetActive(true);
 
 
         Material[] newMaterials = meshRenderer.materials;
@@ -131,7 +130,7 @@ public class PasswordScreen : MonoBehaviour
 
     public void TurnOff()
     {
-        screenLightObject.SetActive(false);
+        screenLight.gameObject.SetActive(false);
         Material[] newMaterials = meshRenderer.materials;
         newMaterials[2] = materialOFF;
         meshRenderer.materials = newMaterials;

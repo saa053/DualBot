@@ -5,6 +5,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [SerializeField] GameObject lights;
+    [SerializeField] bool lightsOnEnter;
     [SerializeField] public bool turnOffDirectional;
     public int width;
     public int height;
@@ -49,7 +50,8 @@ public class Room : MonoBehaviour
     {
         foreach (Transform light in lights.transform)
         {
-            light.gameObject.SetActive(true);
+            if (lightsOnEnter)
+                light.gameObject.SetActive(true);
         }
     }
 

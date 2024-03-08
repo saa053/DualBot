@@ -26,11 +26,8 @@ public class Plates : MonoBehaviour
     [SerializeField] Color activatedColor;
 
     [Header ("Progress bar")]
-
-    [SerializeField] float finishLength;
+    [SerializeField] float progressBarLength;
     [SerializeField] float speedInSeconds;
-
-    [SerializeField] float updateFrequency;
 
     [Header ("Player settings")]
     Transform player1;
@@ -63,8 +60,7 @@ public class Plates : MonoBehaviour
         {
             if (player1OnPlate && player2OnPlate && !PasswordScreen.instance.isTyping)
             {
-
-                StartCoroutine(UpdateProgress());
+                UpdateProgress();
             }
             else
             {
@@ -126,20 +122,18 @@ public class Plates : MonoBehaviour
         other.transform.position = new Vector3(other.transform.position.x, 0, other.transform.position.z);
     }
 
-    IEnumerator UpdateProgress()
+    void UpdateProgress()
     {
-        yield return new WaitForSeconds(updateFrequency);
-
-        float increment = (1f / speedInSeconds) * updateFrequency;
+        float increment = Time.deltaTime / speedInSeconds;
         progress += increment;
-        progress = Mathf.Clamp(progress, 0, 1);
+        progress = Mathf.Clamp01(progress);
     }
 
     void UpdateProgressBar()
     {
         Vector3 scale = progressBar.transform.localScale;
 
-        float targetScaleY = Mathf.Lerp(0f, finishLength, progress);
+        float targetScaleY = Mathf.Lerp(0f, progressBarLength, progress);
         progressBar.transform.localScale = new Vector3(targetScaleY, scale.y, scale.z);
 
         if (progress == 0)

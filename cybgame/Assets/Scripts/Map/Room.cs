@@ -5,6 +5,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [SerializeField] GameObject lights;
+    [SerializeField] public bool turnOffDirectional;
     public int width;
     public int height;
     public int x;

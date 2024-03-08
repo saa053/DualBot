@@ -5,6 +5,7 @@ using UnityEngine;
 public class LightManager : MonoBehaviour
 {
     [SerializeField] RoomController roomController;
+    [SerializeField] GameObject directionalLights;
     Room currentLightRoom;
 
     void Start()
@@ -22,6 +23,12 @@ public class LightManager : MonoBehaviour
             currentLightRoom.TurnOffLights();
             currentLightRoom = roomController.currentRoom;
             currentLightRoom.TurnOnLights();
+
+            if (currentLightRoom.turnOffDirectional)
+                directionalLights.SetActive(false);
+            else
+                directionalLights.SetActive(true);
+
         }
     }
 }

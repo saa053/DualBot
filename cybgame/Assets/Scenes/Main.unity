@@ -4801,6 +4801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomController: {fileID: 725590432}
+  directionalLights: {fileID: 20839819}
 --- !u!1 &2019086512
 GameObject:
   m_ObjectHideFlags: 0

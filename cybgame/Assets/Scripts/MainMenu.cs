@@ -18,6 +18,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] AudioSource blackscreenSound;
     [SerializeField] AudioSource dialogueSound;
     [SerializeField] AudioSource musicSound;
+    [SerializeField] AudioSource controlScreenSound;
+    [SerializeField] AudioSource highPitchSound;
+    [SerializeField] AudioSource lowPitchSound;
     private bool isLoading = false;
 
     AnalogGlitch analogGlitch;
@@ -213,6 +216,7 @@ public class MainMenu : MonoBehaviour
         Destroy(digitalGlitch);
         Destroy(analogGlitch);
         StartCoroutine(FadeIn());
+        controlScreenSound.Play();
         controlsImage.SetActive(true);
         controlsShown = true;
 
@@ -225,7 +229,14 @@ public class MainMenu : MonoBehaviour
                 player1Ready = true;
 
                 if (!player2Ready)
+                {
                     ShowBlankChechmark(checkmark2);
+                    lowPitchSound.Play();
+                }
+                else
+                {
+                    highPitchSound.Play();
+                }
             }
             else if (player2.GetInteract())
             {
@@ -233,7 +244,14 @@ public class MainMenu : MonoBehaviour
                 player2Ready = true;
 
                 if (!player1Ready)
+                {
                     ShowBlankChechmark(checkmark1);
+                    lowPitchSound.Play();
+                }
+                else
+                {
+                    highPitchSound.Play();
+                }
             }
 
             yield return new WaitForEndOfFrame();

@@ -2158,6 +2158,9 @@ MonoBehaviour:
   - name: Empty
     x: 3
     y: 2
+  - name: MarteRoom
+    x: -1
+    y: 1
   paddingX: 2
   paddingY: 2
   currentRoom: {fileID: 0}

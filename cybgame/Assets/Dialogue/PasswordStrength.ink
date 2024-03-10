@@ -18,10 +18,10 @@ Kan dere hjelpe meg?
 -> END
 
 === start ===
-Tusen takk! Dere skal få en AI disk som premie etterpå!
-Jeg kommer til å vise et og et passord på skjermen bak meg.
-Jeg vil at dere går til den knappen i dette rommet som dere mener passer styrken til passordet på skjermen.
-Dere trenger 5 riktige svar for å få premien. Hvis dere trenger tips underveis kan dere komme å snakke med meg! La oss starte!
+#Tusen takk! Dere skal få en AI disk som premie etterpå!
+#Jeg kommer til å vise et og et passord på skjermen bak meg.
+#Jeg vil at dere går til den knappen i dette rommet som dere mener passer styrken til passordet på skjermen.
+#Dere trenger 5 riktige svar for å få premien. Hvis dere trenger tips underveis kan dere komme å snakke med meg! La oss starte!
     ~ GO = true
 -> END
 

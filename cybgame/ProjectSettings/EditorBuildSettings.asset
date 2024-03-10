@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rooms/MarteRoom.unity
     guid: 99863815adf58dc4ea6f9194d4bb8112
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Carry.unity
+    guid: 62fb341ea870eb548a0934f76aa812d1
   m_configObjects: {}

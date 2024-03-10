@@ -492,6 +492,7 @@ public class DialogueManager : MonoBehaviour
         {
             choicePanel.SetActive(true);
             displayingChoices = true;
+            movePlayerIcon();
         }
         else
         {
@@ -501,6 +502,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         noInput = false;
+        
     }
 
     IEnumerator BlinkingContinueIcon()

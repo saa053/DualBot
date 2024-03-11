@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Portable : MonoBehaviour
 {
+    [Header ("Player Hitbox")]
+    [SerializeField] float carryHeight = 1.482718f;
+    [SerializeField] float carryRadius = 0.4676035f;
+    [SerializeField] Vector3 carryCenter = new Vector3(6.608116e-09f, 0.6999999f, 0.2174886f);
+    [SerializeField] float originalHeight = 1.482718f;
+    [SerializeField] float originalRadius = 0.4676035f;
+    [SerializeField] Vector3 originalCenter = new Vector3(6.608116e-09f, 0.6999999f, 0.2174886f);
+
+    [Header ("Carry settings")]
     [SerializeField] float distanceFromPlayer;
     [SerializeField] float height;
     
@@ -26,7 +35,6 @@ public class Portable : MonoBehaviour
         body = GetComponent<Rigidbody>();  
         trigger = transform.Find("Trigger").GetComponent<Trigger>();
         boxCollider = GetComponent<BoxCollider>();
-
         player1 = GameObject.FindWithTag("Player1").transform;
         player2 = GameObject.FindWithTag("Player2").transform;
         player1Input = GameObject.FindWithTag("Player1").GetComponent<PlayerInputManager>();
@@ -43,6 +51,7 @@ public class Portable : MonoBehaviour
             player1IsCarry = false;
             Drop();
             player1Animator.SetBool("isCarry", false);
+            ResetPlayerHitbox(player1.GetComponent<CapsuleCollider>());
         }
         
         if (player2IsCarry && player2Input.GetInteract() && transform.parent == player2)
@@ -50,6 +59,7 @@ public class Portable : MonoBehaviour
             player2IsCarry = false;
             Drop();
             player2Animator.SetBool("isCarry", false);
+            ResetPlayerHitbox(player2.GetComponent<CapsuleCollider>());
         }
             
         if (trigger.Player1Trigger() && !player1IsCarry)
@@ -57,6 +67,7 @@ public class Portable : MonoBehaviour
             player1IsCarry = true;
             PickUp(player1);
             player1Animator.SetBool("isCarry", true);
+            IncreasePlayerHitbox(player1.GetComponent<CapsuleCollider>());
         }
         
         if (trigger.Player2Trigger() && !player2IsCarry)
@@ -64,6 +75,7 @@ public class Portable : MonoBehaviour
             player2IsCarry = true;
             PickUp(player2);
             player2Animator.SetBool("isCarry", true);
+            IncreasePlayerHitbox(player2.GetComponent<CapsuleCollider>());
         }
     }
 
@@ -77,6 +89,7 @@ public class Portable : MonoBehaviour
 
         body.useGravity = false;
         body.isKinematic = true;
+
         boxCollider.isTrigger = true;
 
         transform.parent = parent;
@@ -86,8 +99,23 @@ public class Portable : MonoBehaviour
     {
         body.useGravity = true;
         body.isKinematic = false;
+
         boxCollider.isTrigger = false;
 
         transform.parent = RoomController.instance.currentRoom.transform;
+    }
+
+    void IncreasePlayerHitbox(CapsuleCollider collider)
+    {
+        collider.height = carryHeight;
+        collider.radius = carryRadius;
+        collider.center = carryCenter;
+    }
+
+    void ResetPlayerHitbox(CapsuleCollider collider)
+    {
+        collider.height = originalHeight;
+        collider.radius = originalRadius;
+        collider.center = originalCenter;
     }
 }

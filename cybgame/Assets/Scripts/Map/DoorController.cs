@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
+    AudioSource[] doorSounds;
     [SerializeField] Vector2 direction;
 
     Animator animator;
@@ -25,6 +26,8 @@ public class DoorController : MonoBehaviour
 
         player1Input = GameObject.FindWithTag("Player1").GetComponent<PlayerInputManager>();
         player2Input = GameObject.FindWithTag("Player2").GetComponent<PlayerInputManager>();
+
+        doorSounds = GetComponents<AudioSource>();
     }
 
     void Update()
@@ -44,6 +47,12 @@ public class DoorController : MonoBehaviour
     public void OpenDoor()
     {
         locked = false;
+        doorSounds[0].Play();
+    }
+    public void CloseDoor()
+    {
+        locked = true;
+        doorSounds[1].Play();
     }
 
     void UpdateAnimation()

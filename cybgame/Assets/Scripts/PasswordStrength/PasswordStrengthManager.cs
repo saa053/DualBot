@@ -126,7 +126,7 @@ public class PasswordStrengthManager : MonoBehaviour
     {
         foreach (DoorController door in doors)
         {
-            door.locked = true;
+            door.CloseDoor();
         }
     }
 
@@ -134,7 +134,7 @@ public class PasswordStrengthManager : MonoBehaviour
     {
         foreach (DoorController door in doors)
         {
-            door.locked = false;
+            door.OpenDoor();
         }
     }
 

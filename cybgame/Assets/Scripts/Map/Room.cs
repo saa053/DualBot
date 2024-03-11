@@ -5,6 +5,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [SerializeField] GameObject lights;
+    [SerializeField] GameObject ambience;
     [SerializeField] bool lightsOnEnter;
     [SerializeField] public bool turnOffDirectional;
     public int width;
@@ -62,6 +63,24 @@ public class Room : MonoBehaviour
         foreach (Transform light in lights.transform)
         {
             light.gameObject.SetActive(false);
+        }
+    }
+
+    public void PlayAmbience()
+    {
+        foreach (Transform audio in ambience.transform)
+        {   
+            AudioSource source = audio.GetComponent<AudioSource>();
+            source.Play();
+        }
+    }
+
+    public void StopAmbience()
+    {
+        foreach (Transform audio in ambience.transform)
+        {   
+            AudioSource source = audio.GetComponent<AudioSource>();
+            source.Stop();
         }
     }
 }

@@ -22,7 +22,7 @@ public class Reward : MonoBehaviour
         player1Input = GameObject.FindWithTag("Player1").GetComponent<PlayerInputManager>();
         player2Input = GameObject.FindWithTag("Player2").GetComponent<PlayerInputManager>();
 
-        pickUpSound = GetComponent<AudioSource>();
+        pickUpSound = GameObject.Find("RewardPickUp").GetComponent<AudioSource>();
     }
 
     void Update()

@@ -6,7 +6,6 @@ using Ink.Runtime;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Unity.VisualScripting;
-using Unity.Mathematics;
 using System.Linq;
 
 public class DialogueManager : MonoBehaviour
@@ -62,6 +61,9 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] AudioSource ready1Sound;
     [SerializeField] AudioSource ready2Sound;
+    [SerializeField] AudioSource countdownSound;
+    [SerializeField] AudioSource robotTalkSound;
+    [SerializeField] AudioClip[] robotTalkSoundClips;
 
     int p1SelectedChoice;
     int p2SelectedChoice;
@@ -227,6 +229,8 @@ public class DialogueManager : MonoBehaviour
         waitingToSubmit = false;
         countdown.SetActive(false);
 
+        countdownSound.Stop();
+
         if (p1PreCancelChoice != p1SelectedChoice)
         {
             ChangeColorOfButton(choices[p2SelectedChoice].GetComponent<Button>(), p2Color);
@@ -247,6 +251,7 @@ public class DialogueManager : MonoBehaviour
         int p1PreCancelChoice = p1CurrentChoice;
         int p2PreCancelChoice = p2CurrentChoice;
 
+        countdownSound.Play();
         while (remainingTime > 0)
         {
             countdown.SetActive(true);
@@ -349,6 +354,10 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeDialogueText(string p)
     {
         isTyping = true;
+
+        int index = Random.Range(0, robotTalkSoundClips.Length);
+        robotTalkSound.clip = robotTalkSoundClips[index];
+        robotTalkSound.Play();
 
         dialogueText.text = "";
 

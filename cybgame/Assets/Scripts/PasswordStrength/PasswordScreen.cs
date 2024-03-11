@@ -69,7 +69,7 @@ public class PasswordScreen : MonoBehaviour
             wrongPasswords.RemoveAll(item => item.password == currentPassword);
         }
 
-        int randomIndex = Random.Range(0, remainingPasswords.Count);
+        int randomIndex = Random.Range(0, remainingPasswords.Count + 1);
 
         currentPassword = remainingPasswords[randomIndex].password;
         currentStrength = remainingPasswords[randomIndex].strength;

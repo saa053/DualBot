@@ -80,16 +80,12 @@ public class CameraController : MonoBehaviour
         Vector3 targetPos = GetCameraTargetPosition();
 
         if (transform.position == targetPos || isFading || isGlitching)
-        {
-            if (lerpSound.isPlaying)
-                lerpSound.Stop();
-                
             return;
-        }
 
         if (lerpTransition)
         {
-            lerpSound.Play();
+            if (!lerpSound.isPlaying)
+                lerpSound.Play();
             transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
             return;
         }

@@ -11,6 +11,9 @@ public enum PlateType
 
 public class Plates : MonoBehaviour
 {
+    [Header ("Player settings")]
+    [SerializeField] AudioSource onSound1;
+    [SerializeField] AudioSource onSound2;
 
     [Header ("Objects")]
     [SerializeField] PlateType plateType;
@@ -91,12 +94,22 @@ public class Plates : MonoBehaviour
         {
             player1OnPlate = true;
             player1 = other.transform;
+
+            if (player2OnPlate)
+                onSound2.Play();
+            else
+                onSound1.Play();
         }
 
         if (other.tag == "Player2")
         {
             player2OnPlate = true;
             player2 = other.transform;
+
+            if (player1OnPlate)
+                onSound2.Play();
+            else
+                onSound1.Play();
         }
 
         other.transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);

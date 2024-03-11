@@ -53,6 +53,7 @@ public class DoorController : MonoBehaviour
     {
         locked = true;
         doorSounds[1].Play();
+        Debug.Log("Closing");
     }
 
     void UpdateAnimation()

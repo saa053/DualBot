@@ -56,7 +56,7 @@ public class PasswordScreen : MonoBehaviour
 
     void Start()
     {
-        TurnOff();
+        TurnOff(false);
         remainingPasswords = passwordLists;
         wrongPasswords = new List<PasswordList>();
         text.text = "";
@@ -139,9 +139,10 @@ public class PasswordScreen : MonoBehaviour
         NextPassword();
     }
 
-    public void TurnOff()
+    public void TurnOff(bool sound)
     {
-        turnOffSound.Play();
+        if (sound)
+            turnOffSound.Play();
         screenLight.gameObject.SetActive(false);
         Material[] newMaterials = meshRenderer.materials;
         newMaterials[2] = materialOFF;

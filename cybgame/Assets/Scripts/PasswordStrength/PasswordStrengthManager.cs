@@ -12,6 +12,7 @@ public class PasswordStrengthManager : MonoBehaviour
 
     [Header("Doors")]
     [SerializeField] DoorController[] doors;
+    bool doorsClosed;
 
     [Header("NPC")]
     [SerializeField] NPCMove NPC;
@@ -44,6 +45,8 @@ public class PasswordStrengthManager : MonoBehaviour
 
         player1 = GameObject.FindWithTag("Player1").transform;
         player2 = GameObject.FindWithTag("Player2").transform;
+
+        doorsClosed = false;
     }
 
     void Update()
@@ -82,8 +85,8 @@ public class PasswordStrengthManager : MonoBehaviour
 
     void StartGame()
     {
-        CloseDoors();
-
+        if (!doorsClosed)
+            CloseDoors();
         if (NPC.ready)
         {
             PasswordScreen.instance.TurnOn();
@@ -116,7 +119,7 @@ public class PasswordStrengthManager : MonoBehaviour
         gameComplete = true;
         gameActive = false;
 
-        PasswordScreen.instance.TurnOff();
+        PasswordScreen.instance.TurnOff(true);
 
         NPC.SetNewTarget(transform.localPosition, 4f);
         NPC.trigger = true;
@@ -128,6 +131,8 @@ public class PasswordStrengthManager : MonoBehaviour
         {
             door.CloseDoor();
         }
+
+        doorsClosed = true;
     }
 
     void OpenDoors()

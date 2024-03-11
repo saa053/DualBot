@@ -533,7 +533,7 @@ MonoBehaviour:
   robotTalkSoundClips:
   - {fileID: 8300000, guid: 0855d75402e816e45aa0c5ee3f28c11f, type: 3}
   - {fileID: 8300000, guid: 19d0810ff2ad58b4996b4a32972f840c, type: 3}
-  - {fileID: 8300000, guid: 9e45f91d4848a804b86dd0e9cf0842df, type: 3}
+  - {fileID: 8300000, guid: 858a36dae9a103646860e3872d6c0dca, type: 3}
   - {fileID: 8300000, guid: cc0510cbda6265c41962791800e5ccf2, type: 3}
 --- !u!1001 &185689918
 PrefabInstance:

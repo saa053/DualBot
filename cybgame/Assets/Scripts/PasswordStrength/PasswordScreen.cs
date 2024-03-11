@@ -17,6 +17,14 @@ public class PasswordList
 }
 public class PasswordScreen : MonoBehaviour
 {
+    [Header("Audio")]
+
+    [SerializeField] AudioSource turnOnSound;
+    [SerializeField] AudioSource turnOffSound;
+    [SerializeField] AudioSource correctSound;
+    [SerializeField] AudioSource wrongSound;
+
+    [Header("PasswordScreen")]
     [SerializeField] AudioSource textSound;
     [SerializeField] Light screenLight;
     [SerializeField] float typeSpeed;
@@ -38,6 +46,8 @@ public class PasswordScreen : MonoBehaviour
 
     public string currentPassword;
     public PlateType currentStrength;
+
+
 
     void Awake()
     {
@@ -69,7 +79,7 @@ public class PasswordScreen : MonoBehaviour
             wrongPasswords.RemoveAll(item => item.password == currentPassword);
         }
 
-        int randomIndex = Random.Range(0, remainingPasswords.Count + 1);
+        int randomIndex = Random.Range(0, remainingPasswords.Count);
 
         currentPassword = remainingPasswords[randomIndex].password;
         currentStrength = remainingPasswords[randomIndex].strength;
@@ -117,6 +127,7 @@ public class PasswordScreen : MonoBehaviour
 
     public void TurnOn()
     {
+        turnOnSound.Play();
         Color color = materialON.color;
         screenLight.color = color;
         screenLight.gameObject.SetActive(true);
@@ -130,6 +141,7 @@ public class PasswordScreen : MonoBehaviour
 
     public void TurnOff()
     {
+        turnOffSound.Play();
         screenLight.gameObject.SetActive(false);
         Material[] newMaterials = meshRenderer.materials;
         newMaterials[2] = materialOFF;
@@ -139,6 +151,7 @@ public class PasswordScreen : MonoBehaviour
 
     public void Correct()
     {
+        correctSound.Play();
         Color color = materialCorrect.color;
         screenLight.color = color;
 
@@ -149,6 +162,7 @@ public class PasswordScreen : MonoBehaviour
 
     public void Wrong()
     {
+        wrongSound.Play();
         Color color = materialWrong.color;
         screenLight.color = color;
 

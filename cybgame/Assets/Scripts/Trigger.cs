@@ -40,4 +40,14 @@ public class Trigger : MonoBehaviour
     {
         return p2InRange && player2Input.GetInteract();
     }
+
+    public bool Player1Close()
+    {
+        return p1InRange;
+    }
+
+    public bool Player2Close()
+    {
+        return p2InRange;
+    }
 }

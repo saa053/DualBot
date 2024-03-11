@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Portable : MonoBehaviour
 {
+    [Header ("Portable Info")]
+    [SerializeField] GameObject canvas;
+
+
     [Header ("Player Hitbox")]
     [SerializeField] float carryHeight = 1.482718f;
     [SerializeField] float carryRadius = 0.4676035f;
@@ -46,6 +50,8 @@ public class Portable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DisplayInfoWhenPlayerClose();
+
         if (player1IsCarry && player1Input.GetInteract() && transform.parent == player1)
         {
             player1IsCarry = false;
@@ -117,5 +123,13 @@ public class Portable : MonoBehaviour
         collider.height = originalHeight;
         collider.radius = originalRadius;
         collider.center = originalCenter;
+    }
+
+    void DisplayInfoWhenPlayerClose()
+    {
+        if (trigger.Player1Close() || trigger.Player2Close())
+            canvas.SetActive(true);
+        else
+            canvas.SetActive(false);
     }
 }

@@ -7,6 +7,8 @@ public class PlayerInputManager : MonoBehaviour
     bool interact = false;
     bool move = false;
 
+    bool inputAllowed = true;
+
     bool isLifting = false;
 
     Vector2 newInput;
@@ -14,6 +16,9 @@ public class PlayerInputManager : MonoBehaviour
 
     public void InteractPressed(InputAction.CallbackContext context)
     {
+        if (!inputAllowed)
+            return;
+
         if (context.performed)
         {
             interact = true;
@@ -24,6 +29,12 @@ public class PlayerInputManager : MonoBehaviour
 
     public void MovePressed(InputAction.CallbackContext context)
     {
+        if (!inputAllowed)
+        {
+            input = Vector3.zero;
+            return;
+        }
+
         if (context.performed)
         {
             move = true;
@@ -69,5 +80,10 @@ public class PlayerInputManager : MonoBehaviour
     public void SetIsLifting(bool res)
     {
         isLifting = res;
+    }
+
+    public void ToggleInputOffOn()
+    {
+        inputAllowed = !inputAllowed;
     }
 }

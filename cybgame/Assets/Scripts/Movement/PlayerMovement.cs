@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody body;
     PlayerInputManager inputManager;
+    NPCMove npcMove;
 
     Animator animator;
 
@@ -21,11 +22,12 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody>();
         inputManager = GetComponent<PlayerInputManager>();
         animator = GetComponentInChildren<Animator>();
+        npcMove = GetComponent<NPCMove>();
     }
 
     void Update()
     {
-        if (!animator)
+        if (!animator || npcMove.GetManualMove())
             return; 
             
         if (inputManager.isMoving())
@@ -36,6 +38,9 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (npcMove.GetManualMove())
+            return;
+            
         Vector3 input = inputManager.GetMoveInput();
         if (DialogueManager.instance.dialogueIsPlaying)
             input = Vector3.zero;

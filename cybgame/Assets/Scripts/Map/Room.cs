@@ -6,6 +6,7 @@ public class Room : MonoBehaviour
 {
     [SerializeField] GameObject lights;
     [SerializeField] GameObject ambience;
+    [SerializeField] float fadeTime;
     [SerializeField] bool lightsOnEnter;
     [SerializeField] public bool turnOffDirectional;
     public int width;
@@ -72,6 +73,7 @@ public class Room : MonoBehaviour
         {   
             AudioSource source = audio.GetComponent<AudioSource>();
             source.Play();
+            StartCoroutine(FadeAmbience(source));
         }
     }
 
@@ -82,5 +84,26 @@ public class Room : MonoBehaviour
             AudioSource source = audio.GetComponent<AudioSource>();
             source.Stop();
         }
+    }
+
+    IEnumerator FadeAmbience(AudioSource audioSource)
+    {
+        audioSource.volume = 0f;
+        float elapsedTime = 0.0f;
+        float startValue = 0.0f;
+        float endValue = 1.0f;
+
+        while (elapsedTime < fadeTime)
+        {
+            float t = elapsedTime / fadeTime;
+            float lerpedValue = Mathf.Lerp(startValue, endValue, t);
+
+            audioSource.volume = lerpedValue;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        audioSource.volume = 1f;
     }
 }

@@ -10,6 +10,7 @@ TagManager:
   - FxTemporaire
   - VisualCue
   - Trigger
+  - MainLight
   layers:
   - Default
   - TransparentFX

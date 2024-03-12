@@ -398,6 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lights: {fileID: 4011138767322992587}
   ambience: {fileID: 8494170918810663589}
+  fadeTime: 0
   lightsOnEnter: 0
   turnOffDirectional: 0
   width: 21
@@ -719,6 +720,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 1}
+  openSoundDelay: 0
+  closeSoundDelay: 0.2
   locked: 0
 --- !u!65 &698296679250203208
 BoxCollider:
@@ -1992,6 +1995,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: -1, y: 0}
+  openSoundDelay: 0
+  closeSoundDelay: 0.2
   locked: 0
 --- !u!65 &1240012564652489969
 BoxCollider:
@@ -3818,6 +3823,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 1, y: 0}
+  openSoundDelay: 0
+  closeSoundDelay: 0.2
   locked: 0
 --- !u!65 &3355496059103209905
 BoxCollider:
@@ -4466,6 +4473,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: -1}
+  openSoundDelay: 0
+  closeSoundDelay: 0.2
   locked: 0
 --- !u!65 &8754764308535955459
 BoxCollider:

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Zoom")]
+    [SerializeField] float zoomSpeed;
+    [SerializeField] float minDistance;
+
     [Header("Transitions")]
     [SerializeField] bool lerpTransition;
     [SerializeField] bool glitchTransition;
@@ -13,6 +17,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] AudioSource lerpSound;
     public float moveSpeed;
+    public bool isMoving;
 
     [Header("Fade Settings")]
     [SerializeField] GameObject fadeObject;
@@ -33,6 +38,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] float horizontalShake;
 
     bool isGlitching;
+    bool isZooming;
     
     [Header("Other")]
     public static CameraController instance;
@@ -47,6 +53,7 @@ public class CameraController : MonoBehaviour
     {
         isGlitching = false;
         isFading = false;
+        isMoving = false;
 
         initalPosition = transform.position;
 
@@ -73,6 +80,9 @@ public class CameraController : MonoBehaviour
 
     void UpdatePosition()
     {
+        if (isZooming)
+            return;
+
         currentRoom = RoomController.instance.currentRoom;
         if (currentRoom == null)
             return;
@@ -80,10 +90,14 @@ public class CameraController : MonoBehaviour
         Vector3 targetPos = GetCameraTargetPosition();
 
         if (transform.position == targetPos || isFading || isGlitching)
+        {
+            isMoving = false;
             return;
+        }
 
         if (lerpTransition)
         {
+            isMoving = true;
             if (!lerpSound.isPlaying)
                 lerpSound.Play();
             transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
@@ -93,6 +107,11 @@ public class CameraController : MonoBehaviour
             StartCoroutine(FadeTransition(targetPos));
         else
             StartCoroutine(GlitchTransition(targetPos));
+    }
+
+    public bool IsMoving()
+    {
+        return isMoving;
     }
 
     Vector3 GetCameraTargetPosition()
@@ -115,7 +134,6 @@ public class CameraController : MonoBehaviour
 
     IEnumerator GlitchTransition(Vector3 targetPos)
     {
-        Debug.Log("Test");
         isGlitching = true;
         
         glitchSound.Play();
@@ -139,5 +157,22 @@ public class CameraController : MonoBehaviour
         analogGlitch.horizontalShake = 0;
 
         isGlitching = false;
+    }
+
+    public IEnumerator ZoomCameraToTarget(Vector3 target)
+    {
+        isZooming = true;
+
+        float distance = Vector3.Distance(transform.position, target);
+        while (distance > minDistance)
+        {
+            float step = zoomSpeed * Time.deltaTime;
+
+            if (distance > minDistance)
+                transform.position = Vector3.MoveTowards(transform.position, target, step);
+            
+            distance = Vector3.Distance(transform.position, target);
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

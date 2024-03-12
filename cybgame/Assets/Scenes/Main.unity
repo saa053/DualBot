@@ -1626,7 +1626,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 74658b47c598dd841868daba44238636, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2050,6 +2050,7 @@ GameObject:
   - component: {fileID: 625926984}
   - component: {fileID: 625926981}
   - component: {fileID: 625926980}
+  - component: {fileID: 625926986}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Player2
@@ -2227,6 +2228,28 @@ CapsuleCollider:
   m_Height: 1.4827178
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!114 &625926986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625926978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa04553ab784d1840a37369498c87deb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalTargetPos: {x: -0.8, y: 0, z: -1.5}
+  targetRotation: {x: 0, y: 180, z: 0, w: 0}
+  moveSpeed: 5
+  rotationSpeed: 5
+  body: {fileID: 625926983}
+  animator: {fileID: 2080347472}
+  targetPos: {x: 0, y: 0, z: 0}
+  stoppingDistance: 0.1
+  trigger: 0
+  ready: 0
 --- !u!1 &702225414
 GameObject:
   m_ObjectHideFlags: 0
@@ -5220,6 +5243,7 @@ MonoBehaviour:
   ui: {fileID: 1892827983}
   createFx: {fileID: 7328880555322600135, guid: fd089fef0ce7d0c48bad1399073758c2, type: 3}
   delaySpawnNSeconds: 0.5
+  rewardsNeeded: 0
 --- !u!1 &1431729178
 GameObject:
   m_ObjectHideFlags: 0
@@ -6057,6 +6081,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1902885461 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2095340731273312766, guid: f8884890bdaf3d8418dc993b6a70b114, type: 3}
+  m_PrefabInstance: {fileID: 185689918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1931530466
 GameObject:
   m_ObjectHideFlags: 0
@@ -6215,6 +6244,8 @@ MonoBehaviour:
   turnOffDirectionalSpeed: 0.08
   turnOnDirectionalSpeed: 0.2
   turnOffRoomSpeed: 0.2
+  mainIntensity: 1
+  subIntensity: 0.8
 --- !u!1 &2019086512
 GameObject:
   m_ObjectHideFlags: 0
@@ -6610,6 +6641,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &2080347472 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2095340731273312766, guid: f8884890bdaf3d8418dc993b6a70b114, type: 3}
+  m_PrefabInstance: {fileID: 963707142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2103430656
 GameObject:
   m_ObjectHideFlags: 0
@@ -6849,6 +6885,7 @@ GameObject:
   - component: {fileID: 1336198539105428980}
   - component: {fileID: 6490890402909874770}
   - component: {fileID: 3008025206558311995}
+  - component: {fileID: 6566239059194846393}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player1
@@ -7322,6 +7359,28 @@ CapsuleCollider:
   m_Height: 1.4827178
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!114 &6566239059194846393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118961628400336418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa04553ab784d1840a37369498c87deb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalTargetPos: {x: 0.8, y: 0, z: -1.5}
+  targetRotation: {x: 0, y: 180, z: 0, w: 0}
+  moveSpeed: 5
+  rotationSpeed: 5
+  body: {fileID: 6443364167393112819}
+  animator: {fileID: 1902885461}
+  targetPos: {x: 0, y: 0, z: 0}
+  stoppingDistance: 0.1
+  trigger: 0
+  ready: 0
 --- !u!114 &6597185228932286170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7568,11 +7627,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f500eac8bc8bb3418c8dea2757a87a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomSpeed: 2
+  minDistance: 7
   lerpTransition: 1
   glitchTransition: 0
   fadeInNOutTransition: 0
   lerpSound: {fileID: 535053061}
   moveSpeed: 125
+  isMoving: 0
   fadeObject: {fileID: 0}
   fadeOutTime: 0
   fadeInTime: 0

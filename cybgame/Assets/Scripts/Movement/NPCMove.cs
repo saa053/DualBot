@@ -12,23 +12,23 @@ public class NPCMove : MonoBehaviour
     public Vector3 targetPos;
     public float stoppingDistance;
 
-
+    bool manualMove = false;
     public bool trigger = false;
     public bool ready = false;
 
     bool inPos = false;
     bool inRot = false;
 
-    void Start()
-    {
-        targetPos = LocalTargetPos + transform.localPosition;
-    }
-
     void FixedUpdate()
     {
         if (!trigger)
+        {
+            if (RoomController.instance.currentRoom != null)
+                targetPos = LocalTargetPos + RoomController.instance.currentRoom.GetRoomCenter();
             return;
+        }
 
+        manualMove = true;
         MoveNPC();
 
         if (inPos && !inRot)
@@ -40,11 +40,12 @@ public class NPCMove : MonoBehaviour
         {
             ready = true;
             trigger = false;
+            manualMove = false;
         }
     }
     void MoveNPC()
     {
-        Vector3 direction = targetPos - transform.localPosition;
+        Vector3 direction = targetPos - transform.position;
 
         if (direction.magnitude > stoppingDistance && !inPos)
         {
@@ -78,5 +79,10 @@ public class NPCMove : MonoBehaviour
         inRot = false;
         targetPos = target;
         stoppingDistance = stopMargin;
+    }
+
+    public bool GetManualMove()
+    {
+        return manualMove;
     }
 }

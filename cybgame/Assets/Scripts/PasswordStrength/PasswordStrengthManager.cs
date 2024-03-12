@@ -121,7 +121,7 @@ public class PasswordStrengthManager : MonoBehaviour
 
         PasswordScreen.instance.TurnOff(true);
 
-        NPC.SetNewTarget(transform.localPosition, 4f);
+        NPC.SetNewTarget(transform.position, 4f);
         NPC.trigger = true;
     }
 

@@ -11,6 +11,7 @@ public class RewardManager : MonoBehaviour
     [SerializeField] GameObject createFx;
     [SerializeField] float delaySpawnNSeconds;
     int rewardCount;
+    [SerializeField] int rewardsNeeded;
 
     static public RewardManager instance;
     void Awake()
@@ -51,6 +52,16 @@ public class RewardManager : MonoBehaviour
         GameObject particleObject = Instantiate(fx, pos, fx.transform.rotation);
         ParticleSystem particleSystem = particleObject.GetComponent<ParticleSystem>();
         particleSystem.Play();
+    }
+
+    public int GetCount()
+    {
+        return rewardCount;
+    }
+
+    public int GetNeeded()
+    {
+        return rewardsNeeded;
     }
 
 

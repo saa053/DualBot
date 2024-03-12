@@ -397,7 +397,6 @@ public class DialogueManager : MonoBehaviour
             Story storyState = DialogueSaveManager.instance.LoadStoryState(currentStory, saveString);
             if (storyState != null)
             {
-                Debug.Log("Loading story...");
                 currentStory = storyState;
                 currentStory.ChoosePathString("resetLabel");
             }

@@ -1,9 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
     AudioSource[] doorSounds;
     [SerializeField] Vector2 direction;
+
+    [SerializeField] float openSoundDelay;
+
+    [SerializeField] float closeSoundDelay;
 
     Animator animator;
 
@@ -47,13 +52,17 @@ public class DoorController : MonoBehaviour
     public void OpenDoor()
     {
         locked = false;
-        doorSounds[0].Play();
+        StartCoroutine(DelaySound(0, openSoundDelay));
     }
     public void CloseDoor()
     {
         locked = true;
-        doorSounds[1].Play();
-        Debug.Log("Closing");
+        StartCoroutine(DelaySound(0, closeSoundDelay));
+    }
+
+    public bool GetIsLocked()
+    {
+        return locked;
     }
 
     void UpdateAnimation()
@@ -89,5 +98,11 @@ public class DoorController : MonoBehaviour
             player1.EnterDoor(-direction);
             player2.EnterDoor(-direction);
         }
+    }
+
+    IEnumerator DelaySound(int sound, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        doorSounds[sound].Play();
     }
 }

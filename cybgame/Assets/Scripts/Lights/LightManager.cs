@@ -10,11 +10,15 @@ public class LightManager : MonoBehaviour
     [SerializeField] float turnOffDirectionalSpeed;
     [SerializeField] float turnOnDirectionalSpeed;
     [SerializeField] float turnOffRoomSpeed;
+    [SerializeField] float mainIntensity;
+    [SerializeField] float subIntensity;
     Room currentLightRoom;
 
-    void Start()
-    {
+    public static LightManager instance;
 
+    void Awake()
+    {
+        instance = this;
     }
 
     void Update()
@@ -46,5 +50,38 @@ public class LightManager : MonoBehaviour
     {
         yield return new WaitForSeconds(turnOnDirectionalSpeed);
         directionalLights.SetActive(true);
+    }
+
+    public IEnumerator TurnOnDirectionalBlink(int blinkTimes, float blinkPause, float lightIntensity)
+    {
+        SetDirectionalIntesity(lightIntensity, lightIntensity);
+
+        for (int i = 0; i < blinkTimes; i++)
+        {
+            directionalLights.SetActive(true);
+
+            yield return new WaitForSeconds(blinkPause);
+
+            directionalLights.SetActive(false);
+
+            if (i == blinkTimes/2)
+                yield return new WaitForSeconds(blinkPause*4);
+            else
+                yield return new WaitForSeconds(blinkPause);
+        }
+
+        SetDirectionalIntesity(mainIntensity, subIntensity);
+        directionalLights.SetActive(true);
+    }
+
+    void SetDirectionalIntesity(float main, float sub)
+    {
+        foreach (Transform light in directionalLights.transform)
+        {
+            if (light.CompareTag("MainLight"))
+                light.GetComponent<Light>().intensity = main;
+            else
+                light.GetComponent<Light>().intensity = sub;
+        }
     }
 }

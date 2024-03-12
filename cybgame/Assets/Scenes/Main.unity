@@ -5243,7 +5243,7 @@ MonoBehaviour:
   ui: {fileID: 1892827983}
   createFx: {fileID: 7328880555322600135, guid: fd089fef0ce7d0c48bad1399073758c2, type: 3}
   delaySpawnNSeconds: 0.5
-  rewardsNeeded: 0
+  rewardsNeeded: 4
 --- !u!1 &1431729178
 GameObject:
   m_ObjectHideFlags: 0

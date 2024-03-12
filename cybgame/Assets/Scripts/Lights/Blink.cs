@@ -23,10 +23,14 @@ public class Blink : MonoBehaviour
 
     void Update()
     {
-        if (material.color.a == 0f && !isFadingIn)
+        if (material.color.a <= 0f && !isFadingIn)
+        {
             StartCoroutine(FadeIn());
-        else if (material.color.a == maxAlpha && !isFadingOut)
+        }
+        else if (material.color.a >= maxAlpha && !isFadingOut)
+        {
             StartCoroutine(FadeOut());
+        }
     }
 
     IEnumerator FadeOut()
@@ -80,5 +84,8 @@ public class Blink : MonoBehaviour
         Color color = material.color;
         color.a = 0f;
         material.color = color;
+
+        isFadingIn = false;
+        isFadingOut = false;
     }
 }

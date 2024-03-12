@@ -2207,8 +2207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blinkSpeed: 0.01
-  aplhaIncrement: 0.004
-  maxAlpha: 0.3
+  aplhaIncrement: 0.002
+  maxAlpha: 0.2
 --- !u!1 &680602571
 GameObject:
   m_ObjectHideFlags: 0

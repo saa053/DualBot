@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class Portable : MonoBehaviour
 {
+    [Header ("Portable FX")]
+    [SerializeField] float implodeMaxSize;
+    [SerializeField] float implodeMinSize;
+    [SerializeField] float implodeSpeed;
+    [SerializeField] bool destroy;
+    [SerializeField] bool isImploding;
+
     [Header ("Portable Info")]
     [SerializeField] GameObject canvas;
-
+    bool isSafe;
+    string explanation;
+    int result = -1;
 
     [Header ("Player Hitbox")]
     [SerializeField] float carryHeight = 1.482718f;
@@ -19,6 +28,8 @@ public class Portable : MonoBehaviour
     [Header ("Carry settings")]
     [SerializeField] float distanceFromPlayer;
     [SerializeField] float height;
+
+    bool locked = false;
     
     Rigidbody body;
     Trigger trigger;
@@ -45,6 +56,8 @@ public class Portable : MonoBehaviour
         player2Input = GameObject.FindWithTag("Player2").GetComponent<PlayerInputManager>();
         player1Animator = player1.GetComponentInChildren<Animator>();
         player2Animator = player2.GetComponentInChildren<Animator>();
+
+        canvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,7 +81,7 @@ public class Portable : MonoBehaviour
             ResetPlayerHitbox(player2.GetComponent<CapsuleCollider>());
         }
             
-        if (trigger.Player1Trigger() && !player1IsCarry)
+        if (trigger.Player1Trigger() && !player1IsCarry && !locked)
         {
             player1IsCarry = true;
             PickUp(player1);
@@ -76,7 +89,7 @@ public class Portable : MonoBehaviour
             IncreasePlayerHitbox(player1.GetComponent<CapsuleCollider>());
         }
         
-        if (trigger.Player2Trigger() && !player2IsCarry)
+        if (trigger.Player2Trigger() && !player2IsCarry && !locked)
         {
             player2IsCarry = true;
             PickUp(player2);
@@ -127,9 +140,76 @@ public class Portable : MonoBehaviour
 
     void DisplayInfoWhenPlayerClose()
     {
+        if (locked)
+            return;
+
         if (trigger.Player1Close() || trigger.Player2Close())
             canvas.SetActive(true);
         else
             canvas.SetActive(false);
+    }
+
+    public void SetSafe(bool value)
+    {
+        isSafe = value;
+    }
+
+    public bool GetSafe()
+    {
+        return isSafe;
+    }
+
+    public void SetExplanation(string value)
+    {
+        explanation = value;
+    }
+
+    public string GetExplanation()
+    {
+        return explanation;
+    }
+
+    public void ToggleCanvas(bool value)
+    {
+        canvas.SetActive(value);
+    }
+
+    public void Lock()
+    {
+        Drop();
+        body.mass = 200;
+        locked = true;
+        canvas.SetActive(false);
+    }
+
+    public IEnumerator Implode(ParticleSystem fx)
+    {
+        isImploding = true;
+        /* while (transform.localScale.x < implodeMaxSize)
+        {
+            transform.localScale += new Vector3(implodeSpeed, implodeSpeed, implodeSpeed);
+            yield return new WaitForEndOfFrame();
+        } */
+
+        fx.Play();
+        while (transform.localScale.x > implodeMinSize)
+        {
+            transform.localScale -= new Vector3(implodeSpeed, implodeSpeed, implodeSpeed);
+            yield return new WaitForEndOfFrame();
+        }
+        Destroy(fx.gameObject);
+
+
+        Destroy(this.gameObject);
+    }
+
+    public void SetResult(int res)
+    {
+        result = res;
+    }
+
+    public int GetResult()
+    {
+        return result;
     }
 }

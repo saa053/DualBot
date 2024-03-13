@@ -20,6 +20,7 @@ public class AIManager : MonoBehaviour
     [SerializeField] float turnOnWaitTime;
     [SerializeField] Trigger trigger;
     [SerializeField] float timeBeforeFadeOut;
+    [SerializeField] float timeBeforeCelebration;
 
     [Header("Text")]
     [SerializeField] TextMeshProUGUI numRewards;
@@ -202,8 +203,6 @@ public class AIManager : MonoBehaviour
         spinningLightObject.GetComponent<MeshRenderer>().materials = materials;
 
         StartCoroutine(Celebrate());
-
-        StartCoroutine(FadeOut());
     }
 
     IEnumerator FadeOut()
@@ -215,6 +214,8 @@ public class AIManager : MonoBehaviour
 
     IEnumerator Celebrate()
     {
+        yield return new WaitForSeconds(timeBeforeCelebration);
+
         player1Input.ToggleInputOffOn();
         player2Input.ToggleInputOffOn();
 
@@ -230,5 +231,7 @@ public class AIManager : MonoBehaviour
         
         player1Animator.SetBool("dance1", true);
         player2Animator.SetBool("dance2", true);
+
+        StartCoroutine(FadeOut());
     }
 }

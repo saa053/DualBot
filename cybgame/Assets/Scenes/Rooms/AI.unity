@@ -2262,6 +2262,7 @@ MonoBehaviour:
   turnOnWaitTime: 2
   trigger: {fileID: 638142187}
   timeBeforeFadeOut: 5
+  timeBeforeCelebration: 4
   numRewards: {fileID: 328085506}
   errorCanvas: {fileID: 659658582}
   interactCanvas: {fileID: 1305525358}

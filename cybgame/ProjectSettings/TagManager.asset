@@ -11,6 +11,7 @@ TagManager:
   - VisualCue
   - Trigger
   - MainLight
+  - Portable
   layers:
   - Default
   - TransparentFX

@@ -1914,8 +1914,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2433,30 +2433,30 @@ MonoBehaviour:
   - name: Intro
     x: 0
     y: 0
-  - name: Carry
+  - name: Empty
     x: 0
     y: 1
-  - name: Empty
+  - name: Mail
     x: 1
     y: 1
+  - name: Empty
+    x: 2
+    y: 1
   - name: AI
-    x: 1
+    x: 2
     y: 2
   - name: Empty
+    x: 2
+    y: 0
+  - name: PasswordStrength
+    x: 3
+    y: 1
+  - name: URL
     x: 1
     y: 0
   - name: PasswordStrength
-    x: 2
-    y: 1
-  - name: Empty
     x: 3
-    y: 1
-  - name: Empty
-    x: 3
-    y: 2
-  - name: Empty
-    x: 0
-    y: 2
+    y: 0
   paddingX: 2
   paddingY: 2
   currentRoom: {fileID: 0}
@@ -3063,8 +3063,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3354,8 +3354,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4056,8 +4056,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7573,8 +7573,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

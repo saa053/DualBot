@@ -909,10 +909,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\r\nDonec efficitur,
-    libero placerat suscipit porttitor, nisl diam fermentum dolor, in mattis nisl
-    felis et leo. \n\r\nNam maximus massa sit amet vehicula hendrerit. Curabitur
-    leo dolor, tincidunt a justo id, condimentum euismod nulla. "
+  m_text: "Hackere har angrepet AI-fabrikken og systemet har g\xE5tt amok. \n\nDe
+    andre robotene vet ikke lenger hva som er rett og galt. \n\nDet er deres jobb
+    \xE5 trene opp robotene igjen og reversere angrepet!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -544,11 +544,17 @@ MonoBehaviour:
   winText: {fileID: 4900000, guid: 828cfd78919a03841826981c169cea56, type: 3}
   failText: {fileID: 4900000, guid: d3ee3d398028ab44f8bd2189a3b35f5f, type: 3}
   NPCText: {fileID: 4900000, guid: 413ed73992c60e247b069e205d8a37cb, type: 3}
-  numCorrectNeeded: 1
+  numCorrectNeeded: 3
   rewardPos: {x: 0, y: 0, z: -3}
+  materials:
+  - {fileID: 2100000, guid: 6b7b01a8fed2c66479152b52b0a782f9, type: 2}
+  - {fileID: 2100000, guid: c6157b5537c3a3d4ba459d184687b29d, type: 2}
+  - {fileID: 2100000, guid: dde128a9b4b55e941b757b2c9e29fd60, type: 2}
+  - {fileID: 2100000, guid: e4eff146b3f33ce4aad0b6a25c33c951, type: 2}
+  - {fileID: 2100000, guid: 25743eb71b1b5f841b550538882b1c3b, type: 2}
   implodeFxPrefab: {fileID: 2804596116418254524, guid: 92e55623d2ace794395cda48b5a10544, type: 3}
   fxParent: {fileID: 856346559}
-  numPortables: 1
+  numPortables: 4
   portableSpawnList:
   - info: Safe1
     explanation: safe 1
@@ -565,7 +571,7 @@ MonoBehaviour:
   portablePrefab: {fileID: 4424221129504497467, guid: b0165866dbe121c4c8bc28f3f07c8bea, type: 3}
   portableParent: {fileID: 1178467023}
   startSpawnPos: {x: -7, y: 3, z: -4}
-  spaceBetweenPortables: {x: 3, y: 0, z: 0}
+  spaceBetweenPortables: {x: 5, y: 0, z: 0}
   timeBetweenSpawns: 0.5
   safeTrigger: {fileID: 1251204165}
   unsafeTrigger: {fileID: 1662769198}

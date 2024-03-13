@@ -8,35 +8,34 @@ VAR GO = false
 {GO: -> tips | -> main}
 
 === main ===
-Hei, hjelp?
+Hei, jeg har en rekke e-postadresser og trenger hjelp til å vurdere hvilke som er trygge. Kan dere hjelpe meg? 
     + [Ja]
         -> start
     + [Nei, ikke akkurat nå]
     
-:(
+Okei... Hvis dere ombestemmer dere kan dere få en AI-disk som premie.
 -> END
 
 === start ===
-#Tusen takk! Dere skal få en AI disk som premie etterpå!
-#Jeg kommer til å vise et og et passord på skjermen bak meg.
-#Jeg vil at dere går til den knappen i dette rommet som dere mener passer styrken til passordet på skjermen.
-#Dere trenger 5 riktige svar for å få premien. Hvis dere trenger tips underveis kan dere komme å snakke med meg! La oss starte!
+Tusen takk! Dere skal få en AI-disk som premie etterpå! 
+I rommet ligger det en rekke e-poster med tilhørende adresser. Deres oppgave er å sortere e-postadressene som enten trygg (grønt felt) eller utrygg (rødt felt). Dere kan plukke opp og ned e-postene med handlingstasten.  
+Når dere er fornøyde med sorteringen trykker dere på den røde knappen. Dere trenger 3 riktige svar for å få premien. Hvis dere trenger tips underveis kan dere spørre meg! La oss starte! 
     ~ GO = true
 -> END
 
 === tips ===
 Hvilket tips vil du ha?
     +[Nr.1]
-        Tips nr.1 er...
+        Svindlere vil ofte bruke adresser som er lik originalen, men vil endre en liten detalj, for eksempel bytte ‘i’ ut med ‘1’ eller fjerne en bokstav. 
         ->DONE
     +[Nr.2]
-        Tips nr.2 er...
+        Svindlere kan bruke et annet toppdomene, som er de siste bokstavene i adressen. Istedenfor ‘.no’ eller ‘.com’, bruker de kanskje ‘.biz’ sammen med kjente navn.
         ->DONE
     +[Nr.3]
-        Tips nr.3 er...
+        Svindlere kan utvide kjente avsenderadresser med ord som ser trygge ut, for eksempel ‘@bank-hjelp.no.’ istedenfor ‘@bank.no’. 
         ->DONE
     +[Nr.4]
-        Tips nr.4 er...
+        Større organisasjoner bruker sjeldent kjente e-post-tjenester som gmail og outlook.
         ->DONE
 
 -> END

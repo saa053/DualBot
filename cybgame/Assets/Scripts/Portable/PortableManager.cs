@@ -47,6 +47,7 @@ public class PortableManager : MonoBehaviour
     bool doorsClosed = false;
 
     [Header("Portables Settings")]
+    [SerializeField] Material[] materials;
     [SerializeField] GameObject implodeFxPrefab;
     [SerializeField] GameObject fxParent;
     [SerializeField] int numPortables;
@@ -56,6 +57,8 @@ public class PortableManager : MonoBehaviour
     [SerializeField] Vector3 startSpawnPos;
     [SerializeField] Vector3 spaceBetweenPortables;
     [SerializeField] float timeBetweenSpawns;
+
+    int currentIndex = 0;
 
     [Header("Sorting Squares Settings")]
     [SerializeField] PortableTrigger safeTrigger;
@@ -188,13 +191,15 @@ public class PortableManager : MonoBehaviour
             Vector3 spawnPos = (startSpawnPos + spaceBetweenPortables * i) + room.GetRoomCenter();
             GameObject portable = Instantiate(portablePrefab, spawnPos, Quaternion.identity);
 
-            portable.GetComponentInChildren<TextMeshProUGUI>().text = portableSpawnList[i].info;
-            portable.GetComponent<Portable>().SetSafe(portableSpawnList[i].safe);
-            portable.GetComponent<Portable>().SetExplanation(portableSpawnList[i].explanation);
+            portable.GetComponentInChildren<TextMeshProUGUI>().text = portableSpawnList[currentIndex].info;
+            portable.GetComponent<Portable>().SetSafe(portableSpawnList[currentIndex].safe);
+            portable.GetComponent<Portable>().SetExplanation(portableSpawnList[currentIndex].explanation);
 
-            // Assign color?
+            portable.transform.GetComponentInChildren<MeshRenderer>().material = materials[i];
 
             portable.transform.SetParent(portableParent.transform);
+
+            currentIndex = (currentIndex + 1) % (portableSpawnList.Count - 1);
 
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
@@ -224,6 +229,15 @@ public class PortableManager : MonoBehaviour
 
     void HandleRedButton()
     {
+        if (buttonTrigger.transform.parent.transform.GetComponentInChildren<Outline>() != null)
+        {
+            if (buttonTrigger.Player1Close() || buttonTrigger.Player2Close())
+                buttonTrigger.transform.parent.transform.GetComponentInChildren<Outline>().OutlineWidth = 10;
+            else
+                buttonTrigger.transform.parent.transform.GetComponentInChildren<Outline>().OutlineWidth = 0;
+        }
+        
+
         if (buttonTrigger.Player1Trigger() || buttonTrigger.Player2Trigger())
         {
             if (!StartGame())

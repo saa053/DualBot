@@ -541,10 +541,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2978ee98f578c499af80910c81a451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGame: 1
+  winText: {fileID: 4900000, guid: 828cfd78919a03841826981c169cea56, type: 3}
+  failText: {fileID: 4900000, guid: d3ee3d398028ab44f8bd2189a3b35f5f, type: 3}
+  NPCText: {fileID: 4900000, guid: 413ed73992c60e247b069e205d8a37cb, type: 3}
+  numCorrectNeeded: 1
+  rewardPos: {x: 0, y: 0, z: -3}
   implodeFxPrefab: {fileID: 2804596116418254524, guid: 92e55623d2ace794395cda48b5a10544, type: 3}
   fxParent: {fileID: 856346559}
-  numPortables: 4
+  numPortables: 1
   portableSpawnList:
   - info: Safe1
     explanation: safe 1

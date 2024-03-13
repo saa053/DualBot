@@ -106,4 +106,22 @@ public class Room : MonoBehaviour
 
         audioSource.volume = 1f;
     }
+
+    public void OpenDoors()
+    {
+        DoorController[] doors = GetComponentsInChildren<DoorController>();
+        foreach (DoorController door in doors)
+        {
+            door.OpenDoor();
+        }
+    }
+
+    public void CloseDoors()
+    {
+        DoorController[] doors = GetComponentsInChildren<DoorController>();
+        foreach (DoorController door in doors)
+        {
+            door.CloseDoor();
+        }
+    }
 }

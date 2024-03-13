@@ -49,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fx: {fileID: 541588128357677134, guid: 8c1a6633e527bea458a8557be5b1fa1c, type: 3}
   visualCue: {fileID: 4350310204855940371}
-  pickUpSound: {fileID: 0}
 --- !u!65 &9125861841811710211
 BoxCollider:
   m_ObjectHideFlags: 0

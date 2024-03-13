@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Ink.Runtime;
 using TMPro;
 using UnityEngine;
 
@@ -22,14 +23,28 @@ public class PortableItem
 
 public class PortableManager : MonoBehaviour
 {
+    [Header("Dialogue Settings")]
+    [SerializeField] TextAsset winText;
+    [SerializeField] TextAsset failText;
+    [SerializeField] TextAsset NPCText;
     [Header("Game bools")]
     Room room;
-    [SerializeField] bool startGame;
+    [SerializeField] int numCorrectNeeded;
+    [SerializeField] Vector3 rewardPos;
+    int correct = 0;
+    bool victory = false;
     bool portablesSpawned = false;
     bool isSpawning = false;
     bool evaluate = false;
     bool resultsReady = false;
     bool isShowingResults = false;
+    bool gameComplete = false;
+    bool endDialogue = false;
+
+    bool rewardSpawned = false;
+    bool allPortablesInside = false;
+
+    bool doorsClosed = false;
 
     [Header("Portables Settings")]
     [SerializeField] GameObject implodeFxPrefab;
@@ -49,7 +64,6 @@ public class PortableManager : MonoBehaviour
     List<GameObject> unsafeList;
     List<GameObject> resultList;
 
-    bool allPortablesInside;
 
     [Header("Red button")]
     [SerializeField] Trigger buttonTrigger;
@@ -76,8 +90,14 @@ public class PortableManager : MonoBehaviour
     {
         HandleRedButton();
 
-        if (!startGame)
+        if (!StartGame())
             return;
+
+        if (!doorsClosed)
+        {
+            room.CloseDoors();
+            doorsClosed = true;
+        }
 
         if (!portablesSpawned && !isSpawning)
         {
@@ -88,7 +108,75 @@ public class PortableManager : MonoBehaviour
         HandleSortingSquares();
 
         if (resultsReady && !isShowingResults)
+        {
             StartCoroutine(ShowResults());
+        }
+        
+        if (gameComplete)
+        {
+            if (victory)
+            {
+                if (!endDialogue)
+                {
+                    DialogueManager.instance.EnterDialogueMode(winText, "");
+                    endDialogue = true;
+                }
+                
+                if (!rewardSpawned)
+                {
+                    SpawnReward();
+                }
+            }
+            else
+            {
+                if (!endDialogue)
+                {
+                    DialogueSaveManager.instance.ResetStoryState(failText);
+                    DialogueManager.instance.EnterDialogueMode(failText, "");
+                    endDialogue = true;
+                }
+                Restart();
+            }
+        }
+    }
+
+    bool StartGame()
+    {
+        bool result = DialogueSaveManager.instance.GetBool(NPCText, "GO");
+        return result;
+    }
+
+    void Restart()
+    {
+        if (DialogueSaveManager.instance.GetBool(failText, "restart"))
+        {
+            StartCoroutine(RemovePortables());
+            
+            correct = 0;
+            victory = false;
+            portablesSpawned = false;
+            isSpawning = false;
+            evaluate = false;
+            resultsReady = false;
+            isShowingResults = false;
+            gameComplete = false;
+            allPortablesInside = false;
+            endDialogue = false;
+
+            rewardSpawned = false;
+            doorsClosed = true;
+        }
+    }
+
+    void SpawnReward()
+    {
+        if (DialogueSaveManager.instance.GetBool(winText, "reward"))
+        {
+            RewardManager.instance.CreateReward(transform.TransformPoint(rewardPos));
+            rewardSpawned = true;
+            room.OpenDoors();
+            StartCoroutine(RemovePortables());
+        }
     }
 
     IEnumerator SpawnPortables()
@@ -138,7 +226,7 @@ public class PortableManager : MonoBehaviour
     {
         if (buttonTrigger.Player1Trigger() || buttonTrigger.Player2Trigger())
         {
-            if (!startGame)
+            if (!StartGame())
                 Debug.Log("Go to NPC to start game");
             else if (!portablesSpawned)
                 Debug.Log("Portables not spawned yet");
@@ -155,8 +243,6 @@ public class PortableManager : MonoBehaviour
     void EvaluateResult()
     {
         evaluate = false;
-
-        int correct = 0;
 
         LockPortables(safeList);
         LockPortables(unsafeList);
@@ -238,7 +324,10 @@ public class PortableManager : MonoBehaviour
 
         lastPortable.ToggleCanvas(false);
 
-        StartCoroutine(RemovePortables());
+        if (correct >= numCorrectNeeded)
+            victory = true;
+        
+        gameComplete = true;
     }
 
     IEnumerator RemovePortables()
@@ -252,5 +341,9 @@ public class PortableManager : MonoBehaviour
 
             yield return new WaitForSeconds(removePause);
         }
+
+        safeList.Clear();
+        unsafeList.Clear();
+        resultList.Clear();
     }
 }

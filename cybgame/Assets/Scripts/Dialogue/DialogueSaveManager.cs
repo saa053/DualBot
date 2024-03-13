@@ -41,6 +41,18 @@ public class DialogueSaveManager : MonoBehaviour
   
     }
 
+    public void ResetStoryState(TextAsset inkTextAsset)
+    {
+        if (inkTextAsset != null)
+        {
+            Story story = new Story(inkTextAsset.text);
+
+            string saveString = GetSaveString(inkTextAsset);
+
+            SaveStoryState(story, saveString);
+        }
+    }
+
     public bool GetBool(TextAsset text, string boolName)
     {
         Story story = new Story(text.text);

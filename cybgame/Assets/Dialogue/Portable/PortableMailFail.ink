@@ -1,19 +1,15 @@
 VAR shouldSave = true
 VAR saveString = "portableMailFail"
-VAR GO = false
+VAR restart = false
 
--> main
+=== resetLabel ===
+
+->main
+
 
 === main ===
-Oisann det gikk ikke bra, vi må nok restarte. Men først hva som gikk galt:
-->loop
-.
-=== loop ===
-
--> loop
-
-
-
+Her må vi nok restarte
+~ restart = true
 -> END
 
 

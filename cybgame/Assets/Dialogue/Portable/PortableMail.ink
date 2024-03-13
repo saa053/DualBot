@@ -28,14 +28,16 @@ Hei, hjelp?
 Hvilket tips vil du ha?
     +[Nr.1]
         Tips nr.1 er...
+        ->DONE
     +[Nr.2]
         Tips nr.2 er...
+        ->DONE
     +[Nr.3]
         Tips nr.3 er...
+        ->DONE
     +[Nr.4]
         Tips nr.4 er...
-
-- -> tips
+        ->DONE
 
 -> END
 

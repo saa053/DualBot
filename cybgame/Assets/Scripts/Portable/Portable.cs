@@ -9,7 +9,6 @@ public class Portable : MonoBehaviour
     [SerializeField] float implodeMinSize;
     [SerializeField] float implodeSpeed;
     [SerializeField] bool destroy;
-    [SerializeField] bool isImploding;
 
     [Header ("Portable Info")]
     [SerializeField] GameObject canvas;
@@ -184,7 +183,6 @@ public class Portable : MonoBehaviour
 
     public IEnumerator Implode(ParticleSystem fx)
     {
-        isImploding = true;
         /* while (transform.localScale.x < implodeMaxSize)
         {
             transform.localScale += new Vector3(implodeSpeed, implodeSpeed, implodeSpeed);

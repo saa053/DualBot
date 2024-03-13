@@ -559,12 +559,12 @@ MonoBehaviour:
   - info: https://www.campus.inkrement.no
     explanation: 
     safe: 1
-  - info: https://www.wikiped1a.org
-    explanation: 
-    safe: 0
   - info: https://www.tv2.no
     explanation: 
     safe: 1
+  - info: https://www.wikiped1a.org
+    explanation: 
+    safe: 0
   - info: http://www.ung.info
     explanation: 
     safe: 0
@@ -577,7 +577,7 @@ MonoBehaviour:
   - info: http://tv2-nyheter.no
     explanation: 
     safe: 0
-  - info: https://www.ung.no B
+  - info: https://www.ung.no
     explanation: 
     safe: 1
   portablePrefab: {fileID: 4424221129504497467, guid: b0165866dbe121c4c8bc28f3f07c8bea, type: 3}

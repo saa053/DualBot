@@ -199,7 +199,7 @@ public class PortableManager : MonoBehaviour
 
             portable.transform.SetParent(portableParent.transform);
 
-            currentIndex = (currentIndex + 1) % (portableSpawnList.Count - 1);
+            currentIndex = (currentIndex + 1) % portableSpawnList.Count;
 
             yield return new WaitForSeconds(timeBetweenSpawns);
         }

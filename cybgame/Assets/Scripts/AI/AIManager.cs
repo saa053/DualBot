@@ -4,9 +4,11 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AIManager : MonoBehaviour
 {
+    
     Room room;
 
     [Header("Colors")]
@@ -46,6 +48,13 @@ public class AIManager : MonoBehaviour
     [SerializeField] AudioSource startUpSound;
     [SerializeField] AudioSource celebrationSound;
 
+    [Header("Outro")]
+    [SerializeField] Image fadeBackground;
+    [SerializeField] float fadeSpeed;
+    [SerializeField] float decrementAlpha;
+    [SerializeField] string sceneToPlay;
+    bool isLoading;
+
     int currentNum;
     int neededNum;
     bool waitingOnPlayers = false;
@@ -70,6 +79,8 @@ public class AIManager : MonoBehaviour
         interactCanvas.SetActive(false);
 
         screenBackground.GetComponent<Image>().color = greenColor;
+
+        DontDestroyOnLoad(celebrationSound);
     }
 
     // Update is called once per frame
@@ -210,7 +221,22 @@ public class AIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBeforeFadeOut);
 
-        Debug.Log("Fading...");
+        float newAlpha = 0f;
+
+        while (fadeBackground.GetComponent<Image>().color.a < 1f)
+        {
+            Color newColor = fadeBackground.GetComponent<Image>().color;
+            newColor.a = newAlpha;
+
+            fadeBackground.GetComponent<Image>().color = newColor;
+
+            newAlpha += decrementAlpha;
+
+            yield return new WaitForSeconds(fadeSpeed);
+        }
+
+        if (fadeBackground.GetComponent<Image>().color.a >= 0.95f)
+            Outro.instance.PlayOutro();
     }
 
     IEnumerator Celebrate()
@@ -236,7 +262,7 @@ public class AIManager : MonoBehaviour
         player1Animator.SetBool("dance1", true);
         player2Animator.SetBool("dance2", true);
 
-        AmbienceManager.instance.TurnOffAllAudioSources();
+        AmbienceManager.instance.StopMainMusic();
         celebrationSound.Play();
 
         StartCoroutine(FadeOut());

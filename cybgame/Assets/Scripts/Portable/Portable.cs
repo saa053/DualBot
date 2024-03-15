@@ -5,6 +5,7 @@ using UnityEngine;
 public class Portable : MonoBehaviour
 {
     [Header ("Portable FX")]
+    [SerializeField] Color outlineColor;
     [SerializeField] float implodeMaxSize;
     [SerializeField] float implodeMinSize;
     [SerializeField] float implodeSpeed;
@@ -43,6 +44,8 @@ public class Portable : MonoBehaviour
     PlayerInputManager player2Input;
     Animator player1Animator;
     Animator player2Animator;
+
+    Outline outline;
     
     void Start()
     {
@@ -55,6 +58,7 @@ public class Portable : MonoBehaviour
         player2Input = GameObject.FindWithTag("Player2").GetComponent<PlayerInputManager>();
         player1Animator = player1.GetComponentInChildren<Animator>();
         player2Animator = player2.GetComponentInChildren<Animator>();
+        outline = GetComponentInChildren<Outline>();
 
         canvas.SetActive(false);
     }
@@ -63,6 +67,7 @@ public class Portable : MonoBehaviour
     void Update()
     {
         DisplayInfoWhenPlayerClose();
+        DrawOutline();
 
         if (player1IsCarry && player1Input.GetInteract() && transform.parent == player1)
         {
@@ -135,6 +140,17 @@ public class Portable : MonoBehaviour
         collider.height = originalHeight;
         collider.radius = originalRadius;
         collider.center = originalCenter;
+    }
+
+    void DrawOutline()
+    {
+        if ((trigger.Player1Close() || trigger.Player2Close()) && !player1IsCarry || !player2IsCarry)
+        {
+            outline.OutlineWidth = 10;
+            outline.OutlineColor = outlineColor;
+        }
+        else
+            outline.OutlineWidth = 0;
     }
 
     void DisplayInfoWhenPlayerClose()

@@ -395,7 +395,7 @@ AudioSource:
   m_GameObject: {fileID: 432622096}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2290486841726601458, guid: 29e47a85c9d95234f90a8d4f111f6467, type: 2}
   m_audioClip: {fileID: 8300000, guid: 646b22e1e16f893468ed6a8324afbe19, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -637,7 +637,7 @@ AudioSource:
   m_GameObject: {fileID: 477561381}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6067692432758778884, guid: 29e47a85c9d95234f90a8d4f111f6467, type: 2}
   m_audioClip: {fileID: 8300000, guid: d3eaf4d5b9803fe4998223f5ba6f3771, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1132,6 +1132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bf5385167bc2847aa3d5625b054beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineColor: {r: 1, g: 1, b: 0, a: 0}
 --- !u!65 &1251204166
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1409,6 +1410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bf5385167bc2847aa3d5625b054beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineColor: {r: 1, g: 1, b: 0, a: 0}
 --- !u!65 &1662769199
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1522,7 +1524,7 @@ AudioSource:
   m_GameObject: {fileID: 1740791158}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8350061957674031291, guid: 29e47a85c9d95234f90a8d4f111f6467, type: 2}
   m_audioClip: {fileID: 8300000, guid: e517d5cc07a06b440919f926e87f31a3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

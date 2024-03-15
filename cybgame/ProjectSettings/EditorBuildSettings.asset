@@ -33,9 +33,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Rooms/ES.unity
     guid: 59933131e0d1fd347a4c08122c1f3242
   - enabled: 1
-    path: Assets/Scenes/Outro.unity
-    guid: aa16f64515170a5488880516aaa146e9
-  - enabled: 1
     path: Assets/Scenes/Rooms/Mail.unity
     guid: 7ce7d14e8738682469bde62589dfb272
   - enabled: 1

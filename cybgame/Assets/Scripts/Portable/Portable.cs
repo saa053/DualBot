@@ -38,6 +38,7 @@ public class Portable : MonoBehaviour
     [Header("Players")]
     bool player1IsCarry;
     bool player2IsCarry;
+    bool isCarried = false;
     Transform player1;
     Transform player2;
     PlayerInputManager player1Input;
@@ -116,6 +117,8 @@ public class Portable : MonoBehaviour
         boxCollider.isTrigger = true;
 
         transform.parent = parent;
+
+        isCarried = true;
     }
 
     void Drop()
@@ -126,6 +129,8 @@ public class Portable : MonoBehaviour
         boxCollider.isTrigger = false;
 
         transform.parent = RoomController.instance.currentRoom.transform;
+
+        isCarried = false;
     }
 
     void IncreasePlayerHitbox(CapsuleCollider collider)
@@ -144,11 +149,18 @@ public class Portable : MonoBehaviour
 
     void DrawOutline()
     {
-        if ((trigger.Player1Close() || trigger.Player2Close()) && !player1IsCarry || !player2IsCarry)
+        if (trigger.Player1Close() || trigger.Player2Close())
         {
-            outline.OutlineWidth = 10;
-            outline.OutlineColor = outlineColor;
-        }
+            if (!isCarried)
+            {
+                outline.OutlineWidth = 10;
+                outline.OutlineColor = outlineColor;
+            }
+            else
+            {
+                outline.OutlineWidth = 0;
+            }
+        } 
         else
             outline.OutlineWidth = 0;
     }

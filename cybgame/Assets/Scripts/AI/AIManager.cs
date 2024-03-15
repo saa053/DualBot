@@ -15,6 +15,7 @@ public class AIManager : MonoBehaviour
     [SerializeField] Color greenColor;
     [SerializeField] Color whiteColor;
     [Header("Interact")]
+    [SerializeField] DrawOutlineOnTrigger drawOutlineOnTrigger;
     [SerializeField] GameObject blueCheckmark;
     [SerializeField] GameObject orangeCheckmark;
     [SerializeField] GameObject screenBackground;
@@ -80,7 +81,7 @@ public class AIManager : MonoBehaviour
 
         screenBackground.GetComponent<Image>().color = greenColor;
 
-        DontDestroyOnLoad(celebrationSound);
+        drawOutlineOnTrigger.SetTransparent(true);
     }
 
     // Update is called once per frame
@@ -126,6 +127,7 @@ public class AIManager : MonoBehaviour
             numRewards.color = greenColor;
             errorCanvas.SetActive(false);
             interactCanvas.SetActive(true);
+            drawOutlineOnTrigger.SetTransparent(false);
         }
     }
 
@@ -198,6 +200,7 @@ public class AIManager : MonoBehaviour
         }
         else
         {
+            drawOutlineOnTrigger.SetTransparent(true);
             screenBackground.SetActive(false);
         }
     }

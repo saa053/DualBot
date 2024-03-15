@@ -27,8 +27,6 @@ public class Reward : MonoBehaviour
 
     void Update()
     {
-        HandleVisualCue();
-
         CheckForPickUp(p1InRange, player1Input.GetInteract());
         CheckForPickUp(p2InRange, player2Input.GetInteract());
     }
@@ -51,14 +49,6 @@ public class Reward : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-    }
-
-    void HandleVisualCue()
-    {
-        if (p1InRange || p2InRange)
-            visualCue.SetActive(true);
-        else
-            visualCue.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)

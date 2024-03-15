@@ -73,23 +73,21 @@ public class Portable : MonoBehaviour
         if (player1IsCarry && player1Input.GetInteract() && transform.parent == player1)
         {
             player1IsCarry = false;
-            Drop();
-            player1Animator.SetBool("isCarry", false);
+            Drop(player1Animator);
             ResetPlayerHitbox(player1.GetComponent<CapsuleCollider>());
         }
         
         if (player2IsCarry && player2Input.GetInteract() && transform.parent == player2)
         {
             player2IsCarry = false;
-            Drop();
-            player2Animator.SetBool("isCarry", false);
+            Drop(player2Animator);
             ResetPlayerHitbox(player2.GetComponent<CapsuleCollider>());
         }
             
         if (trigger.Player1Trigger() && !player1IsCarry && !locked && player1Input.GetComponentInChildren<Portable>() == null)
         {
             player1IsCarry = true;
-            PickUp(player1);
+            PickUp(player1, player1Animator);
             player1Animator.SetBool("isCarry", true);
             IncreasePlayerHitbox(player1.GetComponent<CapsuleCollider>());
         }
@@ -97,13 +95,12 @@ public class Portable : MonoBehaviour
         if (trigger.Player2Trigger() && !player2IsCarry && !locked && player2Input.GetComponentInChildren<Portable>() == null)
         {
             player2IsCarry = true;
-            PickUp(player2);
-            player2Animator.SetBool("isCarry", true);
+            PickUp(player2, player2Animator);
             IncreasePlayerHitbox(player2.GetComponent<CapsuleCollider>());
         }
     }
 
-    void PickUp(Transform parent)
+    void PickUp(Transform parent, Animator animator)
     {
         transform.rotation = parent.rotation;
         transform.position = parent.transform.position;
@@ -119,9 +116,10 @@ public class Portable : MonoBehaviour
         transform.parent = parent;
 
         isCarried = true;
+        animator.SetBool("isCarry", true);
     }
 
-    void Drop()
+    void Drop(Animator animator)
     {
         body.useGravity = true;
         body.isKinematic = false;
@@ -131,6 +129,7 @@ public class Portable : MonoBehaviour
         transform.parent = RoomController.instance.currentRoom.transform;
 
         isCarried = false;
+        animator.SetBool("isCarry", false);
     }
 
     void IncreasePlayerHitbox(CapsuleCollider collider)
@@ -158,11 +157,15 @@ public class Portable : MonoBehaviour
             }
             else
             {
-                outline.OutlineWidth = 0;
+                if (outline.OutlineColor == outlineColor)
+                    outline.OutlineWidth = 0;
             }
         } 
         else
-            outline.OutlineWidth = 0;
+        {
+            if (outline.OutlineColor == outlineColor)
+                outline.OutlineWidth = 0;
+        }
     }
 
     void DisplayInfoWhenPlayerClose()
@@ -203,7 +206,12 @@ public class Portable : MonoBehaviour
 
     public void Lock()
     {
-        Drop();
+        if (isCarried)
+        {
+            Animator animator = transform.parent.GetComponentInChildren<Animator>();
+            Drop(animator);
+        }
+        
         body.mass = 200;
         locked = true;
         canvas.SetActive(false);

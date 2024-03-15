@@ -12,6 +12,21 @@ public class PortableTrigger : MonoBehaviour
         portablesInside = new List<GameObject>();
     }
 
+    void Update()
+    {
+
+        foreach (GameObject portable in portablesInside)
+        {
+            Outline outline = portable.GetComponentInChildren<Outline>();
+            if (outline.OutlineWidth == 0f)
+            {
+                outline.OutlineColor = outlineColor;
+                outline.OutlineWidth = 5;
+            }
+
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Portable")
@@ -39,5 +54,10 @@ public class PortableTrigger : MonoBehaviour
     public List<GameObject> GetList()
     {
         return portablesInside;
+    }
+
+    public void RemoveFromList(GameObject portable)
+    {
+        portablesInside.Remove(portable);
     }
 }

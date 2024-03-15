@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bf5385167bc2847aa3d5625b054beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineColor: {r: 1, g: 1, b: 0, a: 0}
+  outlineColor: {r: 1, g: 1, b: 0, a: 1}
 --- !u!65 &1251204166
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bf5385167bc2847aa3d5625b054beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineColor: {r: 1, g: 1, b: 0, a: 0}
+  outlineColor: {r: 1, g: 1, b: 0, a: 1}
 --- !u!65 &1662769199
 BoxCollider:
   m_ObjectHideFlags: 0

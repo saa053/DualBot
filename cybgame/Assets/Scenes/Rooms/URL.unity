@@ -1418,6 +1418,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5143979435456179332, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
+      propertyPath: locked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5178239658881510641, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1534,7 +1538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bf5385167bc2847aa3d5625b054beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineColor: {r: 1, g: 1, b: 0, a: 0}
+  outlineColor: {r: 1, g: 1, b: 0, a: 1}
 --- !u!65 &1662769199
 BoxCollider:
   m_ObjectHideFlags: 0

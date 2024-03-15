@@ -8,27 +8,20 @@ public class Reward : MonoBehaviour
     [SerializeField] GameObject fx;
     [SerializeField] GameObject visualCue;
     AudioSource pickUpSound;
-    bool p1InRange;
-    bool p2InRange;
 
-    PlayerInputManager player1Input;
-    PlayerInputManager player2Input;
+    Trigger trigger;
 
     void Start()
     {
-        p1InRange = false;
-        p2InRange = false;
-
-        player1Input = GameObject.FindWithTag("Player1").GetComponent<PlayerInputManager>();
-        player2Input = GameObject.FindWithTag("Player2").GetComponent<PlayerInputManager>();
-
         pickUpSound = GameObject.Find("RewardPickUp").GetComponent<AudioSource>();
+
+        trigger = GetComponentInChildren<Trigger>();
     }
 
     void Update()
     {
-        CheckForPickUp(p1InRange, player1Input.GetInteract());
-        CheckForPickUp(p2InRange, player2Input.GetInteract());
+        CheckForPickUp(trigger.Player1Trigger());
+        CheckForPickUp(trigger.Player2Trigger());
     }
 
     void PlayFx()
@@ -38,9 +31,9 @@ public class Reward : MonoBehaviour
         particleSystem.Play();
     }
 
-    void CheckForPickUp(bool inRange, bool interact)
+    void CheckForPickUp(bool value)
     {
-        if (inRange && interact)
+        if (value)
         {
             RewardManager.instance.IncrementRewardCount();
             
@@ -49,21 +42,5 @@ public class Reward : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player1")
-            p1InRange = true;
-        if (other.gameObject.tag == "Player2")
-            p2InRange = true;
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player1")
-            p1InRange = false;
-        if (other.gameObject.tag == "Player2")
-            p2InRange = false;
     }
 }

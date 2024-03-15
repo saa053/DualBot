@@ -244,7 +244,7 @@ public class PortableManager : MonoBehaviour
         {
             buttonSound.Play();
 
-            if (!StartGame())
+            if (!StartGame() || gameComplete)
                 return;
             else if (!portablesSpawned)
                 DialogueManager.instance.EnterDialogueMode(portablesNotSortedJSON, "");
@@ -352,6 +352,8 @@ public class PortableManager : MonoBehaviour
     {
         foreach (GameObject item in resultList)
         {
+            safeTrigger.RemoveFromList(item);
+            unsafeTrigger.RemoveFromList(item);
             Portable portable = item.GetComponent<Portable>();
             GameObject fx = Instantiate(implodeFxPrefab, portable.transform.position, implodeFxPrefab.transform.rotation);
             fx.transform.SetParent(fxParent.transform);

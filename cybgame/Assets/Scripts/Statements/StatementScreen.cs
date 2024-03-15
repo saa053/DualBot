@@ -17,6 +17,14 @@ public class StatementList
 }
 public class StatementScreen : MonoBehaviour
 {
+    [Header("Audio")]
+
+    [SerializeField] AudioSource turnOnSound;
+    [SerializeField] AudioSource turnOffSound;
+    [SerializeField] AudioSource correctSound;
+    [SerializeField] AudioSource wrongSound;
+
+    [Header("PasswordScreen")]    
     [SerializeField] AudioSource textSound;
     [SerializeField] Light screenLight;
     [SerializeField] float typeSpeed;
@@ -46,7 +54,7 @@ public class StatementScreen : MonoBehaviour
 
     void Start()
     {
-        TurnOff();
+        TurnOff(false);
         remainingStatements = statementLists;
         wrongStatements = new List<StatementList>();
         text.text = "";
@@ -117,6 +125,7 @@ public class StatementScreen : MonoBehaviour
 
     public void TurnOn()
     {
+        turnOnSound.Play();
         Color color = materialON.color;
         screenLight.color = color;
         screenLight.gameObject.SetActive(true);
@@ -128,8 +137,11 @@ public class StatementScreen : MonoBehaviour
         NextStatement();
     }
 
-    public void TurnOff()
+    public void TurnOff(bool sound)
     {
+        if (sound)
+            turnOffSound.Play();
+
         screenLight.gameObject.SetActive(false);
         Material[] newMaterials = meshRenderer.materials;
         newMaterials[2] = materialOFF;
@@ -139,6 +151,7 @@ public class StatementScreen : MonoBehaviour
 
     public void Correct()
     {
+        correctSound.Play();
         Color color = materialCorrect.color;
         screenLight.color = color;
 
@@ -149,6 +162,7 @@ public class StatementScreen : MonoBehaviour
 
     public void Wrong()
     {
+        wrongSound.Play();
         Color color = materialWrong.color;
         screenLight.color = color;
 

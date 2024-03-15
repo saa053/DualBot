@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Rooms/AI.unity
     guid: 7e1eb187b8d85c84aa36d557609939c7
   - enabled: 1
-    path: Assets/Scenes/Rooms/MarteRoom.unity
+    path: Assets/Scenes/Rooms/Statements.unity
     guid: 99863815adf58dc4ea6f9194d4bb8112
   - enabled: 1
     path: Assets/Scenes/Rooms/Mail.unity

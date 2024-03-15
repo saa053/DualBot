@@ -13,7 +13,6 @@ public class Plates : MonoBehaviour
 {
     [Header("Audio")]
     [SerializeField] AudioSource progressBarSound;
-    [Header ("Player settings")]
     [SerializeField] AudioSource onSound1;
     [SerializeField] AudioSource onSound2;
 
@@ -162,16 +161,6 @@ public class Plates : MonoBehaviour
                 progressBarSound.Play();
                 
             progressBar.SetActive(true);
-        }
-    }
-
-    IEnumerator PlayBarSound()
-    {
-        yield return new WaitForEndOfFrame();
-
-        if (!progressBarSound.isPlaying && player1OnPlate && player2OnPlate)
-        {
-            progressBarSound.Play();
         }
     }
 }

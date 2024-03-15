@@ -10,6 +10,10 @@ public enum StatementPlateType
 
 public class StatementPlates : MonoBehaviour
 {
+    [Header("Audio")]
+    [SerializeField] AudioSource progressBarSound;
+    [SerializeField] AudioSource onSound1;
+    [SerializeField] AudioSource onSound2;
 
     [Header ("Objects")]
     [SerializeField] StatementPlateType plateType;
@@ -90,12 +94,22 @@ public class StatementPlates : MonoBehaviour
         {
             player1OnPlate = true;
             player1 = other.transform;
+
+            if (player2OnPlate)
+                onSound2.Play();
+            else
+                onSound1.Play();
         }
 
         if (other.tag == "Player2")
         {
             player2OnPlate = true;
             player2 = other.transform;
+
+            if (player1OnPlate)
+                onSound2.Play();
+            else
+                onSound1.Play();
         }
 
         other.transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
@@ -136,8 +150,16 @@ public class StatementPlates : MonoBehaviour
         progressBar.transform.localScale = new Vector3(targetScaleY, scale.y, scale.z);
 
         if (progress == 0)
+        {
+            progressBarSound.Stop();
             progressBar.SetActive(false);
+        }
         else
+        {   
+            if (!progressBarSound.isPlaying)
+                progressBarSound.Play();
+                
             progressBar.SetActive(true);
+        }
     }
 }

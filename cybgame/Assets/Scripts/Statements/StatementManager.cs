@@ -12,6 +12,7 @@ public class StatementManager : MonoBehaviour
 
     [Header("Doors")]
     [SerializeField] DoorController[] doors;
+    bool doorsClosed;
 
     [Header("NPC")]
     [SerializeField] NPCMove NPC;
@@ -44,6 +45,8 @@ public class StatementManager : MonoBehaviour
 
         player1 = GameObject.FindWithTag("Player1").transform;
         player2 = GameObject.FindWithTag("Player2").transform;
+
+        doorsClosed = false;
     }
 
     void Update()
@@ -82,7 +85,8 @@ public class StatementManager : MonoBehaviour
 
     void StartGame()
     {
-        CloseDoors();
+        if (!doorsClosed)
+            CloseDoors();
 
         if (NPC.ready)
         {
@@ -116,9 +120,9 @@ public class StatementManager : MonoBehaviour
         gameComplete = true;
         gameActive = false;
 
-        StatementScreen.instance.TurnOff();
+        StatementScreen.instance.TurnOff(true);
 
-        NPC.SetNewTarget(transform.localPosition, 4f);
+        NPC.SetNewTarget(transform.position, 4f);
         NPC.trigger = true;
     }
 
@@ -126,15 +130,17 @@ public class StatementManager : MonoBehaviour
     {
         foreach (DoorController door in doors)
         {
-            door.locked = true;
+            door.CloseDoor();
         }
+
+        doorsClosed = true;
     }
 
     void OpenDoors()
     {
         foreach (DoorController door in doors)
         {
-            door.locked = false;
+            door.OpenDoor();
         }
     }
 

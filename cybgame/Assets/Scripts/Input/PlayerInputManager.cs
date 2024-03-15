@@ -11,6 +11,8 @@ public class PlayerInputManager : MonoBehaviour
 
     bool isLifting = false;
 
+    bool isCarrying = false;
+
     Vector2 newInput;
     Vector3 input;
 
@@ -85,5 +87,15 @@ public class PlayerInputManager : MonoBehaviour
     public void ToggleInputOffOn()
     {
         inputAllowed = !inputAllowed;
+    }
+
+    public void SetCarry(bool value)
+    {
+        isCarrying = value;
+    }
+
+    public bool GetCarry()
+    {
+        return isCarrying;
     }
 }

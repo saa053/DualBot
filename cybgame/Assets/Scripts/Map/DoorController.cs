@@ -22,6 +22,8 @@ public class DoorController : MonoBehaviour
     PlayerInputManager player1Input;
     PlayerInputManager player2Input;
 
+    BoxCollider doorCollider;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -33,6 +35,8 @@ public class DoorController : MonoBehaviour
         player2Input = GameObject.FindWithTag("Player2").GetComponent<PlayerInputManager>();
 
         doorSounds = GetComponents<AudioSource>();
+
+        doorCollider = GetComponent<BoxCollider>();
     }
 
     void Update()
@@ -68,9 +72,15 @@ public class DoorController : MonoBehaviour
     void UpdateAnimation()
     { 
         if (locked)
+        {
+            doorCollider.isTrigger = false;
             animator.SetBool("isOpen", false);
+        }
         else
+        {
+            doorCollider.isTrigger = true;
             animator.SetBool("isOpen", true);
+        }
     }
 
     bool DoesDoorLeadToRoom()

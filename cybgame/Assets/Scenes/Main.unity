@@ -2433,7 +2433,7 @@ MonoBehaviour:
   - name: Intro
     x: 0
     y: 0
-  - name: Empty
+  - name: ES
     x: 0
     y: 1
   - name: Mail

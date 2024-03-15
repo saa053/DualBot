@@ -80,7 +80,7 @@ public class Portable : MonoBehaviour
             ResetPlayerHitbox(player2.GetComponent<CapsuleCollider>());
         }
             
-        if (trigger.Player1Trigger() && !player1IsCarry && !locked)
+        if (trigger.Player1Trigger() && !player1IsCarry && !locked && player1Input.GetComponentInChildren<Portable>() == null)
         {
             player1IsCarry = true;
             PickUp(player1);
@@ -88,7 +88,7 @@ public class Portable : MonoBehaviour
             IncreasePlayerHitbox(player1.GetComponent<CapsuleCollider>());
         }
         
-        if (trigger.Player2Trigger() && !player2IsCarry && !locked)
+        if (trigger.Player2Trigger() && !player2IsCarry && !locked && player2Input.GetComponentInChildren<Portable>() == null)
         {
             player2IsCarry = true;
             PickUp(player2);

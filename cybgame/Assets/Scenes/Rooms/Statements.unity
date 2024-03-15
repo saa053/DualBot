@@ -2675,13 +2675,22 @@ MonoBehaviour:
   screenLight: {fileID: 1046162337}
   typeSpeed: 5
   statementLists:
-  - statement: Dette er sant
-    value: 0
-  - statement: Dett er usant
+  - statement: 'Jeg deler brukernavn og passord med vennene mine '
     value: 1
-  - statement: Kanskje sant?
+  - statement: " Jeg bruker ulike passord p\xE5 hver brukerkonto"
     value: 0
-  - statement: Ganske sikkert usant tihihihih
+  - statement: " Jeg trykker p\xE5 linker fra ukjente personer "
+    value: 1
+  - statement: "Jeg legger ut bilder av andre p\xE5 internett uten \xE5 sp\xF8rre
+      om det g\xE5r greit"
+    value: 1
+  - statement: "Jeg l\xE5ser datamaskinen n\xE5r jeg g\xE5r vekk fra pulten "
+    value: 0
+  - statement: " Jeg bruker ikke offentlig wifi n\xE5r jeg gj\xF8r sensitive ting
+      p\xE5 mobilen "
+    value: 0
+  - statement: "Jeg logger ut av brukerkontoene mine n\xE5r jeg er ferdig med \xE5
+      bruke dem p\xE5 offentlige datamaskiner"
     value: 0
   text: {fileID: 744367975}
   materialON: {fileID: 2100000, guid: 755dfca79d918074482842fff33b481f, type: 2}

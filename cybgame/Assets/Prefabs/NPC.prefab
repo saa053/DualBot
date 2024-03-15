@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4226250836402210998}
   - component: {fileID: 8140720115056360995}
   - component: {fileID: 4513455633922661030}
+  - component: {fileID: 7266287612746767714}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -69,6 +70,18 @@ MonoBehaviour:
   NPCName: Mr. Robot
   visualCue: {fileID: 7248793726949685099}
   inkJSON: {fileID: 4900000, guid: 8d97387d3d8ceb3438bc0a442dfaae86, type: 3}
+--- !u!114 &7266287612746767714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5249080794506789406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ab2b3d36face046945e305176c92bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5670781280112569139
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +150,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5670781280112569139}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -152,7 +165,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0

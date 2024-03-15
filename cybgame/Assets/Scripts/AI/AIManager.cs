@@ -222,6 +222,9 @@ public class AIManager : MonoBehaviour
         player1Input.transform.GetComponent<NPCMove>().trigger = true;
         player2Input.transform.GetComponent<NPCMove>().trigger = true;
 
+        player1Input.GetComponent<Collider>().isTrigger = true;
+        player2Input.GetComponent<Collider>().isTrigger = true;
+
         StartCoroutine(CameraController.instance.ZoomCameraToTarget(room.GetRoomCenter()));
 
         while (!player1Input.transform.GetComponent<NPCMove>().ready || !player2Input.transform.GetComponent<NPCMove>().ready)

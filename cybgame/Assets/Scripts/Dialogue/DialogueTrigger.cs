@@ -13,11 +13,7 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Ink JSON")]
     [SerializeField] TextAsset inkJSON;
 
-    PlayerInputManager player1Input;
-    PlayerInputManager player2Input;
-
-    bool player1InRange;
-    bool player2InRange;
+    Trigger trigger;
 
     void Awake()
     {
@@ -26,42 +22,23 @@ public class DialogueTrigger : MonoBehaviour
 
     void Start()
     {
-        player1InRange = false;
-        player2InRange = false;
-        player1Input = GameObject.FindWithTag("Player1").GetComponent<PlayerInputManager>();
-        player2Input = GameObject.FindWithTag("Player2").GetComponent<PlayerInputManager>();
+        trigger = GetComponent<Trigger>();
     }
 
     void Update()
     {
-        if ((player1InRange || player2InRange) && !DialogueManager.instance.dialogueIsPlaying)
+        if ((trigger.Player1Close() || trigger.Player2Close()) && !DialogueManager.instance.dialogueIsPlaying)
         {
             visualCue.SetActive(true);
 
-            if (player1Input.GetInteract() && player1InRange)
+            if (trigger.Player1Trigger())
                 DialogueManager.instance.EnterDialogueMode(inkJSON, NPCName);
-            else if (player2Input.GetInteract() && player2InRange)
+            else if (trigger.Player2Trigger())
                 DialogueManager.instance.EnterDialogueMode(inkJSON, NPCName);
         }
         else
         {
             visualCue.SetActive(false);
         }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player1")
-            player1InRange = true;
-        if (other.gameObject.tag == "Player2")
-            player2InRange = true;
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player1")
-            player1InRange = false;
-        if (other.gameObject.tag == "Player2")
-            player2InRange = false;
     }
 }

@@ -49,6 +49,7 @@ public class NPCMove : MonoBehaviour
 
         if (direction.magnitude > stoppingDistance && !inPos)
         {
+            body.isKinematic = false;
             body.velocity = direction.normalized * moveSpeed;
             animator.SetBool("isMoving", true);
 
@@ -58,6 +59,7 @@ public class NPCMove : MonoBehaviour
         else
         {
             body.velocity = Vector3.zero;
+            body.isKinematic = true;
             animator.SetBool("isMoving", false);
             inPos = true;
         }

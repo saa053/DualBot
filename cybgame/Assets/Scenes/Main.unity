@@ -2451,10 +2451,10 @@ MonoBehaviour:
   - name: PasswordStrength
     x: 3
     y: 1
-  - name: URL
+  - name: Empty
     x: 1
     y: 0
-  - name: PasswordStrength
+  - name: Empty
     x: 3
     y: 0
   paddingX: 2

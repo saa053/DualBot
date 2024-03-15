@@ -314,7 +314,7 @@ PrefabInstance:
     - target: {fileID: 4513455633922661030, guid: 8fcf78bd6d50f2c4087f0478ef642832, type: 3}
       propertyPath: inkJSON
       value: 
-      objectReference: {fileID: 4900000, guid: 413ed73992c60e247b069e205d8a37cb, type: 3}
+      objectReference: {fileID: 4900000, guid: 04b6f0ca92e951843bdb53a970202838, type: 3}
     - target: {fileID: 5670781280112569139, guid: 8fcf78bd6d50f2c4087f0478ef642832, type: 3}
       propertyPath: m_Name
       value: NPC
@@ -541,9 +541,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2978ee98f578c499af80910c81a451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winText: {fileID: 4900000, guid: 828cfd78919a03841826981c169cea56, type: 3}
-  failText: {fileID: 4900000, guid: d3ee3d398028ab44f8bd2189a3b35f5f, type: 3}
-  NPCText: {fileID: 4900000, guid: 413ed73992c60e247b069e205d8a37cb, type: 3}
+  winText: {fileID: 4900000, guid: f8400160a632b2c44be019905d5991ae, type: 3}
+  failText: {fileID: 4900000, guid: 219c8aa9da79e414caa3eda1dba75dc5, type: 3}
+  NPCText: {fileID: 4900000, guid: 04b6f0ca92e951843bdb53a970202838, type: 3}
   numCorrectNeeded: 3
   rewardPos: {x: 0, y: 0, z: -3}
   materials:
@@ -556,18 +556,30 @@ MonoBehaviour:
   fxParent: {fileID: 856346559}
   numPortables: 4
   portableSpawnList:
-  - info: Safe1
-    explanation: safe 1
+  - info: https://www.campus.inkrement.no
+    explanation: 
     safe: 1
-  - info: Safe2
-    explanation: safe 2
+  - info: https://www.tv2.no
+    explanation: 
     safe: 1
-  - info: unsafe1
-    explanation: unsafe 1
+  - info: https://www.wikiped1a.org
+    explanation: 
     safe: 0
-  - info: unsafe2
-    explanation: unsafe 2
+  - info: http://www.ung.info
+    explanation: 
     safe: 0
+  - info: https://www.wikipedia.org
+    explanation: 
+    safe: 1
+  - info: https://www.campusinkrement.xyz
+    explanation: 
+    safe: 0
+  - info: http://tv2-nyheter.no
+    explanation: 
+    safe: 0
+  - info: https://www.ung.no
+    explanation: 
+    safe: 1
   portablePrefab: {fileID: 4424221129504497467, guid: b0165866dbe121c4c8bc28f3f07c8bea, type: 3}
   portableParent: {fileID: 1178467023}
   startSpawnPos: {x: -7, y: 3, z: -4}
@@ -791,6 +803,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 999205360}
+  - component: {fileID: 999205361}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -815,6 +828,24 @@ Transform:
   - {fileID: 1722798446}
   m_Father: {fileID: 755249246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &999205361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999205359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1112185553
 PrefabInstance:
   m_ObjectHideFlags: 0

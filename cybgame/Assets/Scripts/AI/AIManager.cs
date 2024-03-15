@@ -44,6 +44,7 @@ public class AIManager : MonoBehaviour
     [SerializeField] AudioSource lowPitchSound;
     [SerializeField] AudioSource highPitchSound;
     [SerializeField] AudioSource startUpSound;
+    [SerializeField] AudioSource celebrationSound;
 
     int currentNum;
     int neededNum;
@@ -168,6 +169,7 @@ public class AIManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        startUpSound.Play();
         yield return new WaitForSeconds(turnOnWaitTime);
 
         TurnOnAI();
@@ -191,7 +193,6 @@ public class AIManager : MonoBehaviour
 
     void TurnOnAI()
     {
-        startUpSound.Play();
         room.StopAmbience();
 
         StartCoroutine(LightManager.instance.TurnOnDirectionalBlink(blinkTimes, blinkPause, lightIntensity));
@@ -234,6 +235,8 @@ public class AIManager : MonoBehaviour
         
         player1Animator.SetBool("dance1", true);
         player2Animator.SetBool("dance2", true);
+
+        celebrationSound.Play();
 
         StartCoroutine(FadeOut());
     }

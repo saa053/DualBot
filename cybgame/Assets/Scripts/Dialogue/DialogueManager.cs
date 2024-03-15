@@ -59,6 +59,10 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Audio")]
 
+    [SerializeField] AudioSource choose1Sound;
+    [SerializeField] AudioSource choose2Sound;
+    [SerializeField] AudioSource select1Sound;
+    [SerializeField] AudioSource select2Sound;
     [SerializeField] AudioSource ready1Sound;
     [SerializeField] AudioSource ready2Sound;
     [SerializeField] AudioSource countdownSound;
@@ -156,11 +160,11 @@ public class DialogueManager : MonoBehaviour
 
         if (displayingChoices)
         {
-            MoveChoice(player1Input, ref p1CurrentChoice, ref p1AcceptInput);
-            MoveChoice(player2Input, ref p2CurrentChoice, ref p2AcceptInput);
+            MoveChoice(player1Input, ref p1CurrentChoice, ref p1AcceptInput, choose1Sound);
+            MoveChoice(player2Input, ref p2CurrentChoice, ref p2AcceptInput, choose2Sound);
 
-            SelectChoice(player1Input, p1CurrentChoice, ref p1SelectedChoice, p1Color);
-            SelectChoice(player2Input, p2CurrentChoice, ref p2SelectedChoice, p2Color);
+            SelectChoice(player1Input, p1CurrentChoice, ref p1SelectedChoice, p1Color, choose1Sound);
+            SelectChoice(player2Input, p2CurrentChoice, ref p2SelectedChoice, p2Color, choose2Sound);
 
             if (p1SelectedChoice == p2SelectedChoice && p1SelectedChoice != -1 && !waitingToSubmit)
             {
@@ -172,7 +176,7 @@ public class DialogueManager : MonoBehaviour
             if (isTyping || noInput)
                 return;
 
-            if (player1Input.GetInteract())
+            if (player1Input.GetInteract() && !player1Ready)
             {
                 checkmarks.SetActive(true);
                 player1Ready = true;
@@ -181,7 +185,7 @@ public class DialogueManager : MonoBehaviour
                 if (!player2Ready)
                     ready1Sound.Play();
             }
-            else if (player2Input.GetInteract())
+            else if (player2Input.GetInteract() && !player2Ready)
             {
                 checkmarks.SetActive(true);
                 player2Ready = true;
@@ -295,7 +299,7 @@ public class DialogueManager : MonoBehaviour
         choices[p2CurrentChoice].transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
     }
 
-    void MoveChoice(PlayerInputManager inputManager, ref int currentChoice, ref bool acceptInput)
+    void MoveChoice(PlayerInputManager inputManager, ref int currentChoice, ref bool acceptInput, AudioSource sound)
     {
         if (!inputManager.GetMove())
             return;
@@ -324,9 +328,10 @@ public class DialogueManager : MonoBehaviour
         }
 
         movePlayerIcon();
+        sound.Play();
     }
 
-    void SelectChoice(PlayerInputManager inputManager, int currentChoice, ref int selectedChoice, Color selectColor)
+    void SelectChoice(PlayerInputManager inputManager, int currentChoice, ref int selectedChoice, Color selectColor, AudioSource sound)
     {
         if (!inputManager.GetInteract() || isTyping || noInput)
             return;
@@ -342,6 +347,8 @@ public class DialogueManager : MonoBehaviour
         selectedChoice = currentChoice;
 
         ChangeColorOfButton(choices[selectedChoice].GetComponent<Button>(), selectColor);
+
+        sound.Play();
     }
 
     void ChangeColorOfButton(Button button, Color color)

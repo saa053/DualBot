@@ -11,6 +11,8 @@ public enum PlateType
 
 public class Plates : MonoBehaviour
 {
+    [Header("Audio")]
+    [SerializeField] AudioSource progressBarSound;
     [Header ("Player settings")]
     [SerializeField] AudioSource onSound1;
     [SerializeField] AudioSource onSound2;
@@ -150,8 +152,26 @@ public class Plates : MonoBehaviour
         progressBar.transform.localScale = new Vector3(targetScaleY, scale.y, scale.z);
 
         if (progress == 0)
+        {
+            progressBarSound.Stop();
             progressBar.SetActive(false);
+        }
         else
+        {   
+            if (!progressBarSound.isPlaying)
+                progressBarSound.Play();
+                
             progressBar.SetActive(true);
+        }
+    }
+
+    IEnumerator PlayBarSound()
+    {
+        yield return new WaitForEndOfFrame();
+
+        if (!progressBarSound.isPlaying && player1OnPlate && player2OnPlate)
+        {
+            progressBarSound.Play();
+        }
     }
 }

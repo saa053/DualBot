@@ -39,6 +39,7 @@ Hvilket tips vil du ha?
         Lange passord er bedre enn korte.
         ->DONE
     +[Nei takk]
+        Snakk med meg igjen hvis dere vil ha tips!
         ->DONE
 -> END
 

@@ -731,6 +731,7 @@ MonoBehaviour:
   - {fileID: 1143473498}
   - {fileID: 492785543}
   - {fileID: 1248293018}
+  - {fileID: 1147589891}
   p2Color: {r: 0.9333334, g: 0.46274513, b: 0, a: 1}
   p1Color: {r: 0.15294118, g: 0.61960787, b: 0.9607844, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 0}

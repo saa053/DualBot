@@ -8,8 +8,7 @@ VAR GO = false
 {GO: -> tips | -> main}
 
 === main ===
-Hei, jeg har en liste med passord og trenger hjelp til å vurdere hvilke som er gode.
-Kan dere hjelpe meg?
+Hei, jeg har en liste med passord og trenger hjelp til å vurdere hvilke som er gode. Kan dere hjelpe meg?
     + [Ja]
         -> start
     + [Nei, ikke akkurat nå]
@@ -18,23 +17,29 @@ Kan dere hjelpe meg?
 -> END
 
 === start ===
-#Tusen takk! Dere skal få en AI disk som premie etterpå!
-#Jeg kommer til å vise et og et passord på skjermen bak meg.
+Tusen takk! Dere skal få en AI-disk som premie etterpå!
+Jeg kommer til å vise ett og ett passord på skjermen bak meg og jeg vil at dere går til den knappen som passer styrken til passordet.
 #Jeg vil at dere går til den knappen i dette rommet som dere mener passer styrken til passordet på skjermen.
-#Dere trenger 5 riktige svar for å få premien. Hvis dere trenger tips underveis kan dere komme å snakke med meg! La oss starte!
+Dere trenger 3 riktige svar for å få premien. Hvis dere trenger tips underveis kan dere spørre meg! La oss starte!
     ~ GO = true
 -> END
 
 === tips ===
-Her har du et tips:
-{RANDOM(1, 5):
-- 0: Dette er et tips
-- 1: Tips 2 er...
-- 2: Passord burde ha ...
-- 3: Svake passord har ikke...
-- 4: Tihi
-- 5: Middels sterke passord er ofte...
-}
+Hvilket tips vil du ha?
+    +[Nr.1]
+        Sterke passord er ofte lange og består av en rekke ulike bokstaver, tall og spesialtegn.
+        ->DONE
+    +[Nr.2]
+        Unngå å bruke vanlige ord
+        ->DONE
+    +[Nr.3]
+        Unngå å bruke tall som kommer i rekkefølge, for eksempel '123' og '567'. 
+        ->DONE
+    +[Nr.4]
+        Lange passord er bedre enn korte.
+        ->DONE
+    +[Nei takk]
+        ->DONE
 -> END
 
 

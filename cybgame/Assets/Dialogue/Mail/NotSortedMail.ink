@@ -1,5 +1,5 @@
 VAR shouldSave = false
-VAR saveString = "URLNotSorted"
+VAR saveString = "MailNotSorted"
 VAR reward = false
 
 ->main

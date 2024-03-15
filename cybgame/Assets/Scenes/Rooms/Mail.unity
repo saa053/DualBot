@@ -314,7 +314,7 @@ PrefabInstance:
     - target: {fileID: 4513455633922661030, guid: 8fcf78bd6d50f2c4087f0478ef642832, type: 3}
       propertyPath: inkJSON
       value: 
-      objectReference: {fileID: 4900000, guid: 04b6f0ca92e951843bdb53a970202838, type: 3}
+      objectReference: {fileID: 4900000, guid: edde676e788c42e4c9efb3c55941a187, type: 3}
     - target: {fileID: 5670781280112569139, guid: 8fcf78bd6d50f2c4087f0478ef642832, type: 3}
       propertyPath: m_Name
       value: NPC
@@ -541,9 +541,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2978ee98f578c499af80910c81a451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winText: {fileID: 4900000, guid: f8400160a632b2c44be019905d5991ae, type: 3}
-  failText: {fileID: 4900000, guid: 219c8aa9da79e414caa3eda1dba75dc5, type: 3}
-  NPCText: {fileID: 4900000, guid: 04b6f0ca92e951843bdb53a970202838, type: 3}
+  winText: {fileID: 4900000, guid: e92a3716319f97f46bf46b2b31d345db, type: 3}
+  failText: {fileID: 4900000, guid: 4e9d4d64c9174084d9f146b6c842d877, type: 3}
+  NPCText: {fileID: 4900000, guid: edde676e788c42e4c9efb3c55941a187, type: 3}
   numCorrectNeeded: 3
   rewardPos: {x: 0, y: 0, z: -3}
   materials:
@@ -556,27 +556,27 @@ MonoBehaviour:
   fxParent: {fileID: 856346559}
   numPortables: 4
   portableSpawnList:
-  - info: https://www.campus.inkrement.no
+  - info: 
     explanation: 
     safe: 1
-  - info: http://www.ung.info
+  - info: 
+    explanation: 
+    safe: 1
+  - info: 
     explanation: 
     safe: 0
-  - info: https://www.tv2.no
+  - info: 
+    explanation: 
+    safe: 0
+  - info: 
     explanation: 
     safe: 1
-  - info: https://www.wikiped1a.org
+  - info: 
     explanation: 
     safe: 0
   - info: http://tv2-nyheter.no
     explanation: 
     safe: 0
-  - info: https://www.campusinkrement.xyz
-    explanation: 
-    safe: 0
-  - info: https://www.wikipedia.org
-    explanation: 
-    safe: 1
   - info: https://www.ung.no
     explanation: 
     safe: 1
@@ -589,7 +589,7 @@ MonoBehaviour:
   unsafeTrigger: {fileID: 1662769198}
   buttonTrigger: {fileID: 598876240}
   buttonSound: {fileID: 477561383}
-  portablesNotSortedJSON: {fileID: 4900000, guid: f56a34f066648f540b39cc5909fe2ef5, type: 3}
+  portablesNotSortedJSON: {fileID: 4900000, guid: 861e1dd56cf9cc74396584d88b13eeeb, type: 3}
   correctColor: {r: 0, g: 1, b: 0, a: 1}
   wrongColor: {r: 1, g: 0, b: 0, a: 1}
   correctSound: {fileID: 432622097}
@@ -1249,6 +1249,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4173104424497644362, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238490156506032878, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5129095747174618295, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1292,6 +1300,10 @@ PrefabInstance:
     - target: {fileID: 5178239658881510641, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295859022566926786, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6595906648826832820, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
       propertyPath: m_IsActive

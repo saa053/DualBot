@@ -1,5 +1,5 @@
 VAR shouldSave = true
-VAR saveString = "URLWin"
+VAR saveString = "MailWin"
 VAR reward = false
 
 ->main

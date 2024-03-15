@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PortableTrigger : MonoBehaviour
 {
+    [SerializeField] Color outlineColor;
     List<GameObject> portablesInside;
     void Start()
     {
@@ -17,6 +18,7 @@ public class PortableTrigger : MonoBehaviour
         {
             portablesInside.Add(other.gameObject);
             other.transform.GetComponentInChildren<Outline>().OutlineWidth = 5;
+            other.transform.GetComponentInChildren<Outline>().OutlineColor = outlineColor;
         }
     }
 

@@ -1,5 +1,5 @@
 VAR shouldSave = true
-VAR saveString = "URLFail"
+VAR saveString = "MailFail"
 VAR restart = false
 
 === resetLabel ===

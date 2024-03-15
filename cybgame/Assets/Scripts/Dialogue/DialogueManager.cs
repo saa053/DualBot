@@ -320,15 +320,18 @@ public class DialogueManager : MonoBehaviour
         {
             currentChoice = (currentChoice + 1) % (numChoices + 1);
             acceptInput = false;
+
+            sound.Play();
         }
         else if (input > 0 && acceptInput)
         {
             currentChoice = (currentChoice - 1 + numChoices + 1) % (numChoices + 1);
             acceptInput = false;
+
+            sound.Play();
         }
 
         movePlayerIcon();
-        sound.Play();
     }
 
     void SelectChoice(PlayerInputManager inputManager, int currentChoice, ref int selectedChoice, Color selectColor, AudioSource sound)

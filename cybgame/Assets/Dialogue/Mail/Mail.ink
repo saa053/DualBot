@@ -1,5 +1,5 @@
 VAR shouldSave = true
-VAR saveString = "URL"
+VAR saveString = "Mail"
 VAR GO = false
 
 -> main

@@ -82,7 +82,6 @@ public class AmbienceManager : MonoBehaviour
 
         while (audioSource.volume > 0)
         {
-            Debug.Log(audioSource.volume);
             audioSource.volume -= startVolume * Time.deltaTime / duration;
             yield return null;
         }

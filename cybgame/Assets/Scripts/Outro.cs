@@ -27,6 +27,7 @@ public class Outro : MonoBehaviour
     [SerializeField] float paragraphsWait;
     [SerializeField] GameObject introScreen;
     [SerializeField] TextMeshProUGUI introText;
+    [SerializeField] GameObject outroText;
 
     [SerializeField] string p;
     const string HTML_ALPHA = "<color=#00000000>";
@@ -49,9 +50,13 @@ public class Outro : MonoBehaviour
         analogGlitch = Camera.main.GetComponent<AnalogGlitch>();
         digitalGlitch = Camera.main.GetComponent<DigitalGlitch>();
 
-        GlitchLow();
 
-        introScreen.SetActive(false);
+        Camera.main.GetComponent<AnalogGlitch>().enabled = false;
+        Camera.main.GetComponent<DigitalGlitch>().enabled = false;
+
+        introScreen.GetComponent<Canvas>().worldCamera = Camera.main;
+
+        outroText.SetActive(false);
     }
 
     public void PlayOutro()
@@ -119,6 +124,7 @@ public class Outro : MonoBehaviour
 
     IEnumerator TypeDialogueText(string p)
     {
+        outroText.SetActive(true);
         isTyping = true;
         introShown = true;
 
@@ -132,8 +138,6 @@ public class Outro : MonoBehaviour
         {
             if (!dialogueSound.isPlaying && char.IsLetter(c))
                 dialogueSound.Play();
-            
-            Debug.Log(dialogueSound.isPlaying);
 
             alphaIndex++;
             introText.text = originalText;

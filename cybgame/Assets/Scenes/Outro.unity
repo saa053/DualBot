@@ -837,7 +837,7 @@ MonoBehaviour:
   glitchSound: {fileID: 332354763}
   glitch2Sound: {fileID: 1669168932}
   dialogueSound: {fileID: 1913430646}
-  musicSound: {fileID: 771835366}
+  fadeThisSourceAway: {fileID: 0}
   typeSpeed: 1
   paragraphsWait: 0.5
   introScreen: {fileID: 1137892755}

@@ -222,9 +222,11 @@ public class AIManager : MonoBehaviour
         yield return new WaitForSeconds(timeBeforeFadeOut);
 
         float newAlpha = 0f;
+        Debug.Log(fadeBackground.GetComponent<Image>().color.a);
 
         while (fadeBackground.GetComponent<Image>().color.a < 1f)
         {
+            Debug.Log(fadeBackground.GetComponent<Image>().color.a);
             Color newColor = fadeBackground.GetComponent<Image>().color;
             newColor.a = newAlpha;
 

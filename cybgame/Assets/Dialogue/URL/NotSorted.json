@@ -1,0 +1,1 @@
+﻿{"inkVersion":21,"root":[[{"->":"main"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"main":["^Alle boksene er ikke sortert enda...","\n","end",{"#f":1}],"global decl":["ev",false,{"VAR=":"shouldSave"},"str","^notSorted","/str",{"VAR=":"saveString"},false,{"VAR=":"reward"},"/ev","end",null],"#f":1}],"listDefs":{}}

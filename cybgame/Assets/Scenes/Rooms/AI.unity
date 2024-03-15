@@ -544,7 +544,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c20bfa376e61a384abc723b2466dfcf1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 01659abeb9121ce449b01a5de8993f3c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2390,7 +2390,7 @@ MonoBehaviour:
   turnOnWaitTime: 2
   trigger: {fileID: 638142187}
   timeBeforeFadeOut: 5
-  timeBeforeCelebration: 4
+  timeBeforeCelebration: 5
   numRewards: {fileID: 328085506}
   errorCanvas: {fileID: 659658582}
   interactCanvas: {fileID: 1305525358}
@@ -5452,7 +5452,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 665a72260a3a02b4e84fbe9117f790ee, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

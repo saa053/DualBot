@@ -70,6 +70,8 @@ public class PortableManager : MonoBehaviour
 
     [Header("Red button")]
     [SerializeField] Trigger buttonTrigger;
+    [SerializeField] AudioSource buttonSound;
+    [SerializeField] TextAsset portablesNotSortedJSON;
 
     [Header("Result Settings")]
     [SerializeField] Color correctColor;
@@ -240,12 +242,14 @@ public class PortableManager : MonoBehaviour
 
         if (buttonTrigger.Player1Trigger() || buttonTrigger.Player2Trigger())
         {
+            buttonSound.Play();
+
             if (!StartGame())
-                Debug.Log("Go to NPC to start game");
+                return;
             else if (!portablesSpawned)
-                Debug.Log("Portables not spawned yet");
+                DialogueManager.instance.EnterDialogueMode(portablesNotSortedJSON, "");
             else if (!allPortablesInside)
-                Debug.Log("All portables not sorted");
+                DialogueManager.instance.EnterDialogueMode(portablesNotSortedJSON, "");
             else
                 evaluate = true;
         }

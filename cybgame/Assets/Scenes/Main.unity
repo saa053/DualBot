@@ -3944,6 +3944,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61f57d9389147e478a5bb9a78cb0b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSong: {fileID: 736276890}
+  dontFade: {fileID: 0}
+  fadeOutDuration: 4
 --- !u!1001 &963707142
 PrefabInstance:
   m_ObjectHideFlags: 0

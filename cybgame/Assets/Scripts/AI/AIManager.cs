@@ -236,6 +236,7 @@ public class AIManager : MonoBehaviour
         player1Animator.SetBool("dance1", true);
         player2Animator.SetBool("dance2", true);
 
+        AmbienceManager.instance.TurnOffAllAudioSources();
         celebrationSound.Play();
 
         StartCoroutine(FadeOut());

@@ -24,21 +24,7 @@ Dere trenger 3 riktige svar for å få premien. La oss starte!
 -> END
 
 === tips ===
-Hvilket tips vil du ha?
-    +[Nr.1]
-        Tips1 
-        ->DONE
-    +[Nr.2]
-        Tips2
-        ->DONE
-    +[Nr.3]
-        Tips3 
-        ->DONE
-    +[Nr.4]
-        Tips4
-        ->DONE
-    +[Neitakk]
-        ->DONE
+Stå på!
 
 -> END
 

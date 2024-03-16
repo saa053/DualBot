@@ -127,7 +127,6 @@ public class AIManager : MonoBehaviour
             numRewards.color = greenColor;
             errorCanvas.SetActive(false);
             interactCanvas.SetActive(true);
-            drawOutlineOnTrigger.SetTransparent(false);
         }
     }
 
@@ -192,11 +191,11 @@ public class AIManager : MonoBehaviour
     {
         if (trigger.Player1Close() && !p1Ready)
         {
-            //screenBackground.SetActive(true);
+            drawOutlineOnTrigger.SetTransparent(false);
         }
         else if (trigger.Player2Close() && !p2Ready)
         {
-            //screenBackground.SetActive(true);
+            drawOutlineOnTrigger.SetTransparent(false);
         }
         else
         {

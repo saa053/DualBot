@@ -566,7 +566,7 @@ MonoBehaviour:
     safe: 1
   - info: apple@hotmail.com
     explanation: 
-    safe: 1
+    safe: 0
   - info: kundeservice@bank.no
     explanation: 
     safe: 1

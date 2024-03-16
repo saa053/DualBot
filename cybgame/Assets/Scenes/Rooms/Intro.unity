@@ -1763,6 +1763,10 @@ PrefabInstance:
       propertyPath: playSoundOnInit
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4614780019039779185, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -8250555406727750410, guid: 2f26550ecdeb3be4fa69d92ca6af8af8, type: 2}
     - target: {fileID: 5129095747174618295, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1802,6 +1806,10 @@ PrefabInstance:
     - target: {fileID: 5129095747174618295, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695056930850969778, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7918617504957122282, guid: 5f4b0cb5ad195bf4a81127049fd42ff4, type: 3}
       propertyPath: m_Name

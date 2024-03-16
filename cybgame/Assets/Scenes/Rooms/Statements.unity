@@ -2033,8 +2033,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283610448
-  m_fontColor: {r: 0.3137255, g: 0.70980394, b: 0.32156864, a: 1}
+    rgba: 4281825077
+  m_fontColor: {r: 0.20784315, g: 0.4666667, b: 0.21568629, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2718,7 +2718,7 @@ MonoBehaviour:
   text: {fileID: 609544575}
   activated: {fileID: 2100000, guid: 9cf916b6b76165d4988943f889125a2f, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 7de748b5fbd855c4ea7ccae04944cb39, type: 2}
-  defaultTextColor: {r: 1, g: 0.30588236, b: 0.30588236, a: 1}
+  defaultTextColor: {r: 1, g: 0.31764707, b: 0.31764707, a: 1}
   activatedColor: {r: 1, g: 1, b: 1, a: 1}
   progressBarLength: 1.15
   speedInSeconds: 3

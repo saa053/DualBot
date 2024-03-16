@@ -19,8 +19,10 @@ public class Reward : MonoBehaviour
 
     void Update()
     {
-        CheckForPickUp(trigger.Player1Trigger());
-        CheckForPickUp(trigger.Player2Trigger());
+        if (trigger.Player1Close())
+            CheckForPickUp(trigger.Player1Trigger());
+        if (trigger.Player2Close())
+            CheckForPickUp(trigger.Player2Trigger());
     }
 
     void PlayFx()

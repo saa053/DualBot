@@ -239,19 +239,21 @@ public class PortableManager : MonoBehaviour
                 buttonTrigger.transform.parent.transform.GetComponentInChildren<Outline>().OutlineWidth = 0;
         }
         
-
-        if (buttonTrigger.Player1Trigger() || buttonTrigger.Player2Trigger())
+        if (buttonTrigger.Player1Close() || buttonTrigger.Player2Close())
         {
-            buttonSound.Play();
+            if (buttonTrigger.Player1Trigger() || buttonTrigger.Player2Trigger())
+            {
+                buttonSound.Play();
 
-            if (!StartGame() || gameComplete)
-                return;
-            else if (!portablesSpawned)
-                DialogueManager.instance.EnterDialogueMode(portablesNotSortedJSON, "");
-            else if (!allPortablesInside)
-                DialogueManager.instance.EnterDialogueMode(portablesNotSortedJSON, "");
-            else
-                evaluate = true;
+                if (!StartGame() || gameComplete || isShowingResults)
+                    return;
+                else if (!portablesSpawned)
+                    DialogueManager.instance.EnterDialogueMode(portablesNotSortedJSON, "");
+                else if (!allPortablesInside)
+                    DialogueManager.instance.EnterDialogueMode(portablesNotSortedJSON, "");
+                else
+                    evaluate = true;
+            }
         }
 
         if (evaluate)

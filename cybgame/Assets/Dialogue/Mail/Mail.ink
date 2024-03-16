@@ -13,13 +13,13 @@ Hei, jeg har en rekke e-postadresser og trenger hjelp til å vurdere hvilke som 
         -> start
     + [Nei, ikke akkurat nå]
     
-Hvis dere ombestemmer dere kan dere få en AI-disk som premie.
+Hvis dere ombestemmer dere kan dere få en AI-disk hvis dere hjelper meg.
 -> END
 
 === start ===
-Tusen takk! Dere skal få en AI-disk som premie etterpå! 
+Tusen takk! Dere skal få en AI-disk etterpå! 
 I rommet vil det ligge kasser med e-postadresser . Deres oppgave er å sortere de som enten trygg (grønt felt) eller utrygg (rødt felt). Dere kan plukke kassene opp og ned med handlingstasten.  
-Når dere er fornøyde med sorteringen trykker dere på den røde knappen. Dere trenger 3 riktige svar for å få premien. 
+Når dere er fornøyde med sorteringen trykker dere på den røde knappen. Dere trenger 3 riktige svar for å få AI-disken. 
 Hvis dere trenger tips underveis kan dere spørre meg! La oss starte! 
     ~ GO = true
 -> END
@@ -37,6 +37,9 @@ Hvilket tips vil du ha?
         ->DONE
     +[Nr.4]
         Større organisasjoner bruker sjeldent kjente e-post-tjenester som gmail og outlook.
+        ->DONE
+    +[Nei takk]
+        Snakk med meg igjen hvis dere vil ha tips!
         ->DONE
 
 -> END

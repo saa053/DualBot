@@ -13,14 +13,14 @@ Hei, jeg har en liste med passord og trenger hjelp til å vurdere hvilke som er 
         -> start
     + [Nei, ikke akkurat nå]
     
-Hvis dere ombestemmer dere kan dere få en AI-disk som premie.
+Hvis dere ombestemmer dere kan dere få en AI-disk hvis dere hjelper meg.
 -> END
 
 === start ===
-Tusen takk! Dere skal få en AI-disk som premie etterpå!
+Tusen takk! Dere skal få en AI-disk etterpå!
 Jeg kommer til å vise ett og ett passord på skjermen bak meg og jeg vil at dere går til den knappen som passer styrken til passordet.
 #Jeg vil at dere går til den knappen i dette rommet som dere mener passer styrken til passordet på skjermen.
-Dere trenger 3 riktige svar for å få premien. Hvis dere trenger tips underveis kan dere spørre meg! La oss starte!
+Dere trenger 3 riktige svar for å få AI-disken. Hvis dere trenger tips underveis kan dere spørre meg! La oss starte!
     ~ GO = true
 -> END
 

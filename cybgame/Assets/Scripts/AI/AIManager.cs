@@ -192,16 +192,16 @@ public class AIManager : MonoBehaviour
     {
         if (trigger.Player1Close() && !p1Ready)
         {
-            screenBackground.SetActive(true);
+            //screenBackground.SetActive(true);
         }
         else if (trigger.Player2Close() && !p2Ready)
         {
-            screenBackground.SetActive(true);
+            //screenBackground.SetActive(true);
         }
         else
         {
             drawOutlineOnTrigger.SetTransparent(true);
-            screenBackground.SetActive(false);
+            //screenBackground.SetActive(false);
         }
     }
 
@@ -225,11 +225,9 @@ public class AIManager : MonoBehaviour
         yield return new WaitForSeconds(timeBeforeFadeOut);
 
         float newAlpha = 0f;
-        Debug.Log(fadeBackground.GetComponent<Image>().color.a);
 
         while (fadeBackground.GetComponent<Image>().color.a < 1f)
         {
-            Debug.Log(fadeBackground.GetComponent<Image>().color.a);
             Color newColor = fadeBackground.GetComponent<Image>().color;
             newColor.a = newAlpha;
 

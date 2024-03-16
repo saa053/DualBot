@@ -62,6 +62,9 @@ public class Portable : MonoBehaviour
         outline = GetComponentInChildren<Outline>();
 
         canvas.SetActive(false);
+
+        player1IsCarry = false;
+        player2IsCarry = false;
     }
 
     // Update is called once per frame
@@ -70,33 +73,40 @@ public class Portable : MonoBehaviour
         DisplayInfoWhenPlayerClose();
         DrawOutline();
 
-        if (player1IsCarry && player1Input.GetInteract() && transform.parent == player1)
+        bool p1Trigger = trigger.Player1Trigger();
+        bool p2Trigger = trigger.Player2Trigger();
+
+        if (trigger.Player1Close())
         {
-            player1IsCarry = false;
-            Drop(player1Animator);
-            ResetPlayerHitbox(player1.GetComponent<CapsuleCollider>());
+            if (p1Trigger && transform.parent == player1)
+            {
+                player1IsCarry = false;
+                Drop(player1Animator);
+                ResetPlayerHitbox(player1.GetComponent<CapsuleCollider>());
+            }
+            else if (p1Trigger && !locked && player1Input.GetComponentInChildren<Portable>() == null)
+            {
+                player1IsCarry = true;
+                PickUp(player1, player1Animator);
+                player1Animator.SetBool("isCarry", true);
+                IncreasePlayerHitbox(player1.GetComponent<CapsuleCollider>());
+            }
         }
-        
-        if (player2IsCarry && player2Input.GetInteract() && transform.parent == player2)
+
+        if (trigger.Player2Close())
         {
-            player2IsCarry = false;
-            Drop(player2Animator);
-            ResetPlayerHitbox(player2.GetComponent<CapsuleCollider>());
-        }
-            
-        if (trigger.Player1Trigger() && !player1IsCarry && !locked && player1Input.GetComponentInChildren<Portable>() == null)
-        {
-            player1IsCarry = true;
-            PickUp(player1, player1Animator);
-            player1Animator.SetBool("isCarry", true);
-            IncreasePlayerHitbox(player1.GetComponent<CapsuleCollider>());
-        }
-        
-        if (trigger.Player2Trigger() && !player2IsCarry && !locked && player2Input.GetComponentInChildren<Portable>() == null)
-        {
-            player2IsCarry = true;
-            PickUp(player2, player2Animator);
-            IncreasePlayerHitbox(player2.GetComponent<CapsuleCollider>());
+            if (p2Trigger && transform.parent == player2)
+            {
+                player2IsCarry = false;
+                Drop(player2Animator);
+                ResetPlayerHitbox(player2.GetComponent<CapsuleCollider>());
+            }
+            else if (p2Trigger && !locked && player2Input.GetComponentInChildren<Portable>() == null)
+            {
+                player2IsCarry = true;
+                PickUp(player2, player2Animator);
+                IncreasePlayerHitbox(player2.GetComponent<CapsuleCollider>());
+            }
         }
     }
 

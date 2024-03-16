@@ -556,30 +556,30 @@ MonoBehaviour:
   fxParent: {fileID: 856346559}
   numPortables: 4
   portableSpawnList:
-  - info: 
+  - info: 'fornavn.etternavn@bergensskolen.com '
     explanation: 
     safe: 1
-  - info: 
+  - info: support@rnicrosoft.com
+    explanation: 
+    safe: 0
+  - info: noreply@telenor.no
     explanation: 
     safe: 1
-  - info: 
-    explanation: 
-    safe: 0
-  - info: 
-    explanation: 
-    safe: 0
-  - info: 
+  - info: apple@hotmail.com
     explanation: 
     safe: 1
-  - info: 
-    explanation: 
-    safe: 0
-  - info: http://tv2-nyheter.no
-    explanation: 
-    safe: 0
-  - info: https://www.ung.no
+  - info: kundeservice@bank.no
     explanation: 
     safe: 1
+  - info: fornavn.etternavn@bergen.skolen.com
+    explanation: 
+    safe: 0
+  - info: support@microsoft.com
+    explanation: 
+    safe: 1
+  - info: noreply@telenor.biz
+    explanation: 
+    safe: 0
   portablePrefab: {fileID: 4424221129504497467, guid: b0165866dbe121c4c8bc28f3f07c8bea, type: 3}
   portableParent: {fileID: 1178467023}
   startSpawnPos: {x: -7, y: 3, z: -4}

@@ -5,7 +5,7 @@ VAR reward = false
 ->main
 
 === main ===
-Alle boksene er ikke sortert enda...
+Alle URL-ene er ikke sortert. Trykk på den røde knappen når dere er ferdig!
 -> END
 
 

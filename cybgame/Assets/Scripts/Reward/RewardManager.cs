@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RewardManager : MonoBehaviour
 {
+    [SerializeField] GameObject rewardUI;
     [SerializeField] AudioSource spawnSound;
     [SerializeField] GameObject rewardPrefab;
     [SerializeField] TextMeshProUGUI ui;
@@ -26,6 +27,9 @@ public class RewardManager : MonoBehaviour
     void Update()
     {
         ui.text = rewardCount.ToString();
+
+        if (rewardCount > 0)
+            rewardUI.SetActive(true);
     }
 
     public void IncrementRewardCount()

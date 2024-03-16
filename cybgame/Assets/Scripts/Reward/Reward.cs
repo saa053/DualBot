@@ -6,7 +6,6 @@ using UnityEngine;
 public class Reward : MonoBehaviour
 {
     [SerializeField] GameObject fx;
-    [SerializeField] GameObject visualCue;
     AudioSource pickUpSound;
 
     Trigger trigger;

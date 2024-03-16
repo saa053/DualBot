@@ -547,11 +547,10 @@ MonoBehaviour:
   numCorrectNeeded: 3
   rewardPos: {x: 0, y: 0, z: -3}
   materials:
-  - {fileID: 2100000, guid: 6b7b01a8fed2c66479152b52b0a782f9, type: 2}
-  - {fileID: 2100000, guid: c6157b5537c3a3d4ba459d184687b29d, type: 2}
-  - {fileID: 2100000, guid: dde128a9b4b55e941b757b2c9e29fd60, type: 2}
-  - {fileID: 2100000, guid: e4eff146b3f33ce4aad0b6a25c33c951, type: 2}
-  - {fileID: 2100000, guid: 25743eb71b1b5f841b550538882b1c3b, type: 2}
+  - {fileID: 2100000, guid: e480f4e1cf22edf4e9bd4792460fddb7, type: 2}
+  - {fileID: 2100000, guid: 926c5c2736e425b4ca242410eea3a3f5, type: 2}
+  - {fileID: 2100000, guid: 239593f207c5d11409acb75ed42d00fc, type: 2}
+  - {fileID: 2100000, guid: 759152800344e114d9ad8c267202b3e1, type: 2}
   implodeFxPrefab: {fileID: 2804596116418254524, guid: 92e55623d2ace794395cda48b5a10544, type: 3}
   fxParent: {fileID: 856346559}
   numPortables: 4

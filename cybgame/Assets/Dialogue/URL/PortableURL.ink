@@ -1,6 +1,7 @@
 VAR shouldSave = true
 VAR saveString = "URL"
 VAR GO = false
+VAR slash = "/"
 
 -> main
 
@@ -8,34 +9,35 @@ VAR GO = false
 {GO: -> tips | -> main}
 
 === main ===
-Hei, jeg har en rekke e-postadresser og trenger hjelp til å vurdere hvilke som er trygge. Kan dere hjelpe meg? 
+Hei, jeg har en rekke URL-er og trenger hjelp til å vurdere hvilke som er trygge. Kan dere hjelpe meg? 
     + [Ja]
         -> start
     + [Nei, ikke akkurat nå]
     
-Okei... Hvis dere ombestemmer dere kan dere få en AI-disk som premie.
+Hvis dere ombestemmer dere kan dere få en AI-disk som premie.
 -> END
 
 === start ===
 Tusen takk! Dere skal få en AI-disk som premie etterpå! 
-I rommet ligger det en rekke e-poster med tilhørende adresser. Deres oppgave er å sortere e-postadressene som enten trygg (grønt felt) eller utrygg (rødt felt). Dere kan plukke opp og ned e-postene med handlingstasten.  
-Når dere er fornøyde med sorteringen trykker dere på den røde knappen. Dere trenger 3 riktige svar for å få premien. Hvis dere trenger tips underveis kan dere spørre meg! La oss starte! 
+I rommet vil det ligge kasser med URL-er. Deres oppgave er å sortere de som enten trygg (grønt felt) eller utrygg (rødt felt). Dere kan plukke kassene opp og ned med handlingstasten.  
+Når dere er fornøyde med sorteringen trykker dere på den røde knappen. Dere trenger minst 3 riktige svar for å få premien. 
+Hvis dere trenger tips underveis kan dere spørre meg! La oss starte! 
     ~ GO = true
 -> END
 
 === tips ===
-Hvilket tips vil du ha?
+Hvilket tips vil dere ha?
     +[Nr.1]
-        Svindlere vil ofte bruke adresser som er lik originalen, men vil endre en liten detalj, for eksempel bytte ‘i’ ut med ‘1’ eller fjerne en bokstav. 
+        Se etter URL-er som starter med 'https:{slash}{slash}' istedenfor 'http:{slash}{slash}'. ‘s’-en indikerer at det er en sikker tilkobling, som er viktig for å beskytte sensitiv informasjon.  NB! det er ikke garantert at nettsiden er trygg selv om det er 'https:{slash}{slash}'   
         ->DONE
     +[Nr.2]
-        Svindlere kan bruke et annet toppdomene, som er de siste bokstavene i adressen. Istedenfor ‘.no’ eller ‘.com’, bruker de kanskje ‘.biz’ sammen med kjente navn.
+        Svindlere kan etterligne trygge URL-er og endre små detaljer. Istedenfor ‘microsoft.com’ kan de bruke ‘rnicrosoft.com’ 
         ->DONE
     +[Nr.3]
-        Svindlere kan utvide kjente avsenderadresser med ord som ser trygge ut, for eksempel ‘@bank-hjelp.no.’ istedenfor ‘@bank.no’. 
+        Svindlere kan bruke et annet toppdomene enn de du er kjent med, som er de siste bokstavene i URL-en. Istedenfor ‘.no’ eller ‘.com’, bruker de kanskje ‘.link’.
         ->DONE
-    +[Nr.4]
-        Større organisasjoner bruker sjeldent kjente e-post-tjenester som gmail og outlook.
+    +[Nei takk]
+        Snakk med meg igjen hvis dere vil ha tips!
         ->DONE
 
 -> END

@@ -13,7 +13,7 @@ Hei, jeg har en liste med passord og trenger hjelp til å vurdere hvilke som er 
         -> start
     + [Nei, ikke akkurat nå]
     
-:(
+Hvis dere ombestemmer dere kan dere få en AI-disk som premie.
 -> END
 
 === start ===
@@ -25,7 +25,7 @@ Dere trenger 3 riktige svar for å få premien. Hvis dere trenger tips underveis
 -> END
 
 === tips ===
-Hvilket tips vil du ha?
+Hvilket tips vil dere ha?
     +[Nr.1]
         Sterke passord er ofte lange og består av en rekke ulike bokstaver, tall og spesialtegn.
         ->DONE

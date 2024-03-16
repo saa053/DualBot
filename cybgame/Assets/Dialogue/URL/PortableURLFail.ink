@@ -8,7 +8,7 @@ VAR restart = false
 
 
 === main ===
-Her må vi nok restarte
+Her er det noe som ikke stemmer, dere må prøve igjen. Kom og hør med meg hvis dere trenger noen tips!
 ~ restart = true
 -> END
 

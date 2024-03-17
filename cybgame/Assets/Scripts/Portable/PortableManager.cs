@@ -145,7 +145,6 @@ public class PortableManager : MonoBehaviour
                 }
                 Restart();
             }
-
             NPCTrigger.SetStopInteract(false);
         }
     }
@@ -236,6 +235,9 @@ public class PortableManager : MonoBehaviour
 
     void HandleRedButton()
     {
+        if (DialogueManager.instance.dialogueIsPlaying)
+            return;
+
         if (buttonTrigger.transform.parent.transform.GetComponentInChildren<Outline>() != null)
         {
             if (buttonTrigger.Player1Close() || buttonTrigger.Player2Close())
@@ -341,8 +343,6 @@ public class PortableManager : MonoBehaviour
                 portable.GetComponentInChildren<Outline>().OutlineColor = correctColor;
                 correctSound.Play();
             }
-            else
-                //Debug.Log("Result is not set!");
 
             lastPortable = portable;
 

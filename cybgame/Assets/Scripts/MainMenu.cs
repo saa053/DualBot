@@ -90,6 +90,7 @@ public class MainMenu : MonoBehaviour
         }
         else if (!controlsShown)
         {
+            controlsShown = true;
             fade.SetActive(true);
             introScreen.SetActive(false);
             StartCoroutine(ShowControls());
@@ -218,12 +219,11 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(FadeIn());
         controlScreenSound.Play();
         controlsImage.SetActive(true);
-        controlsShown = true;
 
 
         while (!player1Ready || !player2Ready)
         {
-            if (player1.GetInteract())
+            if (player1.GetInteract() && !player1Ready)
             {
                 ShowCheckmark(checkmark1);
                 player1Ready = true;
@@ -238,7 +238,7 @@ public class MainMenu : MonoBehaviour
                     highPitchSound.Play();
                 }
             }
-            else if (player2.GetInteract())
+            else if (player2.GetInteract() && !player2Ready)
             {
                 ShowCheckmark(checkmark2);
                 player2Ready = true;

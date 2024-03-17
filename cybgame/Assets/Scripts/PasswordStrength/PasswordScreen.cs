@@ -85,6 +85,7 @@ public class PasswordScreen : MonoBehaviour
         currentStrength = remainingPasswords[randomIndex].strength;
 
         remainingPasswords.RemoveAt(randomIndex);
+   
         return currentPassword;
     }
 

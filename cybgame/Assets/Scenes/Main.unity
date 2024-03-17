@@ -710,6 +710,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitTimeWhenChoosingSameAnswer: 3
+  loudClip: {fileID: 8300000, guid: 0855d75402e816e45aa0c5ee3f28c11f, type: 3}
+  loudClipVolume: 0.3
   typeSpeed: 5
   blinkingSpeed: 0.5
   checkmarks: {fileID: 834862221}

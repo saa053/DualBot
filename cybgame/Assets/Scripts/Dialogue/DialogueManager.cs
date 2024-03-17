@@ -14,6 +14,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] float waitTimeWhenChoosingSameAnswer;
 
     [Header("Dialogue Settings")]
+    [SerializeField] AudioClip loudClip;
+    [SerializeField] float loudClipVolume;
     [SerializeField] float typeSpeed;
     bool isTyping;
     bool activeContinueIcon;
@@ -367,6 +369,10 @@ public class DialogueManager : MonoBehaviour
 
         int index = Random.Range(0, robotTalkSoundClips.Length);
         robotTalkSound.clip = robotTalkSoundClips[index];
+        if (robotTalkSound.clip == loudClip)
+            robotTalkSound.volume = loudClipVolume;
+        else
+            robotTalkSound.volume = 1f;
         robotTalkSound.Play();
 
         dialogueText.text = "";

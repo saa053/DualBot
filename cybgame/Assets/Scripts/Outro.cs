@@ -47,14 +47,14 @@ public class Outro : MonoBehaviour
         p = introText.text;
         introText.text = "";
 
-        analogGlitch = Camera.main.GetComponent<AnalogGlitch>();
-        digitalGlitch = Camera.main.GetComponent<DigitalGlitch>();
+        Camera camera = Camera.main.transform.GetChild(0).GetComponent<Camera>();
+        introScreen.GetComponent<Canvas>().worldCamera = camera;
 
+        analogGlitch = camera.GetComponent<AnalogGlitch>();
+        digitalGlitch = camera.GetComponent<DigitalGlitch>();
 
-        Camera.main.GetComponent<AnalogGlitch>().enabled = false;
-        Camera.main.GetComponent<DigitalGlitch>().enabled = false;
-
-        introScreen.GetComponent<Canvas>().worldCamera = Camera.main;
+        analogGlitch.enabled = false;
+        digitalGlitch.enabled = false;
 
         outroText.SetActive(false);
     }
@@ -83,8 +83,8 @@ public class Outro : MonoBehaviour
 
     void PlayIntro()
     {
-        Camera.main.GetComponent<AnalogGlitch>().enabled = true;
-        Camera.main.GetComponent<DigitalGlitch>().enabled = true;
+        digitalGlitch.enabled = true;
+        analogGlitch.enabled = true;
         introScreen.SetActive(true);
         GlitchVeryLow();
         StartCoroutine(TypeDialogueText(p));

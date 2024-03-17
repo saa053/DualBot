@@ -17,14 +17,14 @@ Hvis dere ombestemmer dere kan dere få en AI-disk hvis dere hjelper meg.
 -> END
 
 === start ===
-Tusen takk! Dere skal få en AI-disk etterpå! 
-Jeg kommer til å vise ett og ett utsagn på skjermen bak meg og jeg vil at dere går til den knappen dere mener passer utsagnet. 
+Jeg kommer til å vise ett og ett utsagn på skjermen bak meg og jeg vil at dere går til den knappen dere mener passer utsagnet. \
+\
 Dere trenger 3 riktige svar for å få AI-disken. La oss starte!
     ~ GO = true
 -> END
 
 === tips ===
-Stå på!
+Takk for hjelpen!
 
 -> END
 

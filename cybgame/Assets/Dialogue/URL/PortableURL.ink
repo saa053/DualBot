@@ -18,9 +18,10 @@ Hvis dere ombestemmer dere kan dere få en AI-disk hvis dere hjelper meg.
 -> END
 
 === start ===
-Tusen takk! Dere skal få en AI-disk etterpå! 
-I rommet vil det ligge kasser med URL-er. Deres oppgave er å sortere de som enten trygg (grønt felt) eller utrygg (rødt felt). Dere kan plukke kassene opp og ned med handlingstasten.  
-Når dere er fornøyde med sorteringen trykker dere på den røde knappen. Dere trenger minst 3 riktige svar for å få AI-disken. 
+I rommet vil det ligge kasser med URL-er. Deres oppgave er å sortere de som enten trygg (grønt felt) eller utrygg (rødt felt). Dere kan plukke kassene opp og ned med handlingstasten. \
+\
+Når dere er fornøyde med sorteringen trykker dere på den røde knappen. Dere trenger minst 3 riktige svar for å få AI-disken.
+
 Hvis dere trenger tips underveis kan dere spørre meg! La oss starte! 
     ~ GO = true
 -> END

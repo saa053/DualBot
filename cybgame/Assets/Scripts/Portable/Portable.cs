@@ -158,6 +158,8 @@ public class Portable : MonoBehaviour
 
     void DrawOutline()
     {
+        if (locked)
+            return;
         if (trigger.Player1Close() || trigger.Player2Close())
         {
             if (!isCarried)

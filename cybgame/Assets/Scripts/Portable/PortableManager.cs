@@ -335,7 +335,7 @@ public class PortableManager : MonoBehaviour
                 correctSound.Play();
             }
             else
-                Debug.Log("Result is not set!");
+                //Debug.Log("Result is not set!");
 
             lastPortable = portable;
 

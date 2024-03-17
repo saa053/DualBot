@@ -18,7 +18,7 @@ public class Room : MonoBehaviour
     {
         if(RoomController.instance == null)
         {
-            Debug.Log("You pressed play in the wrong scene!");
+            //Debug.Log("You pressed play in the wrong scene!");
             return;
         }
 

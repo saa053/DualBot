@@ -67,7 +67,7 @@ public class CameraController : MonoBehaviour
         
         if (n != 1)
         {
-            Debug.Log("ERROR: Too many or no camera transition chosen!");
+            //Debug.Log("ERROR: Too many or no camera transition chosen!");
             return;
         }
     }

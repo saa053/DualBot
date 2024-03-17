@@ -68,7 +68,7 @@ public class PasswordScreen : MonoBehaviour
         {
             if (wrongPasswords.Count == 0)
             {
-                Debug.Log("No passwords in list");
+                //Debug.Log("No passwords in list");
                 return "";
             }
             

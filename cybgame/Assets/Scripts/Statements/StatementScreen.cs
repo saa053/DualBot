@@ -66,7 +66,7 @@ public class StatementScreen : MonoBehaviour
         {
             if (wrongStatements.Count == 0)
             {
-                Debug.Log("No passwords in list");
+                //Debug.Log("No passwords in list");
                 return "";
             }
             

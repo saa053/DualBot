@@ -401,7 +401,7 @@ public class DialogueManager : MonoBehaviour
 
         if (currentStory.variablesState == null || !currentStory.variablesState.Contains("saveString"))
         {
-            Debug.Log("Ink story doesn't have a save string!");
+            //Debug.Log("Ink story doesn't have a save string!");
             return;
         }
 
@@ -445,7 +445,7 @@ public class DialogueManager : MonoBehaviour
             bool result = DialogueSaveManager.instance.SaveStoryState(currentStory, saveString);
             if (!result)
             {
-                Debug.Log("Failed saving story state!");
+                //Debug.Log("Failed saving story state!");
                 return;
             }
         }

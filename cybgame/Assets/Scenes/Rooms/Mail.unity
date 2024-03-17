@@ -644,9 +644,9 @@ MonoBehaviour:
   - info: apple@hotmail.com
     explanation: 
     safe: 0
-  - info: kundeservice@bank.no
+  - info: bitcoin@eymgd.dk
     explanation: 
-    safe: 1
+    safe: 0
   - info: fornavn.etternavn@bergen.skolen.com
     explanation: 
     safe: 0

@@ -469,7 +469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 379248095}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Plates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +859,7 @@ GameObject:
   - component: {fileID: 485843000}
   - component: {fileID: 485842999}
   - component: {fileID: 485842998}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -936,7 +936,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 6670812251730327369, guid: 35db8e29b2cb15946922e5aff3af59a4, type: 3}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 609544574}
   - component: {fileID: 609544576}
   - component: {fileID: 609544575}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TextUsant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1978,7 +1978,7 @@ GameObject:
   - component: {fileID: 1014420084}
   - component: {fileID: 1014420086}
   - component: {fileID: 1014420085}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TextSant
   m_TagString: Untagged
   m_Icon: {fileID: 0}

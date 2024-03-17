@@ -13,6 +13,8 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Ink JSON")]
     [SerializeField] TextAsset inkJSON;
 
+    bool stopInteractionWithNPC = false;
+
     Trigger trigger;
 
     void Awake()
@@ -27,7 +29,7 @@ public class DialogueTrigger : MonoBehaviour
 
     void Update()
     {
-        if ((trigger.Player1Close() || trigger.Player2Close()) && !DialogueManager.instance.dialogueIsPlaying)
+        if ((trigger.Player1Close() || trigger.Player2Close()) && !DialogueManager.instance.dialogueIsPlaying && !stopInteractionWithNPC)
         {
             visualCue.SetActive(true);
 
@@ -40,5 +42,10 @@ public class DialogueTrigger : MonoBehaviour
         {
             visualCue.SetActive(false);
         }
+    }
+
+    public void SetStopInteract(bool val)
+    {
+        stopInteractionWithNPC = val;
     }
 }

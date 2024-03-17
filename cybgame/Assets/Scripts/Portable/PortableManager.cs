@@ -81,6 +81,8 @@ public class PortableManager : MonoBehaviour
     [SerializeField] float resultPauseBetweenPortables;
     [SerializeField] float removePause;
 
+    [Header("NPC")]
+    [SerializeField] DialogueTrigger NPCTrigger;
 
     void Start()
     {
@@ -114,6 +116,7 @@ public class PortableManager : MonoBehaviour
 
         if (resultsReady && !isShowingResults)
         {
+            NPCTrigger.SetStopInteract(true);
             StartCoroutine(ShowResults());
         }
         
@@ -142,6 +145,8 @@ public class PortableManager : MonoBehaviour
                 }
                 Restart();
             }
+
+            NPCTrigger.SetStopInteract(false);
         }
     }
 
@@ -257,7 +262,9 @@ public class PortableManager : MonoBehaviour
         }
 
         if (evaluate)
+        {
             EvaluateResult();
+        }
     }
 
     void EvaluateResult()

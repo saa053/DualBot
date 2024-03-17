@@ -622,7 +622,7 @@ MonoBehaviour:
   failText: {fileID: 4900000, guid: 4e9d4d64c9174084d9f146b6c842d877, type: 3}
   NPCText: {fileID: 4900000, guid: edde676e788c42e4c9efb3c55941a187, type: 3}
   numCorrectNeeded: 3
-  rewardPos: {x: 0, y: 0, z: -3}
+  rewardPos: {x: 0, y: 0, z: 3}
   materials:
   - {fileID: 2100000, guid: e480f4e1cf22edf4e9bd4792460fddb7, type: 2}
   - {fileID: 2100000, guid: 926c5c2736e425b4ca242410eea3a3f5, type: 2}

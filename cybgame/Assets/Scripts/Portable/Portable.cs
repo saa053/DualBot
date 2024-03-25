@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Portable : MonoBehaviour
@@ -36,8 +37,6 @@ public class Portable : MonoBehaviour
     BoxCollider boxCollider;
 
     [Header("Players")]
-    bool player1IsCarry;
-    bool player2IsCarry;
     bool isCarried = false;
     Transform player1;
     Transform player2;
@@ -62,69 +61,56 @@ public class Portable : MonoBehaviour
         outline = GetComponentInChildren<Outline>();
 
         canvas.SetActive(false);
-
-        player1IsCarry = false;
-        player2IsCarry = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        DisplayInfoWhenPlayerClose();
-        DrawOutline();
-
         bool p1Trigger = trigger.Player1Trigger();
         bool p2Trigger = trigger.Player2Trigger();
 
-        if (trigger.Player1Close())
+        //DisplayOutlineAndInfo();
+
+        CheckPlayer(true, trigger.Player1Close(), p1Trigger, player1, player2, player1Animator, player2Animator, player1Input, player2Input);
+        CheckPlayer(false, trigger.Player2Close(), p2Trigger, player2, player1, player2Animator, player1Animator, player2Input, player1Input);
+    }
+
+    void CheckPlayer(bool p1, bool playerClose, bool interact, Transform playerTransform, Transform otherPlayerTransform, Animator animator, Animator otherAnimator, PlayerInputManager input, PlayerInputManager otherInput)
+    {
+        if (playerClose && interact)
         {
-            if (p1Trigger && transform.parent == player1)
+            if (input.GetCarry() && transform.parent == playerTransform)
             {
-                player1IsCarry = false;
-                Drop(player1Animator);
-                ResetPlayerHitbox(player1.GetComponent<CapsuleCollider>());
+                Drop(animator, input);
             }
-            else if (p1Trigger && !locked && player1Input.GetComponentInChildren<Portable>() == null)
+            else if (!locked && !input.GetCarry())
             {
-                if (player2IsCarry)
+                Portable[] allPortables = FindObjectsOfType<Portable>();
+                foreach (Portable item in allPortables)
                 {
-                    player2IsCarry = false;
-                    Drop(player2Animator);
-                    ResetPlayerHitbox(player2.GetComponent<CapsuleCollider>());
+                    if (Vector3.Distance(transform.position, playerTransform.position) > Vector3.Distance(item.transform.position, playerTransform.position))
+                    {
+                        input.ResetInteract(interact);
+                        return;
+                    }
+
                 }
 
-                player1IsCarry = true;
-                PickUp(player1, player1Animator);
-                player1Animator.SetBool("isCarry", true);
-                IncreasePlayerHitbox(player1.GetComponent<CapsuleCollider>());
-            }
-        }
-
-        if (trigger.Player2Close())
-        {
-            if (p2Trigger && transform.parent == player2)
-            {
-                player2IsCarry = false;
-                Drop(player2Animator);
-                ResetPlayerHitbox(player2.GetComponent<CapsuleCollider>());
-            }
-            else if (p2Trigger && !locked && player2Input.GetComponentInChildren<Portable>() == null)
-            {
-                if (player1IsCarry)
+                if (transform.parent == otherPlayerTransform)
                 {
-                    player1IsCarry = false;
-                    Drop(player1Animator);
-                    ResetPlayerHitbox(player1.GetComponent<CapsuleCollider>());
+                    Drop(otherAnimator, otherInput);
                 }
 
-                player2IsCarry = true;
-                PickUp(player2, player2Animator);
-                IncreasePlayerHitbox(player2.GetComponent<CapsuleCollider>());
+                PickUp(playerTransform, animator, input);
+            }
+            
+            if (input.GetCarry() && transform.parent != playerTransform)
+            {
+                input.ResetInteract(interact);
             }
         }
     }
 
-    void PickUp(Transform parent, Animator animator)
+    void PickUp(Transform parent, Animator animator, PlayerInputManager input)
     {
         transform.rotation = parent.rotation;
         transform.position = parent.transform.position;
@@ -141,9 +127,11 @@ public class Portable : MonoBehaviour
 
         isCarried = true;
         animator.SetBool("isCarry", true);
+        input.SetCarry(true);
+        IncreasePlayerHitbox(input.transform.GetComponent<CapsuleCollider>());
     }
 
-    void Drop(Animator animator)
+    void Drop(Animator animator, PlayerInputManager input)
     {
         body.useGravity = true;
         body.isKinematic = false;
@@ -154,6 +142,8 @@ public class Portable : MonoBehaviour
 
         isCarried = false;
         animator.SetBool("isCarry", false);
+        input.SetCarry(false);
+        ResetPlayerHitbox(input.transform.GetComponent<CapsuleCollider>());
     }
 
     void IncreasePlayerHitbox(CapsuleCollider collider)
@@ -168,6 +158,35 @@ public class Portable : MonoBehaviour
         collider.height = originalHeight;
         collider.radius = originalRadius;
         collider.center = originalCenter;
+    }
+
+    void DisplayOutlineAndInfo()
+    {
+        if (locked)
+            return;
+
+        if ((trigger.Player1Close() && !player1Input.GetCarry())|| (trigger.Player2Close() && !player2Input.GetCarry()))
+        {
+            canvas.SetActive(true);
+
+            if (!isCarried)
+            {
+                outline.OutlineWidth = 10;
+                outline.OutlineColor = outlineColor;
+            }
+            else
+            {
+                if (outline.OutlineColor == outlineColor)
+                    outline.OutlineWidth = 0;
+            }
+        } 
+        else
+        {
+            canvas.SetActive(false);
+
+            if (outline.OutlineColor == outlineColor)
+                outline.OutlineWidth = 0;
+        }
     }
 
     void DrawOutline()
@@ -235,7 +254,8 @@ public class Portable : MonoBehaviour
         if (isCarried)
         {
             Animator animator = transform.parent.GetComponentInChildren<Animator>();
-            Drop(animator);
+            PlayerInputManager input = transform.parent.GetComponent<PlayerInputManager>();
+            Drop(animator, input);
         }
         
         body.mass = 200;

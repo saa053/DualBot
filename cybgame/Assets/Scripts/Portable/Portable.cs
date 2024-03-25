@@ -86,6 +86,13 @@ public class Portable : MonoBehaviour
             }
             else if (p1Trigger && !locked && player1Input.GetComponentInChildren<Portable>() == null)
             {
+                if (player2IsCarry)
+                {
+                    player2IsCarry = false;
+                    Drop(player2Animator);
+                    ResetPlayerHitbox(player2.GetComponent<CapsuleCollider>());
+                }
+
                 player1IsCarry = true;
                 PickUp(player1, player1Animator);
                 player1Animator.SetBool("isCarry", true);
@@ -103,6 +110,13 @@ public class Portable : MonoBehaviour
             }
             else if (p2Trigger && !locked && player2Input.GetComponentInChildren<Portable>() == null)
             {
+                if (player1IsCarry)
+                {
+                    player1IsCarry = false;
+                    Drop(player1Animator);
+                    ResetPlayerHitbox(player1.GetComponent<CapsuleCollider>());
+                }
+
                 player2IsCarry = true;
                 PickUp(player2, player2Animator);
                 IncreasePlayerHitbox(player2.GetComponent<CapsuleCollider>());

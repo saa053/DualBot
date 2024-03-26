@@ -59,6 +59,7 @@ public class PortableManager : MonoBehaviour
     [SerializeField] float timeBetweenSpawns;
 
     int currentIndex = 0;
+    int currentRound = 0;
 
     [Header("Sorting Squares Settings")]
     [SerializeField] PortableTrigger safeTrigger;
@@ -201,7 +202,11 @@ public class PortableManager : MonoBehaviour
             portable.GetComponent<Portable>().SetSafe(portableSpawnList[currentIndex].safe);
             portable.GetComponent<Portable>().SetExplanation(portableSpawnList[currentIndex].explanation);
 
-            portable.transform.GetComponentInChildren<MeshRenderer>().material = materials[i];
+            if (currentRound % 2 == 0)
+                portable.GetComponentInChildren<MeshRenderer>().material = materials[currentIndex];
+            else
+                portable.GetComponentInChildren<MeshRenderer>().material = materials[currentIndex];
+
 
             portable.transform.SetParent(portableParent.transform);
 
@@ -210,6 +215,7 @@ public class PortableManager : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
 
+        currentRound++;
         portablesSpawned = true;
         isSpawning = false;
     }

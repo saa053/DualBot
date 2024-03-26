@@ -57,6 +57,11 @@ public class PlayerInputManager : MonoBehaviour
         return result;
     }
 
+    public void ResetInteract(bool lastValue)
+    {
+        interact = lastValue;
+    }
+
     public bool isMoving()
     {
         return move;

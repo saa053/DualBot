@@ -628,6 +628,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 926c5c2736e425b4ca242410eea3a3f5, type: 2}
   - {fileID: 2100000, guid: 239593f207c5d11409acb75ed42d00fc, type: 2}
   - {fileID: 2100000, guid: 759152800344e114d9ad8c267202b3e1, type: 2}
+  - {fileID: 2100000, guid: 8cac8699098bc7d4a9e2f7a703ad8563, type: 2}
+  - {fileID: 2100000, guid: 549fc8a9067ac40439af917c34f256da, type: 2}
+  - {fileID: 2100000, guid: b38f323d8c0e8e64a8846f2b2ca521ce, type: 2}
+  - {fileID: 2100000, guid: 7f39ac00e2d837d45b388fdcd46cbfec, type: 2}
   implodeFxPrefab: {fileID: 2804596116418254524, guid: 92e55623d2ace794395cda48b5a10544, type: 3}
   fxParent: {fileID: 856346559}
   numPortables: 4

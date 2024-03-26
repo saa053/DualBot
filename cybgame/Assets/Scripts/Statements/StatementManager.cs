@@ -168,14 +168,15 @@ public class StatementManager : MonoBehaviour
     IEnumerator DisplayResult(bool result)
     {
         displayingResult = true;
-        if (result)
+        StatementScreen.instance.BlankAnswer();
+        /* if (result)
         {
             StatementScreen.instance.Correct();
         }
         else
         {
             StatementScreen.instance.Wrong();
-        }
+        } */
         
         yield return new WaitForSeconds(displayResultTime);
 
@@ -184,7 +185,7 @@ public class StatementManager : MonoBehaviour
         movePlayers = true;
         displayingResult = false;
 
-        if (result)
+        /* if (result)
         {
             numCorrect++;
         }
@@ -192,10 +193,10 @@ public class StatementManager : MonoBehaviour
         {
             numWrong++;
             StatementScreen.instance.AddCurrentStatementToWrongList();
-        }
+        } */
 
         numAnswered++;
-        if (numCorrect == numStatements)
+        if (numAnswered == numStatements)
             GameComplete();
         else
             StatementScreen.instance.NextStatement();

@@ -47,6 +47,8 @@ public class PortableManager : MonoBehaviour
     bool doorsClosed = false;
 
     [Header("Portables Settings")]
+    GameObject glassBox;
+    GameObject box;
     [SerializeField] Material[] materials;
     [SerializeField] GameObject implodeFxPrefab;
     [SerializeField] GameObject fxParent;
@@ -59,6 +61,7 @@ public class PortableManager : MonoBehaviour
     [SerializeField] float timeBetweenSpawns;
 
     int currentIndex = 0;
+    int currentRound = 0;
 
     [Header("Sorting Squares Settings")]
     [SerializeField] PortableTrigger safeTrigger;
@@ -201,7 +204,24 @@ public class PortableManager : MonoBehaviour
             portable.GetComponent<Portable>().SetSafe(portableSpawnList[currentIndex].safe);
             portable.GetComponent<Portable>().SetExplanation(portableSpawnList[currentIndex].explanation);
 
-            portable.transform.GetComponentInChildren<MeshRenderer>().material = materials[i];
+            box = portable.transform.GetChild(0).gameObject;
+            glassBox = portable.transform.GetChild(1).gameObject;
+            if (currentRound % 2 != 0)
+            {
+                box.GetComponentInChildren<MeshRenderer>().material = materials[currentIndex];
+                box.SetActive(true);
+                glassBox.SetActive(false);
+            }
+            else
+            {
+                Material[] mat = glassBox.GetComponentInChildren<MeshRenderer>().materials;
+                mat[2] = materials[currentIndex];
+                glassBox.GetComponentInChildren<MeshRenderer>().materials = mat;
+
+                box.SetActive(false);
+                glassBox.SetActive(true);
+            }
+
 
             portable.transform.SetParent(portableParent.transform);
 
@@ -210,6 +230,7 @@ public class PortableManager : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
 
+        currentRound++;
         portablesSpawned = true;
         isSpawning = false;
     }

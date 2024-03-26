@@ -68,7 +68,7 @@ public class Portable : MonoBehaviour
         bool p1Trigger = trigger.Player1Trigger();
         bool p2Trigger = trigger.Player2Trigger();
 
-        //DisplayOutlineAndInfo();
+        DisplayOutlineAndInfo();
 
         CheckPlayer(true, trigger.Player1Close(), p1Trigger, player1, player2, player1Animator, player2Animator, player1Input, player2Input);
         CheckPlayer(false, trigger.Player2Close(), p2Trigger, player2, player1, player2Animator, player1Animator, player2Input, player1Input);
@@ -165,7 +165,7 @@ public class Portable : MonoBehaviour
         if (locked)
             return;
 
-        if ((trigger.Player1Close() && !player1Input.GetCarry())|| (trigger.Player2Close() && !player2Input.GetCarry()))
+        if ((trigger.Player1Close() && !player1Input.GetCarry()) || (trigger.Player2Close() && !player2Input.GetCarry()) || (trigger.Player2Close() && transform.parent == player2) || (trigger.Player1Close() && transform.parent == player1))
         {
             canvas.SetActive(true);
 

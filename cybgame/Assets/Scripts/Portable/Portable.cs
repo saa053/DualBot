@@ -45,6 +45,9 @@ public class Portable : MonoBehaviour
     Animator player1Animator;
     Animator player2Animator;
 
+    bool player1Info = false;
+    bool player2Info = false;
+
     Outline outline;
     
     void Start()
@@ -165,8 +168,25 @@ public class Portable : MonoBehaviour
         if (locked)
             return;
 
-        if ((trigger.Player1Close() && !player1Input.GetCarry()) || (trigger.Player2Close() && !player2Input.GetCarry()) || (trigger.Player2Close() && transform.parent == player2) || (trigger.Player1Close() && transform.parent == player1))
+        if ((trigger.Player1Close() && !player1Input.GetCarry()) || (trigger.Player1Close() && transform.parent == player1))
         {
+            Portable[] allPortables = FindObjectsOfType<Portable>();
+            foreach (Portable item in allPortables)
+            {
+                if (Vector3.Distance(transform.position, player1.position) > Vector3.Distance(item.transform.position, player1.position))
+                {
+                    player1Info = false;
+
+                    canvas.SetActive(false);
+
+                    if (outline.OutlineColor == outlineColor)
+                        outline.OutlineWidth = 0;
+                    return;
+                }
+
+            }
+
+            player1Info = true;
             canvas.SetActive(true);
 
             if (!isCarried)
@@ -179,14 +199,50 @@ public class Portable : MonoBehaviour
                 if (outline.OutlineColor == outlineColor)
                     outline.OutlineWidth = 0;
             }
-        } 
-        else
-        {
-            canvas.SetActive(false);
 
-            if (outline.OutlineColor == outlineColor)
-                outline.OutlineWidth = 0;
+            return;
         }
+        else if ((trigger.Player2Close() && !player2Input.GetCarry()) || (trigger.Player2Close() && transform.parent == player2))
+        {
+            Portable[] allPortables = FindObjectsOfType<Portable>();
+            foreach (Portable item in allPortables)
+            {
+                if (Vector3.Distance(transform.position, player2.position) > Vector3.Distance(item.transform.position, player2.position))
+                {
+                    player2Info = false;
+
+                    canvas.SetActive(false);
+
+                    if (outline.OutlineColor == outlineColor)
+                        outline.OutlineWidth = 0;
+                    return;
+                }
+
+            }
+
+            player2Info = true;
+            canvas.SetActive(true);
+
+            if (!isCarried)
+            {
+                outline.OutlineWidth = 10;
+                outline.OutlineColor = outlineColor;
+            }
+            else
+            {
+                if (outline.OutlineColor == outlineColor)
+                    outline.OutlineWidth = 0;
+            }
+
+            return;
+        }
+
+
+
+        canvas.SetActive(false);
+
+        if (outline.OutlineColor == outlineColor)
+            outline.OutlineWidth = 0;
     }
 
     void DrawOutline()

@@ -2822,7 +2822,7 @@ MonoBehaviour:
   - name: ES
     x: 0
     y: 1
-  - name: PasswordStrength
+  - name: URL
     x: 1
     y: 1
   - name: Empty
@@ -2834,7 +2834,7 @@ MonoBehaviour:
   - name: NEW
     x: 2
     y: 0
-  - name: URL
+  - name: PasswordStrength
     x: 3
     y: 1
   - name: Statements

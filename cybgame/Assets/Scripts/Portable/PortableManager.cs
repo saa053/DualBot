@@ -47,8 +47,6 @@ public class PortableManager : MonoBehaviour
     bool doorsClosed = false;
 
     [Header("Portables Settings")]
-    GameObject glassBox;
-    GameObject box;
     [SerializeField] Material[] materials;
     [SerializeField] GameObject implodeFxPrefab;
     [SerializeField] GameObject fxParent;
@@ -204,23 +202,10 @@ public class PortableManager : MonoBehaviour
             portable.GetComponent<Portable>().SetSafe(portableSpawnList[currentIndex].safe);
             portable.GetComponent<Portable>().SetExplanation(portableSpawnList[currentIndex].explanation);
 
-            box = portable.transform.GetChild(0).gameObject;
-            glassBox = portable.transform.GetChild(1).gameObject;
-            if (currentRound % 2 != 0)
-            {
-                box.GetComponentInChildren<MeshRenderer>().material = materials[currentIndex];
-                box.SetActive(true);
-                glassBox.SetActive(false);
-            }
+            if (currentRound % 2 == 0)
+                portable.GetComponentInChildren<MeshRenderer>().material = materials[currentIndex];
             else
-            {
-                Material[] mat = glassBox.GetComponentInChildren<MeshRenderer>().materials;
-                mat[2] = materials[currentIndex];
-                glassBox.GetComponentInChildren<MeshRenderer>().materials = mat;
-
-                box.SetActive(false);
-                glassBox.SetActive(true);
-            }
+                portable.GetComponentInChildren<MeshRenderer>().material = materials[currentIndex];
 
 
             portable.transform.SetParent(portableParent.transform);

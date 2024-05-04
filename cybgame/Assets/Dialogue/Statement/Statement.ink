@@ -17,7 +17,7 @@ Hvis dere ombestemmer dere kan dere få en AI-disk hvis dere hjelper meg.
 -> END
 
 === start ===
-Jeg kommer til å vise ett og ett utsagn på skjermen bak meg og jeg vil at dere går til den knappen dere mener passer utsagnet. \
+Jeg kommer til å vise ett og ett utsagn på skjermen bak meg og jeg vil at dere går til den knappen dere er mest enig i. \
 \
 Dere trenger 3 riktige svar for å få AI-disken. La oss starte!
     ~ GO = true

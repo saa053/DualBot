@@ -15,12 +15,12 @@ In DualBot, players take on the roles of robots sent to help an AI research faci
 
 ## Screenshots
 
-<img src="images/Dialogue Choice One.png" alt="cover" width="300"/>
-<img src="images/AI Room.png" alt="cover" width="300"/>
-<img src="images/Controls.png" alt="cover" width="300"/>
-<img src="images/NPC 2.png" alt="cover" width="300"/>
-<img src="images/Statement.png" alt="cover" width="300"/>
-<img src="images/Exploring.png" alt="cover" width="300"/>
+<img src="images/Dialogue Choice One.png" alt="cover" width="250"/>
+<img src="images/AI Room.png" alt="cover" width="250"/>
+<img src="images/Controls.png" alt="cover" width="250"/>
+<img src="images/NPC 2.png" alt="cover" width="250"/>
+<img src="images/Statement.png" alt="cover" width="250"/>
+<img src="images/Exploring.png" alt="cover" width="250"/>
 
 ## Contact
 

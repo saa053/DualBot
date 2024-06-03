@@ -11,7 +11,7 @@ This game was developed in Unity, as part of Stian Aasheim and Marte Træen's ma
 
 DualBot is an educational cybersecurity game for two players with a focus on collaborative gameplay. It is specifically tailored to engage children and their parents in learning cybersecurity principles in a fun and interactive way.
 
-In DualBot, players take on the roles of robots sent to help an AI research facility attacked by hackers. The robots working at the facility doesn't know right from wrong anymore and it's your task to guide and train them. Learn important cybersecurity lessons while completing fun and challenging tasks together.
+In DualBot, players take on the roles of robots sent to help an AI research lab attacked by hackers. The robots working at the facility doesn't know right from wrong anymore and it's your task to guide and train them. Learn important cybersecurity lessons while completing fun and challenging tasks together.
 
 ## Screenshots
 
